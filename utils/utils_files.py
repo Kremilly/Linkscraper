@@ -5,11 +5,11 @@ from urllib.parse import urlparse
 
 from utils.utils import *
 
-def localFileSize(file):
+def local_file_size(file):
     file_size = os.stat(file)
     return humanSize(file_size.st_size)
 
-def remoteFileSize(url):
+def remote_file_size(url):
     try:
         req_headers = requests.get(url)
         return humanSize(
@@ -18,16 +18,16 @@ def remoteFileSize(url):
     except:
         return None
 
-def toBase64(file):
+def to_base64(file):
     with open(file, "rb") as f:
         output = base64.b64encode(f.read())
     
     return output
 
-def removeExtension(file):
+def remove_extension(file):
     return file.rsplit(".", 1)[0]
 
-def getExtension(file):
+def get_extension(file):
     ext = os.path.splitext(file)
     
     if ext != "" or ext != ".":
@@ -35,7 +35,7 @@ def getExtension(file):
     else:
         return None
 
-def getFileName(string):
+def get_file_name(string):
     name = os.path.split(string)[1]
         
     if find(string, "?"):
@@ -43,7 +43,7 @@ def getFileName(string):
     else:
         return name
 
-def getRemoteFileName(url):
+def get_remote_file_size(url):
     a = urlparse(url)
     basename = os.path.basename(a.path)
     
@@ -54,6 +54,6 @@ def getRemoteFileName(url):
             if find(file, ".") and len(file) > 1:
                 return file
 
-def createFolder(folder):
+def create_folder(folder):
     if os.path.isdir(folder) != True:
         os.makedirs(folder)

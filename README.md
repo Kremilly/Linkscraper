@@ -1,5 +1,13 @@
 # Linkscraper
 
+<div align="center">
+    <img src="https://i.imgur.com/m12BVHm.png" align="center"/>
+</div>
+
+Requirements:
+
+* Python >= 3.6 ([Download](https://www.python.org/downloads/))
+
 Clone this repository.
 
 ```shell
@@ -226,7 +234,11 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## Changelog
 
-> Current version: ``2.0.1``
+> Current version: ``2.0.2``
+
+Minors
+
+* Refactoring code
 
 Fixes
 
@@ -278,6 +290,11 @@ Plugins added
 * whois
 * rich
 * python-decouple
+
+## Roadmap
+
+* [ ] Implement a micro database key-value type ([TinyDB](https://tinydb.readthedocs.io/en/latest/) like)
+* [ ] List of possible pdf's files in URL
 
 ## License
 

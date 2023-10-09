@@ -8,7 +8,7 @@ from rich.console import Console
 
 console = Console(record=True)
 
-version = "2.0.1"
+VERSION = "2.0.2"
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-u", "--url", help="URL to scan", required=True)
@@ -21,7 +21,7 @@ parser.add_argument("-up", "--upload", help="Upload the screenshot to Imgur", re
 parser.add_argument("-b", "--browser", help="Set browser to take screenshot", required=False)
 parser.add_argument("-t", "--title", help="Set title the screenshot on Imgur", required=False)
 parser.add_argument("-ssc", "--show-status-code", help="Show status code", required=False, default="false")
-parser.add_argument("-version", "--version", help="Show current version", action="version", version=version)
+parser.add_argument("-version", "--version", help="Show current version", action="version", version=VERSION)
 parser.add_argument("-k", "--key", help="Set the API key to use an plugin that is needs this", required=False)
 parser.add_argument("-smf", "--show-minify-files", help="Show only minify files", required=False, default="false")
 parser.add_argument("-oel", "--only-external-links", help="Show only external links", required=False, default="false")
@@ -31,15 +31,15 @@ args = parser.parse_args()
 if __name__ == "__main__":
     BASE_URL = args.url
     
-    if isURL(BASE_URL) != True:
+    if not is_url(BASE_URL):
         console.print("[bold red]Error: URL is missing[/bold red]")
         sys.exit(1)
         
-    if check_connection(BASE_URL) != True:
+    if not check_connection(BASE_URL):
         console.print("[bold red]Error: connection is not established")
         sys.exit(1)
 
-    run_home(BASE_URL, version)
+    run_home(BASE_URL, VERSION)
 
     if not args.action or args.action == "get-core" or args.action == "core":
         run_core(BASE_URL)

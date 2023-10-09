@@ -47,7 +47,7 @@ def js_files(url, minify_files, filter_data, download):
                         links.append(script_url)
                 
         for script_url in list(set(links)):
-            table.add_row(getRemoteFileName(script_url), script_url)
+            table.add_row(get_remote_file_size(script_url), script_url)
             total_files += 1
         
         end_time = "{:.2f}".format(time.time() - start_time)
@@ -86,7 +86,7 @@ def css_files(url, minify_files, filter_data, download):
                             links.append(css_url)
                     
         for css_url in list(set(links)):
-            table.add_row(getRemoteFileName(css_url), css_url)
+            table.add_row(get_remote_file_size(css_url), css_url)
             total_files += 1
         
         end_time = "{:.2f}".format(time.time() - start_time)
@@ -119,7 +119,7 @@ def images_files(url, filter_data, download):
                 links.append(img_url)
     
         for img_url in list(set(links)):
-            table.add_row(getRemoteFileName(img_url), img_url)
+            table.add_row(get_remote_file_size(img_url), img_url)
             total_files += 1       
         
         end_time = "{:.2f}".format(time.time() - start_time)

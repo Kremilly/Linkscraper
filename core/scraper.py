@@ -31,14 +31,14 @@ def get_links(url, external_links, status_code, filter_data):
     for link in soup.find_all('a'):
         if link.get('href') != None:
             if filter_data:
-                if isURL(link.get('href')) and find(link.get('href'), filter_data):
+                if is_url(link.get('href')) and find(link.get('href'), filter_data):
                     links.append(link.get('href'))
             else:
                 if not external_links or external_links != "true":
-                    if isURL(link.get('href')):
+                    if is_url(link.get('href')):
                         links.append(link.get('href'))
                 else:
-                    if isURL(link.get('href')) and find(get_hostname(link.get('href')), get_hostname(url)) != True:
+                    if is_url(link.get('href')) and find(get_hostname(link.get('href')), get_hostname(url)) != True:
                         links.append(link.get('href'))
     
     for link in list(set(links)):

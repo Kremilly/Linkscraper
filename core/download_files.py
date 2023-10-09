@@ -32,7 +32,7 @@ def download_js(url, minify_files, filter_data):
     table.add_column("Size", style="blue")
     table.add_column("Status")
     
-    createFolder(path)
+    create_folder(path)
     
     for script in soup.find_all("script"):
         if script.attrs.get("src"):
@@ -50,7 +50,7 @@ def download_js(url, minify_files, filter_data):
             
     for script_url in list(set(links)):
         text = requests.get(script_url).text
-        file_name = path + getRemoteFileName(script_url)
+        file_name = path + get_remote_file_size(script_url)
         
         with open(file_name, 'w', encoding="utf-8") as f:
             f.write(text)
@@ -58,9 +58,9 @@ def download_js(url, minify_files, filter_data):
         total_files += 1
         
         if os.path.exists(file_name):
-            table.add_row(getRemoteFileName(script_url), script_url, localFileSize(file_name), "[bold green]Download completed[/bold green]")
+            table.add_row(get_remote_file_size(script_url), script_url, local_file_size(file_name), "[bold green]Download completed[/bold green]")
         else:
-            table.add_row(getRemoteFileName(script_url), script_url, localFileSize(file_name), "[bold red]Download failed[/bold red]")
+            table.add_row(get_remote_file_size(script_url), script_url, local_file_size(file_name), "[bold red]Download failed[/bold red]")
     
     path = os.path.realpath(path)
     os.startfile(path)
@@ -87,7 +87,7 @@ def download_css(url, minify_files, filter_data):
     table.add_column("Size", style="blue")
     table.add_column("Status")
     
-    createFolder(path)
+    create_folder(path)
     
     for css in soup.find_all("link"):
         if css.attrs.get("href"):
@@ -106,7 +106,7 @@ def download_css(url, minify_files, filter_data):
      
     for css_url in list(set(links)):
         text = requests.get(css_url).text
-        file_name = path + getRemoteFileName(css_url)
+        file_name = path + get_remote_file_size(css_url)
         
         with open(file_name, 'w', encoding="utf-8") as f:
             f.write(text)
@@ -114,9 +114,9 @@ def download_css(url, minify_files, filter_data):
         total_files += 1
         
         if os.path.exists(file_name):
-            table.add_row(getRemoteFileName(css_url), css_url, localFileSize(file_name), "[bold green]Download completed[/bold green]")
+            table.add_row(get_remote_file_size(css_url), css_url, local_file_size(file_name), "[bold green]Download completed[/bold green]")
         else:
-            table.add_row(getRemoteFileName(css_url), css_url, localFileSize(file_name), "[bold red]Download failed[/bold red]")
+            table.add_row(get_remote_file_size(css_url), css_url, local_file_size(file_name), "[bold red]Download failed[/bold red]")
     
     path = os.path.realpath(path)
     os.startfile(path)
@@ -143,7 +143,7 @@ def download_images(url, filter_data):
     table.add_column("Size", style="blue")
     table.add_column("Status", style="bold green")
     
-    createFolder(path)
+    create_folder(path)
     
     for img in soup.find_all("img"):
         img_url = urljoin(url, img.attrs.get("src"))
@@ -156,7 +156,7 @@ def download_images(url, filter_data):
 
     for img_url in list(set(links)):
         img_data = requests.get(img_url).content
-        file_name = path + getRemoteFileName(img_url)
+        file_name = path + get_remote_file_size(img_url)
         
         with open(file_name, 'wb') as handler:
             handler.write(img_data)
@@ -164,9 +164,9 @@ def download_images(url, filter_data):
         total_files += 1
         
         if os.path.exists(file_name):
-            table.add_row(getRemoteFileName(img_url), img_url, localFileSize(file_name), "[bold green]Download completed[/bold green]")
+            table.add_row(get_remote_file_size(img_url), img_url, local_file_size(file_name), "[bold green]Download completed[/bold green]")
         else:
-            table.add_row(getRemoteFileName(img_url), img_url, localFileSize(file_name), "[bold red]Download failed[/bold red]")
+            table.add_row(get_remote_file_size(img_url), img_url, local_file_size(file_name), "[bold red]Download failed[/bold red]")
     
     path = os.path.realpath(path)
     os.startfile(path)
