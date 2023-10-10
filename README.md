@@ -238,7 +238,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 Minors
 
-* Refactoring code
+* Refactoring code, rename functions and variables for snake_case pattern
 
 Fixes
 
@@ -246,8 +246,8 @@ Fixes
 
 Added
 
-* Function ``get-links`` was added
-* Function ``get-emails`` was added
+* Function ``get_links`` was added
+* Function ``get_emails`` was added
 * Function `download_css` wass added
 * Function `download_js` wass added
 * Function `download_images` wass added
@@ -255,12 +255,12 @@ Added
 Improvements
 
 * Improvement in interface
-* Improvement in plugin ``wp-detect``
+* Improvement in plugin ``wp_detect``
 
 Plugins removed
 
 * Plugin ``mshots`` was removed and replacement by ``screenshot``
-* Plugin ``page-title`` was removed and replacement by ``page-details``
+* Plugin ``page_title`` was removed and replacement by ``page_details``
 
 Plugins added
 
@@ -269,8 +269,8 @@ Plugins added
 * Plugin ``robots`` was added
 * Plugin ``virustotal`` was added
 * Plugin ``screenshot`` was added
-* Plugin ``ip-location`` was added
-* Plugin ``page-details`` was added
+* Plugin ``ip_location`` was added
+* Plugin ``page_details`` was added
 
 ## External API's use
 
@@ -294,7 +294,8 @@ Plugins added
 ## Roadmap
 
 * [ ] Implement a micro database key-value type ([TinyDB](https://tinydb.readthedocs.io/en/latest/) like)
-* [ ] List of possible pdf's files in URL
+* [ ] List of possible pdf's files on current page
+* [ ] Download public PDF files listed on current page
 
 ## License
 

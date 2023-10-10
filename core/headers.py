@@ -53,7 +53,7 @@ def get_headers(url, filter_data):
             headers.append(header)
     
     for header in headers:
-        if isJSON(req_headers.headers[header]):
+        if is_json(req_headers.headers[header]):
             table.add_row(header, JSON(req_headers.headers[header]))
         else:
             table.add_row(header, req_headers.headers[header])

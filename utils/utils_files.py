@@ -7,12 +7,12 @@ from utils.utils import *
 
 def local_file_size(file):
     file_size = os.stat(file)
-    return humanSize(file_size.st_size)
+    return human_size(file_size.st_size)
 
 def remote_file_size(url):
     try:
         req_headers = requests.get(url)
-        return humanSize(
+        return human_size(
             int(req_headers.headers["Content-Length"])
         )
     except:
@@ -39,7 +39,7 @@ def get_file_name(string):
     name = os.path.split(string)[1]
         
     if find(string, "?"):
-        return removeQuery(name)
+        return remove_query(name)
     else:
         return name
 

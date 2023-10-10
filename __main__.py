@@ -36,7 +36,7 @@ if __name__ == "__main__":
         sys.exit(1)
         
     if not check_connection(BASE_URL):
-        console.print("[bold red]Error: connection is not established")
+        console.print("[bold red]Error: connection is not established[/bold red]")
         sys.exit(1)
 
     run_home(BASE_URL, VERSION)

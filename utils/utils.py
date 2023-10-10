@@ -6,14 +6,14 @@ import re, requests, json
 from decouple import config
 from urllib.parse import urlparse
     
-def removeQuery(url):
+def remove_query(url):
     split = url.split("?")[1]
     return url.replace("?" + split, "")
 
-def humanSize(bytes, units=[' bytes','KB','MB','GB','TB', 'PB', 'EB']):
-    return str(bytes) + units[0] if bytes < 1024 else humanSize(bytes>>10, units[1:])
+def human_size(bytes, units=[' bytes','KB','MB','GB','TB', 'PB', 'EB']):
+    return str(bytes) + units[0] if bytes < 1024 else human_size(bytes>>10, units[1:])
 
-def stripScheme(url):
+def strip_scheme(url):
     parsed = urlparse(url)
     scheme = "%s://" % parsed.scheme
     return parsed.geturl().replace(scheme, '', 1)
@@ -53,7 +53,7 @@ def find(string, find):
     else:
         return False
 
-def isJSON(string):
+def is_json(string):
     try:
         if json.loads(string):
             return True
@@ -80,7 +80,7 @@ def is_url(string, check_protocol = True):
             else:
                 return False
 
-def getENV(string):
+def get_env(string):
     if find(string, "env:") or find(string, "ENV:"):
         return config(string.split(":")[1])
     else:
