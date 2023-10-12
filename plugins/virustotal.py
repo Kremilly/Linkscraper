@@ -13,10 +13,10 @@ def plugin_virustotal(url, key):
         console.print(f"[bold red]Error: VirusTotal key is required[/bold red]")
         console.print(f"Get the VirusTotal key: [bold green]https://www.virustotal.com/gui/my-apikey[/bold green]")
     else:
-        key = getENV(key)
+        key = get_env(key)
         start_time = time.time()
         
-        response = requests.post("https://www.virustotal.com/api/v3/urls", data="url=" + stripScheme(url), headers={
+        response = requests.post("https://www.virustotal.com/api/v3/urls", data="url=" + strip_scheme(url), headers={
             "x-apikey": key,
             "accept": "application/json",
             "content-type": "application/x-www-form-urlencoded"

@@ -32,7 +32,7 @@ def plugin_imgur(file, key, title):
         print(f"Get yor client id here: [bold green]https://api.imgur.com/oauth2/addclient[/bold green]")
     else:
         start_time = time.time()
-        key = getENV(key)
+        key = get_env(key)
         
         response = requests.request("POST", "https://api.imgur.com/3/image", headers = {
             'Authorization': f"Client-ID {key}"

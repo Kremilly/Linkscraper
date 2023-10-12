@@ -22,7 +22,7 @@ def http_code(url):
         return False
 
 def get_ip(url):
-    url = stripScheme(url)
+    url = strip_scheme(url)
     return socket.gethostbyname(url)
 
 def get_hostname(url):
@@ -30,7 +30,7 @@ def get_hostname(url):
     return parsed.netloc
 
 def check_https_url(url):
-    url = stripScheme(url)
+    url = strip_scheme(url)
     HTTPS_URL = f'https://{url}'
 
     try:
@@ -46,7 +46,7 @@ def check_https_url(url):
         return False
 
 def check_http_url(url):
-    url = stripScheme(url)
+    url = strip_scheme(url)
     HTTP_URL = f'http://{url}'
 
     try:
