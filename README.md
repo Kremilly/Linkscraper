@@ -6,19 +6,19 @@
 
 **Table of Contents:**
 
-* [Introduction](https://github.com/kremilly/linkscraper/edit/main/README.md#-introduction)
-* [Requirements](https://github.com/kremilly/linkscraper/edit/main/README.md#-requirements)
-* [Getting started](https://github.com/kremilly/linkscraper/edit/main/README.md#-getting-started)
-* [Parameters](https://github.com/kremilly/linkscraper/edit/main/README.md#-parameters)
-* [Usage](https://github.com/kremilly/linkscraper/edit/main/README.md#-usage)
-* [Plugins](https://github.com/kremilly/linkscraper/edit/main/README.md#-requirements)
-* [Additional links](https://github.com/kremilly/linkscraper/edit/main/README.md#-additional-links)
-* [Changelog](https://github.com/kremilly/linkscraper/edit/main/README.md#-changelog)
-* [External api's use](https://github.com/kremilly/linkscraper/edit/main/README.md#-external-apis-use)
-* [Dependencies](https://github.com/kremilly/linkscraper/edit/main/README.md#-dependencies)
-* [Roadmap](https://github.com/kremilly/linkscraper/edit/main/README.md#-roadmap)
-* [License](https://github.com/kremilly/linkscraper/edit/main/README.md#-license)
-* [Sponsor](https://github.com/kremilly/linkscraper/edit/main/README.md#-support-the-future-of-linkscraper)
+* [Introduction](https://github.com/kremilly/linkscraper/main/README.md#-introduction)
+* [Requirements](https://github.com/kremilly/linkscraper/main/README.md#-requirements)
+* [Getting started](https://github.com/kremilly/linkscraper/main/README.md#-getting-started)
+* [Parameters](https://github.com/kremilly/linkscraper/main/README.md#-parameters)
+* [Usage](https://github.com/kremilly/linkscraper/main/README.md#-usage)
+* [Plugins](https://github.com/kremilly/linkscraper/main/README.md#-requirements)
+* [Additional links](https://github.com/kremilly/linkscraper/main/README.md#-additional-links)
+* [Changelog](https://github.com/kremilly/linkscraper/main/README.md#-changelog)
+* [External api's use](https://github.com/kremilly/linkscraper/main/README.md#-external-apis-use)
+* [Dependencies](https://github.com/kremilly/linkscraper/main/README.md#-dependencies)
+* [Roadmap](https://github.com/kremilly/linkscraper/main/README.md#-roadmap)
+* [License](https://github.com/kremilly/linkscraper/main/README.md#-license)
+* [Sponsor](https://github.com/kremilly/linkscraper/main/README.md#-support-the-future-of-linkscraper)
 
 ## 🌐 Introduction
 
