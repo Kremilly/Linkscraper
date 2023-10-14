@@ -6,19 +6,19 @@
 
 **Table of Contents:**
 
-* [Introduction](https://github.com/kremilly/linkscraper/main/README.md#-introduction)
-* [Requirements](https://github.com/kremilly/linkscraper/main/README.md#-requirements)
-* [Getting started](https://github.com/kremilly/linkscraper/main/README.md#-getting-started)
-* [Parameters](https://github.com/kremilly/linkscraper/main/README.md#-parameters)
-* [Usage](https://github.com/kremilly/linkscraper/main/README.md#-usage)
-* [Plugins](https://github.com/kremilly/linkscraper/main/README.md#-requirements)
-* [Additional links](https://github.com/kremilly/linkscraper/main/README.md#-additional-links)
-* [Changelog](https://github.com/kremilly/linkscraper/main/README.md#-changelog)
-* [External api's use](https://github.com/kremilly/linkscraper/main/README.md#-external-apis-use)
-* [Dependencies](https://github.com/kremilly/linkscraper/main/README.md#-dependencies)
-* [Roadmap](https://github.com/kremilly/linkscraper/main/README.md#-roadmap)
-* [License](https://github.com/kremilly/linkscraper/main/README.md#-license)
-* [Sponsor](https://github.com/kremilly/linkscraper/main/README.md#-support-the-future-of-linkscraper)
+* [Introduction](https://github.com/kremilly/linkscraper/#-introduction)
+* [Requirements](https://github.com/kremilly/linkscraper/#-requirements)
+* [Getting started](https://github.com/kremilly/linkscraper/#-getting-started)
+* [Parameters](https://github.com/kremilly/linkscraper/#-parameters)
+* [Usage](https://github.com/kremilly/linkscraper/#-usage)
+* [Plugins](https://github.com/kremilly/linkscraper/#-requirements)
+* [Additional links](https://github.com/kremilly/linkscraper/#-additional-links)
+* [Changelog](https://github.com/kremilly/linkscraper/#-changelog)
+* [External api's use](https://github.com/kremilly/linkscraper/#-external-apis-use)
+* [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
+* [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
+* [License](https://github.com/kremilly/linkscraper/#-license)
+* [Sponsor](https://github.com/kremilly/linkscraper/#-support-the-future-of-linkscraper)
 
 ## 🌐 Introduction
 
