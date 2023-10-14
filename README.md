@@ -18,7 +18,7 @@
 * [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
 * [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
 * [License](https://github.com/kremilly/linkscraper/#-license)
-* [Sponsor](https://github.com/kremilly/linkscraper/#-support-the-future-of-linkscraper)
+* [Sponsor](https://github.com/kremilly/linkscraper/#-sponsor)
 
 ## 🌐 Introduction
 
@@ -325,7 +325,7 @@ Plugins added
 
 Code licensed under [MIT License](https://github.com/kremilly/linkscraper/blob/main/LICENSE)
 
-## 💡 Support the Future of Linkscraper
+## 💡 Sponsor
 
 Hello passionate Linkscraper user!
 
