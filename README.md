@@ -243,7 +243,7 @@ python linkscraper -u https://example.com -a get-plugins -p detect-fonts
 *extract-colors (new):*
 
 ```shell
-python linkscraper -u https://example.com -a get-plugins -p detect-fonts
+python linkscraper -u https://example.com -a get-plugins -p extract-colors
 ```
 
 screenshot:
