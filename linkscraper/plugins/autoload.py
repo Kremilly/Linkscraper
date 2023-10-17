@@ -9,3 +9,4 @@ from plugins.screenshot import *
 from plugins.ip_location import *
 from plugins.page_details import *
 from plugins.detect_fonts import *
+from plugins.detect_colors import *

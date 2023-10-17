@@ -77,7 +77,7 @@ python linkscraper -u https://example.com -a get-core
 python linkscraper -u https://example.com -a get-headers
 ```
 
-* *Get headers and filter header (new):*
+* *Get headers and filter header:*
 
   ```shell
   python linkscraper -u https://example.com -a get-headers -filter header
@@ -89,7 +89,7 @@ python linkscraper -u https://example.com -a get-headers
 python linkscraper -u https://example.com -a get-cookies
 ```
 
-* *Get cookies and filter cookie (new):*
+* *Get cookies and filter cookie:*
 
   ```shell
   python linkscraper -u https://example.com -a get-cookies -filter cookie
@@ -101,17 +101,17 @@ python linkscraper -u https://example.com -a get-cookies
 python linkscraper -u https://example.com -a get-js-files
 ```
 
-* *Get js files and filter files (new):*
+* *Get js files and filter files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-js-files -filter example.js
   ```
-* *Get js files and show only minify files (new):*
+* *Get js files and show only minify files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-js-files -smf true
   ```
-* *Get js files and download files (new):*
+* *Get js files and download files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-js-files -d true
@@ -123,7 +123,7 @@ python linkscraper -u https://example.com -a get-js-files
 python linkscraper -u https://example.com -a get-css-files
 ```
 
-* *Get css files and filter files (new):*
+* *Get css files and filter files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-css-files -filter example.css
@@ -133,7 +133,7 @@ python linkscraper -u https://example.com -a get-css-files
   ```shell
   python linkscraper -u https://example.com -a get-css-files -smf true
   ```
-* *Get css files and download files (new):*
+* *Get css files and download files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-css-files -d true
@@ -145,46 +145,46 @@ python linkscraper -u https://example.com -a get-css-files
 python linkscraper -u https://example.com -a get-images-files
 ```
 
-* *Get images files and filter files (new):*
+* *Get images files and filter files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-images-files -filter example.png
   ```
-* *Get images files and download files (new):*
+* *Get images files and download files:*
 
   ```shell
   python linkscraper -u https://example.com -a get-images-files -d true
   ```
 
-*Get links: (new)*
+*Get links:*
 
 ```shell
 python linkscraper -u https://example.com -a get-links
 ```
 
-* *Get links and filter url (new):*
+* *Get links and filter url:*
 
   ```shell
   python linkscraper -u https://example.com -a get-links -filter domain.com
   ```
-* *Get links and show only external links: (new)*
+* *Get links and show only external links:*
 
   ```shell
   python linkscraper -u https://example.com -a get-links -oel true
   ```
-* *Get links and show status code (new):*
+* *Get links and show status code:*
 
   ```shell
   python linkscraper -u https://example.com -a get-links -ssc true
   ```
 
-*Get emails: (new)*
+*Get emails:*
 
 ```shell
 python linkscraper -u https://example.com -a get-emails
 ```
 
-* *Get emails and filter email (new):*
+* *Get emails and filter email:*
 
   ```shell
   python linkscraper -u https://example.com -a get-css-files -filter example@domain.com
@@ -198,37 +198,37 @@ python linkscraper -u https://example.com -a get-emails
 python linkscraper -u https://example.com -a get-plugins -p wp-detect
 ```
 
-*whois (new):*
+*whois:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p whois
 ```
 
-*page-details (new):*
+*page-details:*
 
 ```shell
 linkscraper -u https://example.com -a get-plugins -p page-details
 ```
 
-*robots (new):*
+*robots:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p robots
 ```
 
-*virustotal (new):*
+*virustotal:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p virustotal -k YOUR_VIRUSTOTAL_KEY
 ```
 
-* *virustotal and get key in ENV variable (new):*
+* *virustotal and get key in ENV variable:*
 
   ```shell
   python linkscraper -u https://example.com -a get-plugins -p virustotal -k env:VIRUSTOTAL_KEY
   ```
 
-*ip-location (new):*
+*ip-location:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p ip-location
@@ -240,18 +240,24 @@ python linkscraper -u https://example.com -a get-plugins -p ip-location
 python linkscraper -u https://example.com -a get-plugins -p detect-fonts
 ```
 
-screenshot (new):
+*extract-colors (new):*
+
+```shell
+python linkscraper -u https://example.com -a get-plugins -p detect-fonts
+```
+
+screenshot:
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome
 ```
 
-* *screenshot and upload to Imgur (new):*
+* *screenshot and upload to Imgur:*
 
   ```shell
   python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome -up imgur -k YOUR_IMGUR_CLIENT_ID -t "Title of post here"
   ```
-* *screenshot and upload to Imgur and get key in ENV variable (new):*
+* *screenshot and upload to Imgur and get key in ENV variable:*
 
   ```shell
   python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome -up imgur -k env:IMGUR_CLIENT_ID -t "Title of post here"
@@ -264,7 +270,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## 📜 Changelog
 
-> Current version: ``2.1.0``
+> Current version: ``2.2.0``
 
 Minors
 
@@ -287,6 +293,7 @@ Improvements
 
 * Improvement in interface
 * Improvement in plugin ``wp_detect``
+* Improvement in plugin ``detect_fonts``
 
 Plugins removed
 
@@ -303,6 +310,7 @@ Plugins added
 * Plugin ``ip_location`` was added
 * Plugin ``page_details`` was added
 * Plugin ``detect_fonts`` was added
+* Plugin ``extract_colors`` was added
 
 ## 📡 External API's use
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests, time
+import requests, time, re
 from bs4 import BeautifulSoup
 
 from rich.table import Table
@@ -8,8 +8,62 @@ from rich.console import Console
 
 console = Console(record=True)
 
-def plugin_detect_font(url):
-    start_time = time.time()
+def get_css_links(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    css_links = []
+    for link in soup.find_all('link', rel='stylesheet'):
+        href = link.get('href')
+        
+        if href:
+            if 'http' not in href:
+                href = requests.compat.urljoin(url, href)
+                
+            css_links.append(href)
+    
+    return css_links
+
+def get_fonts_from_css_files(url):
+    css_links = get_css_links(url)  # Presumindo que esta função já esteja definida em algum lugar do seu código
+    font_families = []
+
+    for link in css_links:
+        response = requests.get(link)
+        css_content = response.text
+
+        matches = re.findall(
+            r'font-family\s*:\s*([^;}]+)', css_content
+        )
+        
+        for match in matches:
+            fonts = [
+                f.strip().replace(
+                    '"', ''
+                ).replace(
+                    "'", ""
+                ).replace(
+                    ")", ""
+                ).replace(
+                    "var(", ""
+                ).replace(
+                    "!important", ""
+                ) for f in match.split(',')
+            ]
+            
+            fonts = [
+                f for f in fonts if f not in [
+                    "important", "inherit", "var"
+                ]
+            ]
+            
+            font_families.extend(fonts)
+    
+    return list(
+        set(font_families)
+    )
+
+def get_fonts_from_html(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
     
@@ -17,30 +71,33 @@ def plugin_detect_font(url):
 
     body_style = soup.find('body').attrs.get('style', '')
     if 'font-family' in body_style:
-        fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0]
-
+        fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
+        
     for style_tag in soup.find_all('style'):
         if 'font-family' in style_tag.string:
-            fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0]
+            fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
             
+    list_fonts = fonts.split(',')
+    
+    return list(
+        set(list_fonts)
+    )
+
+def plugin_detect_fonts(url):
+    start_time = time.time()
+    font_families = get_fonts_from_css_files(url)
+
+    table = Table(box=None)
+    table.add_column("Name", style="cyan", no_wrap=True)
+    table.add_column("Value", style="white")
+    
+    if len(font_families) == 0:
+        font_families = get_fonts_from_html(url)
+    
+    for font_name in font_families:
+        table.add_row("font-family", font_name.strip())
+
     end_time = "{:.2f}".format(time.time() - start_time)
     
-    if fonts == '':
-        console.print(f"[bold red]Fonts not detected[/bold red]")
-        console.print(f"Time taken: {end_time} seconds")
-    else:
-        list_fonts = fonts.split(',')
-    
-        table = Table(box=None)
-        table.add_column("Name", style="cyan", no_wrap=True)
-        table.add_column("Value", style="white")
-        
-        for font_name in list(set(list_fonts)):
-            table.add_row(
-                "font-family", font_name.replace(
-                    '"', ''
-                )
-            )
-        
-        table.caption = f"Time taken: {end_time} seconds"
-        console.print(table)
+    table.caption = f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds"
+    console.print(table)
