@@ -8,3 +8,4 @@ from plugins.virustotal import *
 from plugins.screenshot import *
 from plugins.ip_location import *
 from plugins.page_details import *
+from plugins.detect_fonts import *

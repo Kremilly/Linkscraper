@@ -8,7 +8,7 @@ from rich.console import Console
 
 console = Console(record=True)
 
-VERSION = "2.0.2"
+VERSION = "2.1.0"
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-u", "--url", help="URL to scan", required=True)
@@ -76,6 +76,8 @@ if __name__ == "__main__":
             plugin_ip_location(BASE_URL)
         elif args.plugin == "screenshot":
             plugin_screenshot(BASE_URL, args.file, args.browser, args.upload, args.key, args.title)
+        elif args.plugin == "detect-fonts":
+            plugin_detect_font(BASE_URL)
         else:
             console.print(f"[bold red]Error: Plugin invalid[/bold red]")
     else:

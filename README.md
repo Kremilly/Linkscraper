@@ -14,7 +14,7 @@
 * [Plugins](https://github.com/kremilly/linkscraper/#-requirements)
 * [Additional links](https://github.com/kremilly/linkscraper/#-additional-links)
 * [Changelog](https://github.com/kremilly/linkscraper/#-changelog)
-* [External api's use](https://github.com/kremilly/linkscraper/#-external-apis-use)
+* [External api&#39;s use](https://github.com/kremilly/linkscraper/#-external-apis-use)
 * [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
 * [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
 * [License](https://github.com/kremilly/linkscraper/#-license)
@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 | Parameter                   | Description                        | Required                | Default                            |
 | --------------------------- | ---------------------------------- | ----------------------- | ---------------------------------- |
-| -u, --url                   | URL to scan                        | ✅                     |                                    |
+| -u, --url                   | URL to scan                        | ✅                      |                                    |
 | -a, --action                | Run an action                      | No                      | ``get-core``                       |
 | -p, --plugin                | Load a plugin                      | No                      |                                    |
 | -k, --key                   | Set the API key                    | Yes, if plugin is needs |                                    |
@@ -234,7 +234,13 @@ python linkscraper -u https://example.com -a get-plugins -p virustotal -k YOUR_V
 python linkscraper -u https://example.com -a get-plugins -p ip-location
 ```
 
-*screenshot (new):*
+*detect-fonts (new):*
+
+```shell
+python linkscraper -u https://example.com -a get-plugins -p detect-fonts
+```
+
+screenshot (new):
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome
@@ -258,11 +264,12 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## 📜 Changelog
 
-> Current version: ``2.0.2``
+> Current version: ``2.1.0``
 
 Minors
 
 * Refactoring code, rename functions and variables for snake_case pattern
+* Refactoring struct folders
 
 Fixes
 
@@ -295,6 +302,7 @@ Plugins added
 * Plugin ``screenshot`` was added
 * Plugin ``ip_location`` was added
 * Plugin ``page_details`` was added
+* Plugin ``detect_fonts`` was added
 
 ## 📡 External API's use
 
