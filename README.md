@@ -270,7 +270,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## 📜 Changelog
 
-> Current version: ``2.2.0``
+> Current version: ``2.2.1``
 
 Minors
 
@@ -280,6 +280,7 @@ Minors
 Fixes
 
 * Fixed the GitHub Gist URLs
+* Fix name of plugin `extract_colors`
 
 Added
 

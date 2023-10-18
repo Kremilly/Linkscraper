@@ -8,7 +8,7 @@ from rich.console import Console
 
 console = Console(record=True)
 
-VERSION = "2.2.0"
+VERSION = "2.2.1"
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-u", "--url", help="URL to scan", required=True)
