@@ -192,12 +192,6 @@ python linkscraper -u https://example.com -a get-emails
 
 ## 🧩 Plugins
 
-*wp-detect:*
-
-```shell
-python linkscraper -u https://example.com -a get-plugins -p wp-detect
-```
-
 *whois:*
 
 ```shell
@@ -270,7 +264,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## 📜 Changelog
 
-> Current version: ``2.2.1``
+> Current version: ``2.3.0``
 
 Minors
 
@@ -286,20 +280,19 @@ Added
 
 * Function ``get_links`` was added
 * Function ``get_emails`` was added
-* Function `download_css` wass added
-* Function `download_js` wass added
-* Function `download_images` wass added
+* Function `download_resources` was added
 
 Improvements
 
 * Improvement in interface
-* Improvement in plugin ``wp_detect``
 * Improvement in plugin ``detect_fonts``
+* Improvements code base
 
 Plugins removed
 
 * Plugin ``mshots`` was removed and replacement by ``screenshot``
 * Plugin ``page_title`` was removed and replacement by ``page_details``
+* Plugin `wp_detect` was integrated into `page_details` and subsequently removed.
 
 Plugins added
 

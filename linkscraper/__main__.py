@@ -1,14 +1,16 @@
 #!/usr/bin/python3
 
 import sys, argparse
+
 from utils.utils import *
 from core.functions import *
 from plugins.autoload import *
+
 from rich.console import Console
 
 console = Console(record=True)
 
-VERSION = "2.2.1"
+VERSION = "2.3.0"
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-u", "--url", help="URL to scan", required=True)
@@ -62,9 +64,7 @@ if __name__ == "__main__":
         console.print(f"Plugin: [bold cyan]{args.plugin}[/bold cyan]")
         console.print("-" * 60)
 
-        if args.plugin == "wp-detect":
-            plugin_wp_detect(BASE_URL)
-        elif args.plugin == "whois":
+        if args.plugin == "whois":
             plugin_whois(BASE_URL)
         elif args.plugin == "robots":
             plugin_robots(BASE_URL)

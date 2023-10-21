@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import requests, time
-from core.http import get_ip
+from utils.utils_http import get_ip
 
 from rich.table import Table
 from rich.console import Console

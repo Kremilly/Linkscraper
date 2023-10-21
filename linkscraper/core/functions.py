@@ -3,10 +3,12 @@
 import pyfiglet, time
 from datetime import datetime
 
-from core.http import *
 from core.headers import *
 from core.scraper import *
+from core.cookies import *
+from utils.utils_http import *
 from core.static_files import *
+
 from rich.console import Console
 
 console = Console(record=True)
@@ -79,9 +81,11 @@ def run_get_emails(url, filter_data):
     get_emails(url, filter_data)
 
 def run_home(url, version):
-    console.print(
-        "[bold blue]" + pyfiglet.figlet_format("Linkscraper") + "[/bold blue]"
-    )
+    console.print("[bold blue]" + pyfiglet.figlet_format("Linkscraper") + "[/bold blue]")
+    
+    console.print("-" * 60)
+    console.print(f"Homepage: [bold green]https://github.com/Kremilly/linkscraper[/bold green]")
+    console.print("-" * 60)
     
     today = datetime.today()
     datetime_obj = today.strftime("%a, %b %d %Y - %I:%M:%S %p")

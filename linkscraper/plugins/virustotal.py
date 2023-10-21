@@ -2,8 +2,8 @@
 
 import requests, sys, time
 
-from core.http import *
 from rich.table import Table
+from utils.utils_http import *
 from rich.console import Console
 
 console = Console(record=True)

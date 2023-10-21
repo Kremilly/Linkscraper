@@ -2,10 +2,11 @@
 
 import requests, time
 
-from core.http import *
 from utils.utils import *
+from utils.configs import *
+from utils.utils_http import *
 from utils.utils_files import *
-from core.download_files import *
+from core.download_resources import *
 
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
@@ -15,11 +16,11 @@ from rich.console import Console
 
 session = requests.Session()
 console = Console(record=True)
-session.headers["User-Agent"] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
+session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
 
 def js_files(url, minify_files, filter_data, download):
     if download == "true":
-        download_js(url, minify_files, filter_data)
+        download_resources(url, 'js', minify_files, filter_data)
     else:
         start_time = time.time()
         html = session.get(url).content
@@ -30,7 +31,6 @@ def js_files(url, minify_files, filter_data, download):
         table.add_column("URL", style="bold green")
 
         links = []
-        total_files = 0
         
         for script in soup.find_all("script"):
             if script.attrs.get("src"):
@@ -45,21 +45,23 @@ def js_files(url, minify_files, filter_data, download):
                             links.append(script_url)
                     else:
                         links.append(script_url)
-                
-        for script_url in list(set(links)):
+        
+        list_scripts = list(set(links))
+        
+        for script_url in list_scripts:
             table.add_row(get_remote_file_size(script_url), script_url)
-            total_files += 1
         
         end_time = "{:.2f}".format(time.time() - start_time)
         
-        table.caption = f"Total script files on page: {total_files} - Time taken: {end_time} seconds"
+        table.caption = f"Total script files on page: {len(list_scripts)} - Time taken: {end_time} seconds"
         console.print(table)
 
 def css_files(url, minify_files, filter_data, download):
     if download == "true":
-        download_css(url, minify_files, filter_data)
+        download_resources(url, 'css', minify_files, filter_data)
     else:
         start_time = time.time()
+        
         html = session.get(url).content
         soup = bs(html, "html.parser")
         
@@ -68,7 +70,6 @@ def css_files(url, minify_files, filter_data, download):
         table.add_column("URL", style="bold green")
 
         links = []
-        total_files = 0
         
         for css in soup.find_all("link"):
             if css.attrs.get("href"):
@@ -84,19 +85,20 @@ def css_files(url, minify_files, filter_data, download):
                     else:
                         if find(css_url, ".css"):
                             links.append(css_url)
-                    
-        for css_url in list(set(links)):
+        
+        list_css = list(set(links))
+        
+        for css_url in list_css:
             table.add_row(get_remote_file_size(css_url), css_url)
-            total_files += 1
         
         end_time = "{:.2f}".format(time.time() - start_time)
         
-        table.caption = f"Total CSS files on page: {total_files} - Time taken: {end_time} seconds"
+        table.caption = f"Total CSS files on page: {len(list_css)} - Time taken: {end_time} seconds"
         console.print(table)
     
 def images_files(url, filter_data, download):
     if download == "true":
-        download_images(url, filter_data)
+        download_resources(url, 'images', None, filter_data)
     else:
         start_time = time.time()
         html = session.get(url).content
@@ -107,7 +109,6 @@ def images_files(url, filter_data, download):
         table.add_column("URL", style="bold green")
 
         links = []
-        total_files = 0
         
         for img in soup.find_all("img"):
             img_url = urljoin(url, img.attrs.get("src"))
@@ -118,11 +119,12 @@ def images_files(url, filter_data, download):
             else:
                 links.append(img_url)
     
-        for img_url in list(set(links)):
+        list_images = list(set(links))
+    
+        for img_url in list_images:
             table.add_row(get_remote_file_size(img_url), img_url)
-            total_files += 1       
         
         end_time = "{:.2f}".format(time.time() - start_time)
         
-        table.caption = f"Total images files on page: {total_files} - Time taken: {end_time} seconds"
+        table.caption = f"Total images files on page: {len(list_images)} - Time taken: {end_time} seconds"
         console.print(table)

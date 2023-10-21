@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 
 from utils.utils import *
+from utils.configs import *
 
 import socket, requests
 from urllib.parse import urlparse
 from http.client import HTTPConnection, HTTPSConnection
 
 def http_code_list(c):
-    r = requests.get('https://gist.githubusercontent.com/kremilly/31aed3c28577f78bcaace2a377f8aa17/raw/4e765d040b739f0d7bc60ef8c2c8f37c17eae81c/http-status-code.json')
+    r = requests.get(Configs.LIST_HTTP_STATUS.value)
     r = r.json()
 
     for code in r:
@@ -31,12 +32,12 @@ def get_hostname(url):
 
 def check_https_url(url):
     url = strip_scheme(url)
-    HTTPS_URL = f'https://{url}'
+    https_url = f'https://{url}'
 
     try:
-        HTTPS_URL = urlparse(HTTPS_URL)
-        connection = HTTPSConnection(HTTPS_URL.netloc, timeout=2)
-        connection.request('HEAD', HTTPS_URL.path)
+        https_url = urlparse(https_url)
+        connection = HTTPSConnection(https_url.netloc, timeout=2)
+        connection.request('HEAD', https_url.path)
         
         if connection.getresponse():
             return True
@@ -47,12 +48,12 @@ def check_https_url(url):
 
 def check_http_url(url):
     url = strip_scheme(url)
-    HTTP_URL = f'http://{url}'
+    http_url = f'http://{url}'
 
     try:
-        HTTP_URL = urlparse(HTTP_URL)
-        connection = HTTPConnection(HTTP_URL.netloc)
-        connection.request('HEAD', HTTP_URL.path)
+        http_url = urlparse(http_url)
+        connection = HTTPConnection(http_url.netloc)
+        connection.request('HEAD', http_url.path)
         
         if connection.getresponse():
             return True

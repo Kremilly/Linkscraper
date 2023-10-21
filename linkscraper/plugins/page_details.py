@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 
-import cloudscraper, time
+import requests, cloudscraper, time
+
 from bs4 import BeautifulSoup
-from utils.utils import language, country
+from urllib.parse import urljoin
+
+from utils.utils import *
+from utils.configs import *
 
 from rich.table import Table
 from rich.console import Console
@@ -14,6 +18,41 @@ def language_country(code, param):
         return f"{language(code)} ({country(code)})"
     else:
         return False
+
+def wp_detect(url):
+    session = requests.Session()
+    console = Console(record=True)
+    session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
+    
+    soup = BeautifulSoup(session.get(url).content, "html.parser")
+    metas = soup.find_all('meta')
+    
+    wp_detected = False
+    wp_version = "[italic cyan]WordPress unknown[/italic cyan]"
+    
+    wp_meta_generator = [ 
+	    meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'generator' 
+	]
+
+    if len(wp_meta_generator) >= 1 and find(wp_meta_generator[0], "WordPress"):
+        wp_detected = True
+        wp_version = wp_meta_generator[0]
+    else:
+        for css in soup.find_all("link"):
+            if css.attrs.get("href"):
+                css_url = urljoin(url, css.attrs.get("href"))
+
+                if find(css_url, "wp-content") or find(css_url, "wp-includes"):
+                    wp_detected = True
+                else:
+                    wp_detected = False
+                break
+
+    if wp_detected:
+        console.print(f"[blue]WordPress[/blue]: [green]detected[/green]")
+        console.print(wp_version.replace("WordPress ", "WordPress version: "))
+    else:
+        console.print(f"[blue]WordPress[/blue]: [red]not detected[/red]")
 
 def plugin_page_details(url):
     start_time = time.time()
@@ -34,6 +73,8 @@ def plugin_page_details(url):
     if robots_directives: console.print("[blue]Robots directives:[/blue]", robots_directives["content"].split(","))
     if viewport: console.print("[blue]Viewport:[/blue]", viewport["content"])
     if charset: console.print("[blue]Charset:[/blue]", charset["charset"])
+    
+    wp_detect(url)
 
     if open_graph:
         console.print("-" * 60)
@@ -54,4 +95,6 @@ def plugin_page_details(url):
         console.print(table)
         
     end_time = "{:.2f}".format(time.time() - start_time)
+    
+    console.print("-" * 60)
     console.print(f"Time taken: {end_time} seconds")

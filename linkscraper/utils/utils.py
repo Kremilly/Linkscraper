@@ -5,7 +5,9 @@ import re, requests, json
 
 from decouple import config
 from urllib.parse import urlparse
-    
+
+from utils.configs import *
+
 def remove_query(url):
     split = url.split("?")[1]
     return url.replace("?" + split, "")
@@ -27,7 +29,7 @@ def country(country):
     if not country:
         country = country
 
-    r = requests.get('https://gist.githubusercontent.com/kremilly/c468fb230d6fcf97de827e37f91f2f6c/raw/3e037cefa50d0381956e862de478c5e5cce758ab/countries.json')
+    r = requests.get(Configs.LIST_COUNTRYS.value)
     r = r.json()
 
     for code in r:
@@ -40,7 +42,7 @@ def language(lang):
     else:
         lang = lang.lower()
 
-    r = requests.get('https://gist.githubusercontent.com/kremilly/fd5e5dd45d3480a8da57d56218cecd1e/raw/221c38e4a7e83e2bb9bab92cd8101c9c9adebaaf/languages.json')
+    r = requests.get(Configs.LIST_LANGUAGES.value)
     r = r.json()
 
     for code in r:
