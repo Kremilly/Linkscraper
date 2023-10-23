@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from utils.utils import *
-from utils.configs import *
+from classes.configs import *
 
 import socket, requests
 from urllib.parse import urlparse

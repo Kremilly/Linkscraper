@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 import requests, time, re
+from layout.table import *
 
-from rich.table import Table
-from rich.console import Console
+from classes.regex import Regex
 
-console = Console(record=True)
+# table = Table()
 
 def plugin_extract_colors(url):
     start_time = time.time()
@@ -17,15 +17,16 @@ def plugin_extract_colors(url):
     color_id = 0
     
     patterns = [
-        re.compile(r'#[0-9a-fA-F]{6}'),  # e.g., #FFFFFF
-        re.compile(r'#[0-9a-fA-F]{3}'),  # e.g., #FFF
-        re.compile(r'rgb\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)'),  # e.g., rgb(255, 255, 255)
-        re.compile(r'rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)')  # e.g., rgba(255, 255, 255, 0.5)
+        re.compile(Regex.COLORS_CODE.value[0]),  # e.g., #FFFFFF
+        re.compile(Regex.COLORS_CODE.value[1]),  # e.g., #FFF
+        re.compile(Regex.COLORS_CODE.value[2]),  # e.g., rgb(255, 255, 255)
+        re.compile(Regex.COLORS_CODE.value[3])  # e.g., rgba(255, 255, 255, 0.5)
     ]
-
-    table = Table(box=None)
-    table.add_column("#", style="cyan", no_wrap=True)
-    table.add_column("Value", style="white")
+    
+    Table.header([
+        ("#", "cyan", True),
+        ("Value", "white", False)
+    ])
 
     for pattern in patterns:
         colors.extend(
@@ -36,10 +37,10 @@ def plugin_extract_colors(url):
     
     if len(colors) > 0:
         for color in colors:
-            table.add_row(f"Color #{color_id}", color)
+            Table.row(f"Color #{color_id}", color)
             color_id += 1
 
     end_time = "{:.2f}".format(time.time() - start_time)
         
-    table.caption = f"Total of colors: {len(colors)} - Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Total of colors: {len(colors)} - Time taken: {end_time} seconds")
+    Table.display()

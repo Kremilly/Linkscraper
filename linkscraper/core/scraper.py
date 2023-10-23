@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup as bs
 from rich.table import Table
 from rich.console import Console
 
-console = Console(record=True)
+from layout.table import Table
 
 def get_links(url, external_links, status_code, filter_data):
     start_time = time.time()
@@ -19,12 +19,19 @@ def get_links(url, external_links, status_code, filter_data):
     reqs = requests.get(url).text
     soup = bs(reqs, 'html.parser')
     
-    table = Table(box=None)
-    table.add_column("Domain", style="cyan")
-    table.add_column("URL", style="bold green")
+    if status_code:
+        headers = [
+            ("Domain", "cyan", True),
+            ("URL", "bold blue", False)
+            ("Status", "bold", False)
+        ]
+    else:
+        headers = [
+            ("Domain", "cyan", True),
+            ("URL", "bold blue", False)
+        ]
     
-    if status_code == "true":
-        table.add_column("Status", style="bold")
+    Table.header(headers)
     
     links = []
     
@@ -34,7 +41,7 @@ def get_links(url, external_links, status_code, filter_data):
                 if is_url(link.get('href')) and find(link.get('href'), filter_data):
                     links.append(link.get('href'))
             else:
-                if not external_links or external_links != "true":
+                if not external_links:
                     if is_url(link.get('href')):
                         links.append(link.get('href'))
                 else:
@@ -44,15 +51,15 @@ def get_links(url, external_links, status_code, filter_data):
     links_list = list(set(links))
     
     for link in list(set(links)):
-        if status_code == "true":
-            table.add_row(get_hostname(link), link, str(http_code(link)))
+        if status_code:
+            Table.row(get_hostname(link), link, str(http_code(link)))
         else:
-            table.add_row(get_hostname(link), link)
+            Table.row(get_hostname(link), link)
 
     end_time = "{:.2f}".format(time.time() - start_time)
     
-    table.caption = f"Total of links in page: {len(links_list)} - Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Total of links in page: {len(links_list)} - Time taken: {end_time} seconds")
+    Table.display()
 
 def get_emails(url, filter_data):
     start_time = time.time()
@@ -62,9 +69,10 @@ def get_emails(url, filter_data):
         bs(text,'html.parser').body
     )
     
-    table = Table(box=None)
-    table.add_column("Domain", style="cyan")
-    table.add_column("Email", style="bold blue")
+    Table.header([
+        ("Domain", "cyan", True),
+        ("Email", "bold blue", False)
+    ])
     
     emails = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', soup)
     list_emails = list(set(emails))
@@ -72,11 +80,11 @@ def get_emails(url, filter_data):
     for email in list_emails:
         if filter_data:
             if find(email, filter_data):
-                table.add_row(email.split('@')[1], email)
+                Table.row(email.split('@')[1], email)
         else:
-            table.add_row(email.split('@')[1], email)
+            Table.row(email.split('@')[1], email)
     
     end_time = "{:.2f}".format(time.time() - start_time)
     
-    table.caption = f"Total of emails on page: {len(list_emails)} - Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Total of emails on page: {len(list_emails)} - Time taken: {end_time} seconds")
+    Table.display()

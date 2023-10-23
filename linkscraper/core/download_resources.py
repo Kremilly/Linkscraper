@@ -4,16 +4,14 @@ import os, requests, time
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
 
-from rich.table import Table
-from rich.console import Console
-
 from utils.utils import *
-from utils.configs import *
+from classes.configs import *
 from utils.utils_http import *
 from utils.utils_files import *
 
+from layout.table import Table
+
 session = requests.Session()
-console = Console(record=True)
 session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
 
 def download_resources(url, resource_type, minify_files=None, filter_data=None):
@@ -26,11 +24,12 @@ def download_resources(url, resource_type, minify_files=None, filter_data=None):
     html = session.get(url).content
     soup = bs(html, "html.parser")
     
-    table = Table(box=None)
-    table.add_column("Filename", style="cyan")
-    table.add_column("URL", style="bold green")
-    table.add_column("Size", style="blue")
-    table.add_column("Status")
+    Table.header([
+        ("Filename", "cyan", True),
+        ("URL", "bold blue", False),
+        ("Size", "green", False),
+        ("Status", "white", False),
+    ])
     
     links = extract_links(
         url, 
@@ -51,7 +50,7 @@ def download_resources(url, resource_type, minify_files=None, filter_data=None):
         total_files += 1
         status = "[bold green]Download completed[/bold green]" if os.path.exists(file_name) else "[bold red]Download failed[/bold red]"
         
-        table.add_row(
+        Table.row(
             get_remote_file_size(link), link, local_file_size(file_name), status
         )
     
@@ -60,8 +59,8 @@ def download_resources(url, resource_type, minify_files=None, filter_data=None):
     )
     
     end_time = "{:.2f}".format(time.time() - start_time)
-    table.caption = f"Total of downloaded files: {total_files} - Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Total of downloaded files: {total_files} - Time taken: {end_time} seconds")
+    Table.display()
 
 def extract_links(url, soup, resource_type, minify_files, filter_data):
     links = []

@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 
 import requests, time
+
+from layout.table import Table
 from utils.utils_http import get_ip
-
-from rich.table import Table
-from rich.console import Console
-
-console = Console(record=True)
 
 def plugin_ip_location(url):
     ip = get_ip(url)
@@ -15,15 +12,16 @@ def plugin_ip_location(url):
     response = requests.get(f"http://ip-api.com/json/{ip}")
     resp_json = response.json()
 
-    table = Table(box=None)
-    table.add_column("Name", style="cyan", no_wrap=True)
-    table.add_column("Value", style="white")
+    Table.header([
+        ("Name", "cyan", True),
+        ("Value", "white", False)
+    ])
 
     for data in resp_json:
         if resp_json[data] != '':
-            table.add_row(data, str(resp_json[data]))
+            Table.row(data, str(resp_json[data]))
             
     end_time = "{:.2f}".format(time.time() - start_time)
     
-    table.caption = f"Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Time taken: {end_time} seconds")
+    Table.display()

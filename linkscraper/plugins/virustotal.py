@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 
-import requests, sys, time
-
-from rich.table import Table
+import requests, time
 from utils.utils_http import *
-from rich.console import Console
 
-console = Console(record=True)
+from classes.env import Env
 
-def plugin_virustotal(url, key):
+from layout.table import Table
+from layout.layout import Layout
+
+def plugin_virustotal(url):
+    key = Env.get("VIRUSTOTAL_KEY")
+    
     if not key:
-        console.print(f"[bold red]Error: VirusTotal key is required[/bold red]")
-        console.print(f"Get the VirusTotal key: [bold green]https://www.virustotal.com/gui/my-apikey[/bold green]")
+        Layout.error("Key is required", False, True, {
+            "text": "Get your VirusTotal key here:",
+            "value": "https://www.virustotal.com/gui/my-apikey",
+            "style": "bold green"
+        })
     else:
-        key = get_env(key)
         start_time = time.time()
         
         response = requests.post("https://www.virustotal.com/api/v3/urls", data="url=" + strip_scheme(url), headers={
@@ -24,12 +28,13 @@ def plugin_virustotal(url, key):
         
         if response.status_code != 200:
             if response.json()["error"]["code"] == "WrongCredentialsError":
-                console.print(f"[bold red]Error: VirusTotal key is invalid[/bold red]")
-                console.print(f"Get the VirusTotal key: [bold green]https://www.virustotal.com/gui/my-apikey[/bold green]")
+                Layout.error("Key is invalid", False, True, {
+                    "text": "Get your VirusTotal key here:",
+                    "value": "https://www.virustotal.com/gui/my-apikey",
+                    "style": "bold green"
+                })
             else:
-                console.print(f"[bold red]Error: {response.json()['error']['message']}[/bold red]")
-    
-            sys.exit(1)
+                Layout.error(response.json()['error']['message'], False, True)
 
         response = requests.get(response.json()["data"]["links"]["self"], headers={
             "x-apikey": key,
@@ -39,38 +44,37 @@ def plugin_virustotal(url, key):
         resp_json = response.json()
         permalink = resp_json["data"]["links"]["item"].replace("api/v3/urls", "gui/url")
 
-        console.print("\t\t Stats:")
-        console.print("-" * 60)
+        Layout.print("\t\t", "Stats:")
+        Layout.separator()
 
-        console.print("[bold green]Harmless: [/bold green]" + str(resp_json["data"]["attributes"]["stats"]["harmless"]))
-        console.print("[bold red]Malicious: [/bold red]" + str(resp_json["data"]["attributes"]["stats"]["malicious"]))
-        console.print("[bold yellow]Suspicious: [/bold yellow]" + str(resp_json["data"]["attributes"]["stats"]["suspicious"]))
-        console.print("[bold cyan]Undetected: [/bold cyan]" + str(resp_json["data"]["attributes"]["stats"]["undetected"]))
+        Layout.print("[bold green]Harmless: [/bold green]", str(resp_json["data"]["attributes"]["stats"]["harmless"]))
+        Layout.print("[bold red]Malicious: [/bold red]", str(resp_json["data"]["attributes"]["stats"]["malicious"]))
+        Layout.print("[bold yellow]Suspicious: [/bold yellow]", str(resp_json["data"]["attributes"]["stats"]["suspicious"]))
+        Layout.print("[bold cyan]Undetected: [/bold cyan]", str(resp_json["data"]["attributes"]["stats"]["undetected"]))
 
-        console.print("-" * 60)
-        console.print(f"Permalink: [bold green]{permalink}[/bold green]")
+        Layout.separator()
+        Layout.print("Permalink", permalink, "bold green")
 
-        console.print ("-" * 60)
-        console.print("Result:")
-        console.print("-" * 60)
-        
-        table = Table(box=None)
-        table.add_column("Engine", style="cyan", no_wrap=True)
-        table.add_column("Result")
-        table.add_column("Category")
+        Layout.header_section("Result")
+    
+        Table.header([
+            ("Engine", "cyan", True),
+            ("Result", "white", False),
+            ("Category", "white", False)
+        ])
 
         for engine in resp_json["data"]["attributes"]["results"]:
             result = resp_json["data"]["attributes"]["results"][engine]["result"]
             category = resp_json["data"]["attributes"]["results"][engine]["category"]
 
             if result == "clean":
-                table.add_row(engine, f"[bold green]{result}[/bold green]")
+                Table.row(engine, f"[bold green]{result}[/bold green]")
             elif result == "unrated":
-                table.add_row(engine, f"[bold cyan]{result}[/bold cyan]")
+                Table.row(engine, f"[bold cyan]{result}[/bold cyan]")
             else:
-                table.add_row(engine, f"[bold red]{result}[/bold red]", f"[bold red]{category}[/bold red]")
+                Table.row(engine, f"[bold red]{result}[/bold red]", f"[bold red]{category}[/bold red]")
                 
         end_time = "{:.2f}".format(time.time() - start_time)
         
-        table.caption = f"Time taken: {end_time} seconds"  
-        console.print(table)
+        Table.caption(f"Time taken: {end_time} seconds")
+        Table.display()

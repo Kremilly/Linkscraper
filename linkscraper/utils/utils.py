@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
+import random as r
 import urllib.request
 import re, requests, json
 
-from decouple import config
 from urllib.parse import urlparse
 
-from utils.configs import *
+from classes.regex import Regex
+from classes.configs import Configs
 
 def remove_query(url):
     split = url.split("?")[1]
@@ -65,28 +66,19 @@ def is_json(string):
         return False
 
 def is_url(string, check_protocol = True):
-    url_pattern_check_protocol = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
-    url_pattern = "^[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
-    
     if string == None:
         return False
     else:
         if check_protocol == True:
-            if re.match(url_pattern_check_protocol, string) != None:
+            if re.match(Regex.URL_PATTERN_CHECK_PROTOCOL.value, string) != None:
                 return True
             else:
                 return False
         elif check_protocol == False:
-            if re.match(url_pattern, string) != None:
+            if re.match(Regex.URL_PATTERN_PROTOCOL.value, string) != None:
                 return True
             else:
                 return False
-
-def get_env(string):
-    if find(string, "env:") or find(string, "ENV:"):
-        return config(string.split(":")[1])
-    else:
-        return string
 
 def check_connection(host):
     try:
@@ -94,3 +86,12 @@ def check_connection(host):
         return True
     except:
         return False
+
+def generate_id():
+    random_string = ''
+    random_str_seq = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    
+    for _ in range(0, 10):
+        random_string += str(random_str_seq[r.randint(0, len(random_str_seq) - 1)])
+        
+    return random_string

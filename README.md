@@ -44,26 +44,31 @@ pip install -r requirements.txt
 
 ## 📖 Parameters
 
-| Parameter                   | Description                        | Required                | Default                            |
-| --------------------------- | ---------------------------------- | ----------------------- | ---------------------------------- |
-| -u, --url                   | URL to scan                        | ✅                      |                                    |
-| -a, --action                | Run an action                      | No                      | ``get-core``                       |
-| -p, --plugin                | Load a plugin                      | No                      |                                    |
-| -k, --key                   | Set the API key                    | Yes, if plugin is needs |                                    |
-| -f, --file                  | Save output file                   | Yes, if plugin is needs |                                    |
-| -b, --browser               | Set the browser to take screenshot | No                      | ``chrome``                         |
-| -t, --title                 | Set title the screenshot on Imgur  | No                      | ``Screenshot made by Linkscraper`` |
-| -up, --upload               | Upload the screenshot to Imgur    | No                      |                                    |
-| -oel, --only-external-links | Show only external links           | No                      | `false`                          |
-| -ssc, --show-status-code    | Show status code                   | No                      | `false`                          |
-| -smf, --show-minify-files   | Show only minify files             | No                      | `false`                          |
-| -filter, --filter           | Filter data                        | No                      |                                    |
-| -d, --download              | Download static files              | No                      | `false`                          |
-| -version, --version         | Show current version               | No                      |                                    |
+| Parameter                   | Description                        | Required        | Default                            |
+| --------------------------- | ---------------------------------- | --------------- | ---------------------------------- |
+| -u, --url                   | URL to scan                        | ✅ in live mode |                                    |
+| -a, --action                | Run an action                      | No              | ``get-core``                       |
+| -p, --plugin                | Load a plugin                      | No              |                                    |
+| -b, --browser               | Set the browser to take screenshot | No              | ``firefox``                        |
+| -t, --title                 | Set title the screenshot on Imgur  | No              | ``Screenshot made by Linkscraper`` |
+| -up, --upload               | Upload the screenshot to Imgur    | No              |                                    |
+| -oel, --only-external-links | Show only external links           | No              |                                    |
+| -ssc, --show-status-code    | Show status code                   | No              |                                    |
+| -smf, --show-minify-files   | Show only minify files             | No              |                                    |
+| -filter, --filter           | Filter data                        | No              |                                    |
+| -d, --download              | Download static files              | No              |                                    |
+| -write-env, --write-env     | Write environments file (.env)     | No              |                                    |
+| -version, --version         | Show current version               | No              |                                    |
 
 ## 🛠 Usage
 
 Here are some examples of how to use Linkscraper:
+
+*Write environments file (.env) (new):*
+
+```shell
+python linkscraper -write-env
+```
 
 *Get core:*
 
@@ -109,12 +114,12 @@ python linkscraper -u https://example.com -a get-js-files
 * *Get js files and show only minify files:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-js-files -smf true
+  python linkscraper -u https://example.com -a get-js-files -smf
   ```
 * *Get js files and download files:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-js-files -d true
+  python linkscraper -u https://example.com -a get-js-files -d
   ```
 
 *Get css files:*
@@ -128,15 +133,15 @@ python linkscraper -u https://example.com -a get-css-files
   ```shell
   python linkscraper -u https://example.com -a get-css-files -filter example.css
   ```
-* *Get css files and show only minify files (new):*
+* *Get css files and show only minify files:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-css-files -smf true
+  python linkscraper -u https://example.com -a get-css-files -smf
   ```
 * *Get css files and download files:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-css-files -d true
+  python linkscraper -u https://example.com -a get-css-files -d
   ```
 
 *Get images files:*
@@ -153,7 +158,7 @@ python linkscraper -u https://example.com -a get-images-files
 * *Get images files and download files:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-images-files -d true
+  python linkscraper -u https://example.com -a get-images-files -d
   ```
 
 *Get links:*
@@ -170,7 +175,7 @@ python linkscraper -u https://example.com -a get-links
 * *Get links and show only external links:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-links -oel true
+  python linkscraper -u https://example.com -a get-links -oel
   ```
 * *Get links and show status code:*
 
@@ -213,14 +218,8 @@ python linkscraper -u https://example.com -a get-plugins -p robots
 *virustotal:*
 
 ```shell
-python linkscraper -u https://example.com -a get-plugins -p virustotal -k YOUR_VIRUSTOTAL_KEY
+python linkscraper -u https://example.com -a get-plugins -p virustotal
 ```
-
-* *virustotal and get key in ENV variable:*
-
-  ```shell
-  python linkscraper -u https://example.com -a get-plugins -p virustotal -k env:VIRUSTOTAL_KEY
-  ```
 
 *ip-location:*
 
@@ -243,19 +242,16 @@ python linkscraper -u https://example.com -a get-plugins -p extract-colors
 screenshot:
 
 ```shell
-python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome
+python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefox
 ```
 
 * *screenshot and upload to Imgur:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome -up imgur -k YOUR_IMGUR_CLIENT_ID -t "Title of post here"
+  python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefox -up -t "Title of post here"
   ```
-* *screenshot and upload to Imgur and get key in ENV variable:*
 
-  ```shell
-  python linkscraper -u https://example.com -a get-plugins -p screenshot -f screenshot.png -b chrome -up imgur -k env:IMGUR_CLIENT_ID -t "Title of post here"
-  ```
+> *Versions starting from 114 of the Google Chrome browser are incompatible with this feature; we suggest using the Mozilla Firefox browser.*
 
 ## 🔗 Additional links
 
@@ -264,7 +260,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -f screen
 
 ## 📜 Changelog
 
-> Current version: ``2.3.0``
+> Current version: ``2.4.0``
 
 Minors
 
@@ -281,12 +277,14 @@ Added
 * Function ``get_links`` was added
 * Function ``get_emails`` was added
 * Function `download_resources` was added
+* Function `write_env` was added
 
 Improvements
 
 * Improvement in interface
 * Improvement in plugin ``detect_fonts``
 * Improvements code base
+* Improvements all plugins
 
 Plugins removed
 

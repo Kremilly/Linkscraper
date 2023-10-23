@@ -1,26 +1,27 @@
 #!/usr/bin/python3
 
-import whois
+import whois, time
 from utils.utils_http import *
 
-from rich.table import Table
-from rich.console import Console
-
-console = Console(record=True)
+from layout.table import Table
 
 def plugin_whois(url):
+    start_time = time.time()
     domain_name = get_hostname(url)
 
     whois_info = whois.whois(domain_name)
-    table = Table(box=None)
 
-    table.add_column("Name", style="cyan", no_wrap=True)
-    table.add_column("Value")
+    Table.header([
+        ("Name", "cyan", True),
+        ("Value", "white", False)
+    ])
+
+    Table.row("Domain name", f"{whois_info.domain_name}")
+    Table.row("Domain registrar", f"{whois_info.registrar}")
+    Table.row("WHOIS server", f"{whois_info.whois_server}")
+    Table.row("Domain creation date", f"{str(whois_info.creation_date)}")
+    Table.row("Expiration date", f"{str(whois_info.expiration_date)}")
     
-    table.add_row("Domain name", whois_info.domain_name)
-    table.add_row("Domain registrar", whois_info.registrar)
-    table.add_row("WHOIS server", whois_info.whois_server)
-    table.add_row("Domain creation date", str(whois_info.creation_date))
-    table.add_row("Expiration date", str(whois_info.expiration_date))
-    
-    console.print(table)
+    end_time = "{:.2f}".format(time.time() - start_time)
+    Table.caption(f"Time taken: {end_time} seconds")
+    Table.display()

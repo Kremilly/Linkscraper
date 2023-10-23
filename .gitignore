@@ -147,3 +147,10 @@ dmypy.json
 
 # Ignore the download path
 download/**
+
+# Ignore all images
+*.png
+*.jpg
+*.gif
+*.webp
+*.jpeg

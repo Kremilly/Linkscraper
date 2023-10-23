@@ -6,13 +6,11 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 from utils.utils import *
-from utils.configs import *
+from classes.configs import Configs
 
-from rich.table import Table
-from rich.console import Console
+from layout.table import Table
+from layout.layout import Layout
 
-console = Console(record=True)
-            
 def language_country(code, param):
     if param == "locale":
         return f"{language(code)} ({country(code)})"
@@ -21,14 +19,12 @@ def language_country(code, param):
 
 def wp_detect(url):
     session = requests.Session()
-    console = Console(record=True)
     session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
     
     soup = BeautifulSoup(session.get(url).content, "html.parser")
     metas = soup.find_all('meta')
     
     wp_detected = False
-    wp_version = "[italic cyan]WordPress unknown[/italic cyan]"
     
     wp_meta_generator = [ 
 	    meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'generator' 
@@ -49,10 +45,10 @@ def wp_detect(url):
                 break
 
     if wp_detected:
-        console.print(f"[blue]WordPress[/blue]: [green]detected[/green]")
-        console.print(wp_version.replace("WordPress ", "WordPress version: "))
+        Layout.print(f"[blue]WordPress[/blue]:", "detected", "green")
+        Layout.print(f"[blue]WordPress version[/blue]:", wp_version, "green")
     else:
-        console.print(f"[blue]WordPress[/blue]: [red]not detected[/red]")
+        Layout.print(f"[blue]WordPress[/blue]:", "not detected", "red")
 
 def plugin_page_details(url):
     start_time = time.time()
@@ -68,33 +64,31 @@ def plugin_page_details(url):
     charset = soup.find('meta',attrs={'charset':True})
     open_graph = [[a["property"].replace("og:",""),a["content"]] for a in soup.select("meta[property^=og]")]
 
-    console.print("[blue]Title:[/blue]", metatitle)
-    if metadescription: console.print("[blue]Description:[/blue]", metadescription["content"])
-    if robots_directives: console.print("[blue]Robots directives:[/blue]", robots_directives["content"].split(","))
-    if viewport: console.print("[blue]Viewport:[/blue]", viewport["content"])
-    if charset: console.print("[blue]Charset:[/blue]", charset["charset"])
+    Layout.print("[blue]Title:[/blue]", metatitle)
+    if metadescription: Layout.print("[blue]Description:[/blue]", metadescription["content"])
+    if robots_directives: Layout.print("[blue]Robots directives:[/blue]", robots_directives["content"].split(","))
+    if viewport: Layout.print("[blue]Viewport:[/blue]", viewport["content"])
+    if charset: Layout.print("[blue]Charset:[/blue]", charset["charset"])
     
     wp_detect(url)
 
     if open_graph:
-        console.print("-" * 60)
-        console.print(f"[blue]What is Open Graph?[/blue] The Open Graph protocol enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook.")
-        console.print(f"[blue]Documentation:[/blue] [bold green]https://ogp.me[/bold green]")
-        console.print("-" * 60)
-        
-        table = Table(box=None)
-        table.add_column("Name", style="cyan", no_wrap=True)
-        table.add_column("Value")
+        Layout.separator()
+        Layout.print(f"[blue]What is Open Graph?[/blue]", "The Open Graph protocol enables any web page to become a rich object in a social graph. For instance, this is used on Facebook to allow any web page to have the same functionality as any other object on Facebook.")
+        Layout.print(f"[blue]Documentation[/blue]:", "https://ogp.me", "bold blue")
+        Layout.separator()
+    
+        Table.header([
+            ("Name", "cyan", True),
+            ("Value", "white", False)
+        ])
 
         for info in open_graph:
             if not language_country(info[1], info[0]):
-                table.add_row("og:" + info[0], info[1])
+                Table.row("og:" + info[0], info[1])
             else:
-                table.add_row("og:" + info[0], language_country(info[1], info[0]))    
+                Table.row("og:" + info[0], language_country(info[1], info[0]))    
         
-        console.print(table)
-        
-    end_time = "{:.2f}".format(time.time() - start_time)
+        Table.display()
     
-    console.print("-" * 60)
-    console.print(f"Time taken: {end_time} seconds")
+    Layout.time_taken(start_time, True)

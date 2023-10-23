@@ -1,15 +1,25 @@
 #!/usr/bin/python3
 
-import os, sys, time
+import os, time
+import random as r
 from plugins.imgur import *
-from selenium import webdriver
 from rich.console import Console
 
+from utils.utils import generate_id
+from utils.utils_http import get_hostname
+
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
+from layout.layout import *
+
+layout = Layout()
 console = Console(record=True)
 
 def browser_chrome(url, file):
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless=new")
+    
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
 
     driver.get(url)
@@ -17,37 +27,34 @@ def browser_chrome(url, file):
     driver.quit()
 
 def browser_firefox(url, file):
-    driver = webdriver.Firefox()
+    options = FirefoxOptions()
+    options.add_argument("--headless")
 
+    driver = webdriver.Firefox(options=options)
     driver.get(url)
     driver.save_screenshot(file)
     driver.quit()
 
-def plugin_screenshot(url, file, browser, upload, key, title):
-    if not file and not upload:
-        console.print(f"[bold red]Error: Parameters is missing[/bold red]")
-        sys.exit(1)
-
+def plugin_screenshot(url, browser, upload, title):
     start_time = time.time()
+    
+    path = f"screenshots\\{get_hostname(url)}\\"
+    create_folder(path)
+
+    file = path + f"{get_hostname(url)}-{generate_id()}.png"
+    
     if not browser or browser == 'chrome':
         browser_chrome(url, file)
     elif browser == 'firefox':
         browser_firefox(url, file)
     else:
-        console.print(f"[bold red]Error: Browser invalid[/bold red]")
-        sys.exit(1)
+        layout.error("Browser is invalid", False, True)
 
     if os.path.exists(file):
-        console.print(f"[bold green]Success: screenshot saved with successfully.[/bold green]")
+        layout.success("Success: screenshot saved with successfully.")
 
         if not upload:
-            os.startfile(file)
-            
-            end_time = "{:.2f}".format(time.time() - start_time)
-            console.print(f"Time taken: {end_time} seconds")
+            os.startfile(os.getcwd() + "\\" + file)
+            layout.time_taken(start_time)
         else:
-            if upload == 'imgur':
-                plugin_imgur(file, key, title)
-            else:
-                console.print(f"[bold red]Error: Parameter -up is invalid[/bold red]")
-                sys.exit(1)
+            plugin_imgur(file, title)

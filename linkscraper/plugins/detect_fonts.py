@@ -3,10 +3,7 @@
 import requests, time, re
 from bs4 import BeautifulSoup
 
-from rich.table import Table
-from rich.console import Console
-
-console = Console(record=True)
+from layout.table import Table
 
 def get_css_links(url):
     response = requests.get(url)
@@ -86,18 +83,19 @@ def get_fonts_from_html(url):
 def plugin_detect_fonts(url):
     start_time = time.time()
     font_families = get_fonts_from_css_files(url)
-
-    table = Table(box=None)
-    table.add_column("Name", style="cyan", no_wrap=True)
-    table.add_column("Value", style="white")
+    
+    Table.header([
+        ("Name", "cyan", True),
+        ("Value", "white", False)
+    ])
     
     if len(font_families) == 0:
         font_families = get_fonts_from_html(url)
     
     for font_name in font_families:
-        table.add_row("font-family", font_name.strip())
+        Table.row("font-family", font_name.strip())
 
     end_time = "{:.2f}".format(time.time() - start_time)
     
-    table.caption = f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds"
-    console.print(table)
+    Table.caption(f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds")
+    Table.display()
