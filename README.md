@@ -180,7 +180,7 @@ python linkscraper -u https://example.com -a get-links
 * *Get links and show status code:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-links -ssc true
+  python linkscraper -u https://example.com -a get-links -ssc
   ```
 
 *Get emails:*
