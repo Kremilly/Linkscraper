@@ -13,7 +13,8 @@ def css_files(url, minify_files, filter_data, download):
     
         Table.header([
             ("Filename", "cyan", True),
-            ("URL", "bold blue", False)
+            ("URL", "bold blue", False),
+            ("Size", "green", False)
         ])
 
         links = []
@@ -22,21 +23,22 @@ def css_files(url, minify_files, filter_data, download):
             if css.attrs.get("href"):
                 css_url = urljoin(url, css.attrs.get("href"))
 
-                if filter_data:
-                    if find(css_url, ".css") and find(css_url, filter_data):
-                        links.append(css_url)
-                else:
-                    if minify_files:
-                        if find(css_url, ".css") and find(css_url, ".min.css"):
+                if css_url.find('.css') != -1:
+                    if filter_data:
+                        if css_url.find(".css") and css_url.find(filter_data):
                             links.append(css_url)
                     else:
-                        if find(css_url, ".css"):
-                            links.append(css_url)
+                        if minify_files:
+                            if css_url.find(".css") and css_url.find(".min.css"):
+                                links.append(css_url)
+                        else:
+                            if css_url.find(".css"):
+                                links.append(css_url)
         
         list_css = list(set(links))
         
         for css_url in list_css:
-            Table.row(get_remote_file_size(css_url), css_url)
+            Table.row(File.get_remote_file_name(css_url), css_url, FileSize.remote_file(css_url))
         
         end_time = "{:.2f}".format(time.time() - start_time)
         

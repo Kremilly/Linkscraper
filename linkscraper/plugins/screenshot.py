@@ -1,20 +1,30 @@
 #!/usr/bin/python3
 
-import os, time
-import random as r
-from plugins.imgur import *
-from rich.console import Console
+import os, time, random
 
-from utils.utils import generate_id
-from utils.utils_http import get_hostname
+from utils.http import HTTP
+from utils.file import File
+
+from apis.imgur import Imgur
+from layout.layout import Layout
 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-from layout.layout import *
-
-layout = Layout()
-console = Console(record=True)
+def generate_id(size):
+    random_string = ''
+    random_str_seq = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    
+    for _ in range(0, size):
+        random_string += str(
+            random_str_seq[
+                random.randint(
+                    0, len(random_str_seq) - 1
+                )
+            ]
+        )
+        
+    return random_string
 
 def browser_chrome(url, file):
     options = webdriver.ChromeOptions()
@@ -38,23 +48,24 @@ def browser_firefox(url, file):
 def plugin_screenshot(url, browser, upload, title):
     start_time = time.time()
     
-    path = f"screenshots\\{get_hostname(url)}\\"
-    create_folder(path)
+    path = f"screenshots\\{HTTP.get_hostname(url)}\\"
+    
+    File.create_path(path)
 
-    file = path + f"{get_hostname(url)}-{generate_id()}.png"
+    file = path + f"{generate_id(12)}.png"
     
     if not browser or browser == 'chrome':
         browser_chrome(url, file)
     elif browser == 'firefox':
         browser_firefox(url, file)
     else:
-        layout.error("Browser is invalid", False, True)
+        Layout.error("Browser is invalid", False, True)
 
     if os.path.exists(file):
-        layout.success("Success: screenshot saved with successfully.")
+        Layout.success("screenshot saved with successfully.")
 
         if not upload:
-            os.startfile(os.getcwd() + "\\" + file)
-            layout.time_taken(start_time)
+            File.open(file)
+            Layout.time_taken(start_time)
         else:
-            plugin_imgur(file, title)
+            Imgur.upload(file, title)

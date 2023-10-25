@@ -5,7 +5,7 @@ import requests, cloudscraper, time
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-from utils.utils import *
+from utils.locale import Locale
 from classes.configs import Configs
 
 from layout.table import Table
@@ -13,7 +13,7 @@ from layout.layout import Layout
 
 def language_country(code, param):
     if param == "locale":
-        return f"{language(code)} ({country(code)})"
+        return f"{Locale.language(code)} ({Locale.country(code)})"
     else:
         return False
 
@@ -30,7 +30,7 @@ def wp_detect(url):
 	    meta.attrs['content'] for meta in metas if 'name' in meta.attrs and meta.attrs['name'] == 'generator' 
 	]
 
-    if len(wp_meta_generator) >= 1 and find(wp_meta_generator[0], "WordPress"):
+    if len(wp_meta_generator) >= 1 and wp_meta_generator[0].find("WordPress"):
         wp_detected = True
         wp_version = wp_meta_generator[0]
     else:
@@ -38,7 +38,7 @@ def wp_detect(url):
             if css.attrs.get("href"):
                 css_url = urljoin(url, css.attrs.get("href"))
 
-                if find(css_url, "wp-content") or find(css_url, "wp-includes"):
+                if css_url.find("wp-content") or css_url.find("wp-includes"):
                     wp_detected = True
                 else:
                     wp_detected = False

@@ -2,10 +2,10 @@
 
 import requests, time
 
-from utils.utils import *
 from classes.configs import *
-from utils.utils_http import *
-from utils.utils_files import *
+
+from utils.file import File
+from utils.file_ext import FileExt
 from core.download_resources import *
 
 from urllib.parse import urljoin

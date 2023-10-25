@@ -12,7 +12,8 @@ def images_files(url, filter_data, download):
     
         Table.header([
             ("Filename", "cyan", True),
-            ("URL", "bold blue", False)
+            ("URL", "bold blue", False),
+            ("Size", "green", False)
         ])
 
         links = []
@@ -21,7 +22,7 @@ def images_files(url, filter_data, download):
             img_url = urljoin(url, img.attrs.get("src"))
             
             if filter_data:
-                if find(img_url, filter_data):
+                if img_url.find(filter_data):
                     links.append(img_url)
             else:
                 links.append(img_url)
@@ -29,7 +30,7 @@ def images_files(url, filter_data, download):
         list_images = list(set(links))
     
         for img_url in list_images:
-            Table.row(get_remote_file_size(img_url), img_url)
+            Table.row(File.get_remote_file_name(img_url), img_url, FileSize.remote_file(img_url))
         
         end_time = "{:.2f}".format(time.time() - start_time)
         

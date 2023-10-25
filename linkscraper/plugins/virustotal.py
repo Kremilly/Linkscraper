@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
-import requests, time
-from utils.utils_http import *
+import time
 
 from classes.env import Env
+
+from apis.virustotal import VirusTotal
 
 from layout.table import Table
 from layout.layout import Layout
@@ -12,45 +13,18 @@ def plugin_virustotal(url):
     key = Env.get("VIRUSTOTAL_KEY")
     
     if not key:
-        Layout.error("Key is required", False, True, {
-            "text": "Get your VirusTotal key here:",
-            "value": "https://www.virustotal.com/gui/my-apikey",
-            "style": "bold green"
-        })
+        VirusTotal.error("Key is requiired")
     else:
         start_time = time.time()
-        
-        response = requests.post("https://www.virustotal.com/api/v3/urls", data="url=" + strip_scheme(url), headers={
-            "x-apikey": key,
-            "accept": "application/json",
-            "content-type": "application/x-www-form-urlencoded"
-        })
-        
-        if response.status_code != 200:
-            if response.json()["error"]["code"] == "WrongCredentialsError":
-                Layout.error("Key is invalid", False, True, {
-                    "text": "Get your VirusTotal key here:",
-                    "value": "https://www.virustotal.com/gui/my-apikey",
-                    "style": "bold green"
-                })
-            else:
-                Layout.error(response.json()['error']['message'], False, True)
-
-        response = requests.get(response.json()["data"]["links"]["self"], headers={
-            "x-apikey": key,
-            "accept": "application/json",
-        })
-
-        resp_json = response.json()
+        resp_json = VirusTotal.request(url, key)
         permalink = resp_json["data"]["links"]["item"].replace("api/v3/urls", "gui/url")
 
-        Layout.print("\t\t", "Stats:")
-        Layout.separator()
-
-        Layout.print("[bold green]Harmless: [/bold green]", str(resp_json["data"]["attributes"]["stats"]["harmless"]))
-        Layout.print("[bold red]Malicious: [/bold red]", str(resp_json["data"]["attributes"]["stats"]["malicious"]))
-        Layout.print("[bold yellow]Suspicious: [/bold yellow]", str(resp_json["data"]["attributes"]["stats"]["suspicious"]))
-        Layout.print("[bold cyan]Undetected: [/bold cyan]", str(resp_json["data"]["attributes"]["stats"]["undetected"]))
+        VirusTotal.stats({
+            "harmless": resp_json["data"]["attributes"]["stats"]["harmless"],
+            "malicious": resp_json["data"]["attributes"]["stats"]["malicious"],
+            "suspicious": resp_json["data"]["attributes"]["stats"]["suspicious"],
+            "undetected": resp_json["data"]["attributes"]["stats"]["undetected"],
+        })
 
         Layout.separator()
         Layout.print("Permalink", permalink, "bold green")

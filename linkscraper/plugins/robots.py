@@ -3,14 +3,14 @@
 import sys, time
 from urllib.request import urlopen
 
-from layout.layout import *
-from utils.utils_http import *
+from utils.http import HTTP
+from layout.layout import Layout
 
 def plugin_robots(url):
     start_time = time.time()
     
     robots_url = url + "/robots.txt"
-    status_code = http_code(robots_url)
+    status_code = HTTP.code(robots_url)
     
     if status_code == 404:
         Layout.error("robots.txt not exists", False, True)

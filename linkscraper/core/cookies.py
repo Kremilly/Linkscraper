@@ -2,8 +2,6 @@
 
 import requests, time
 
-from utils.utils import *
-
 from layout.table import Table
 
 def get_cookies(url, filter_data=None):
@@ -18,7 +16,7 @@ def get_cookies(url, filter_data=None):
     cookie_dict = response.cookies.get_dict()
     
     if filter_data:
-        cookie_dict = {k: v for k, v in cookie_dict.items() if find(k, filter_data)}
+        cookie_dict = {k: v for k, v in cookie_dict.items() if k.find(filter_data)}
 
     for name, value in cookie_dict.items():
         Table.row(name, value)

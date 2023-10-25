@@ -3,7 +3,9 @@
 import requests, time, re
 from bs4 import BeautifulSoup
 
+from rich.prompt import Prompt
 from layout.table import Table
+from apis.google_fonts import GoogleFonts
 
 def get_css_links(url):
     response = requests.get(url)
@@ -80,22 +82,30 @@ def get_fonts_from_html(url):
         set(list_fonts)
     )
 
-def plugin_detect_fonts(url):
+def plugin_detect_fonts(url, google_fonts = None, download = None):
     start_time = time.time()
     font_families = get_fonts_from_css_files(url)
     
-    Table.header([
-        ("Name", "cyan", True),
-        ("Value", "white", False)
-    ])
-    
     if len(font_families) == 0:
         font_families = get_fonts_from_html(url)
-    
-    for font_name in font_families:
-        Table.row("font-family", font_name.strip())
+        
+    if google_fonts is not None:
+        font_name = Prompt.ask(f"Enter the font name", choices=font_families)
+        GoogleFonts.list(url, font_name, download)
+    else:
+        Table.header([
+            ("Name", "cyan", True),
+            ("Value", "white", False)
+        ])
+        
+        for font_name in font_families:
+            Table.row("font-family", font_name.strip())
 
-    end_time = "{:.2f}".format(time.time() - start_time)
-    
-    Table.caption(f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds")
-    Table.display()
+        end_time = "{:.2f}".format(time.time() - start_time)
+        
+        if google_fonts is not None:
+            font_name = Prompt.ask(f"Enter the font name", choices=font_families)
+            GoogleFonts.list(url, font_name, download)
+        
+        Table.caption(f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds")
+        Table.display()

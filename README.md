@@ -6,19 +6,19 @@
 
 **Table of Contents:**
 
-* [Introduction](https://github.com/kremilly/linkscraper/#-introduction)
-* [Requirements](https://github.com/kremilly/linkscraper/#-requirements)
-* [Getting started](https://github.com/kremilly/linkscraper/#-getting-started)
-* [Parameters](https://github.com/kremilly/linkscraper/#-parameters)
-* [Usage](https://github.com/kremilly/linkscraper/#-usage)
-* [Plugins](https://github.com/kremilly/linkscraper/#-requirements)
-* [Additional links](https://github.com/kremilly/linkscraper/#-additional-links)
-* [Changelog](https://github.com/kremilly/linkscraper/#-changelog)
-* [External api&#39;s use](https://github.com/kremilly/linkscraper/#-external-apis-use)
-* [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
-* [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
-* [License](https://github.com/kremilly/linkscraper/#-license)
-* [Sponsor](https://github.com/kremilly/linkscraper/#-sponsor)
+* [🌐 Introduction](https://github.com/kremilly/linkscraper/#-introduction)
+* [📌 Requirements](https://github.com/kremilly/linkscraper/#-requirements)
+* [🚀 Getting started](https://github.com/kremilly/linkscraper/#-getting-started)
+* [📖 Parameters](https://github.com/kremilly/linkscraper/#-parameters)
+* [🛠 Usage](https://github.com/kremilly/linkscraper/#-usage)
+* [🧩 Plugins](https://github.com/kremilly/linkscraper/#-plugins)
+* 🔗 [Additional links](https://github.com/kremilly/linkscraper/#-additional-links)
+* 📜 [Changelog](https://github.com/kremilly/linkscraper/#-changelog)
+* 📡 [External apis use](https://github.com/kremilly/linkscraper/#-external-apis-use)
+* 📦 [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
+* 🗺 [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
+* 📝 [License](https://github.com/kremilly/linkscraper/#-license)
+* 💡 [Sponsor](https://github.com/kremilly/linkscraper/#-sponsor)
 
 ## 🌐 Introduction
 
@@ -51,14 +51,15 @@ pip install -r requirements.txt
 | -p, --plugin                | Load a plugin                      | No              |                                    |
 | -b, --browser               | Set the browser to take screenshot | No              | ``firefox``                        |
 | -t, --title                 | Set title the screenshot on Imgur  | No              | ``Screenshot made by Linkscraper`` |
-| -up, --upload               | Upload the screenshot to Imgur    | No              |                                    |
-| -oel, --only-external-links | Show only external links           | No              |                                    |
-| -ssc, --show-status-code    | Show status code                   | No              |                                    |
-| -smf, --show-minify-files   | Show only minify files             | No              |                                    |
+| -gf, --google-fonts         | Download fonts from Google Fonts   | No              | `Null`                           |
+| -up, --upload               | Upload the screenshot to Imgur    | No              | `Null`                           |
+| -oel, --only-external-links | Show only external links           | No              | `Null`                           |
+| -ssc, --show-status-code    | Show status code                   | No              | `Null`                           |
+| -smf, --show-minify-files   | Show only minify files             | No              | `Null`                           |
 | -filter, --filter           | Filter data                        | No              |                                    |
-| -d, --download              | Download static files              | No              |                                    |
-| -write-env, --write-env     | Write environments file (.env)     | No              |                                    |
-| -version, --version         | Show current version               | No              |                                    |
+| -d, --download              | Download static files              | No              | `Null`                           |
+| -write-env, --write-env     | Write environments file (.env)     | No              | `Null`                           |
+| -version, --version         | Show current version               | No              | `Null`                           |
 
 ## 🛠 Usage
 
@@ -227,13 +228,24 @@ python linkscraper -u https://example.com -a get-plugins -p virustotal
 python linkscraper -u https://example.com -a get-plugins -p ip-location
 ```
 
-*detect-fonts (new):*
+*detect-fonts:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p detect-fonts
 ```
 
-*extract-colors (new):*
+* *detect-fonts and get fonts files from Google Fonts (new):*
+
+  ```shell
+  python linkscraper -u https://example.com -a get-plugins -p detect-fonts -gf
+  ```
+* *detect-fonts, get fonts files from Google Fonts and download them (new):*
+
+  ```shell
+  python linkscraper -u https://example.com -a get-plugins -p detect-fonts -gf -d
+  ```
+
+*extract-colors:*
 
 ```shell
 python linkscraper -u https://example.com -a get-plugins -p extract-colors
@@ -255,12 +267,13 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefo
 
 ## 🔗 Additional links
 
-* [Get your free VirusTotal Key](https://www.virustotal.com/gui/my-apikey)
-* [Get your free Imgur Client ID](https://api.imgur.com/oauth2/addclient)
+* [Get your free VirusTotal Key](https://www.virustotal.com/gui/my-apikey) ([watch this tutorial](https://www.youtube.com/watch?v=9ftKViq71eQ))
+* [Get your free Imgur Client ID](https://api.imgur.com/oauth2/addclient) ([watch this tutorial](https://youtu.be/anfNgyplDjI?feature=shared&t=38))
+* [Get yor free Google Fonts Key](https://console.cloud.google.com/apis/credentials) ([watch this tutorial](https://www.youtube.com/watch?v=mdhUvy8PIwA))
 
 ## 📜 Changelog
 
-> Current version: ``2.4.0``
+> Current version: ``2.5.0``
 
 Minors
 
@@ -285,6 +298,8 @@ Improvements
 * Improvement in plugin ``detect_fonts``
 * Improvements code base
 * Improvements all plugins
+* Rewrite code base for improvements
+* Rewrite `Imgur` plugin
 
 Plugins removed
 
@@ -303,6 +318,7 @@ Plugins added
 * Plugin ``page_details`` was added
 * Plugin ``detect_fonts`` was added
 * Plugin ``extract_colors`` was added
+* Plugin `google_fonts` was added
 
 ## 📡 External API's use
 
@@ -310,6 +326,7 @@ Plugins added
 * [VirusTotal](https://virustotal.com)
 * [IP-API](https://ip-api.com/)
 * [who.is](https://who.is/)
+* [Google Fonts](https://fonts.google.com/)
 
 ## 📦 Dependencies
 
@@ -325,6 +342,7 @@ Plugins added
 
 ## 🗺 Roadmap
 
+* [ ] Errors logs system
 * [ ] Implement a micro database key-value type ([TinyDB](https://tinydb.readthedocs.io/en/latest/) like)
 * [ ] List of possible pdf's files on current page
 * [ ] Download public PDF files listed on current page

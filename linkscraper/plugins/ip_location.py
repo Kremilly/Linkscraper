@@ -2,14 +2,16 @@
 
 import requests, time
 
+from utils.http import HTTP
 from layout.table import Table
-from utils.utils_http import get_ip
+
+from apis.apis import Apis
 
 def plugin_ip_location(url):
-    ip = get_ip(url)
+    ip = HTTP.get_ip(url)
     start_time = time.time()
     
-    response = requests.get(f"http://ip-api.com/json/{ip}")
+    response = requests.get(f"{Apis.IP_API_REQUEST.value}{ip}")
     resp_json = response.json()
 
     Table.header([

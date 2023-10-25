@@ -12,7 +12,8 @@ def js_files(url, minify_files, filter_data, download):
     
         Table.header([
             ("Filename", "cyan", True),
-            ("URL", "bold blue", False)
+            ("URL", "bold blue", False),
+            ("Size", "green", False),
         ])
 
         links = []
@@ -21,20 +22,21 @@ def js_files(url, minify_files, filter_data, download):
             if script.attrs.get("src"):
                 script_url = urljoin(url, script.attrs.get("src"))
                 
-                if filter_data:
-                    if find(script_url, filter_data):
-                        links.append(script_url)
-                else:
-                    if minify_files:
-                        if find(script_url, '.min'):
+                if script_url.find('.js') != -1:
+                    if filter_data:
+                        if script_url.find(filter_data):
                             links.append(script_url)
                     else:
-                        links.append(script_url)
+                        if minify_files:
+                            if script_url.find('.min.js'):
+                                links.append(script_url)
+                        else:
+                            links.append(script_url)
         
         list_scripts = list(set(links))
         
         for script_url in list_scripts:
-            Table.row(get_remote_file_size(script_url), script_url)
+            Table.row(File.get_remote_file_name(script_url), script_url, FileSize.remote_file(script_url))
         
         end_time = "{:.2f}".format(time.time() - start_time)
         

@@ -1,10 +1,18 @@
 #!/usr/bin/python3
 
-import requests, time
-from utils.utils import *
+import requests, time,json
 
 from rich.json import JSON
 from layout.table import Table
+
+def is_json(string):
+    try:
+        if json.loads(string):
+            return True
+        else:
+            return False
+    except ValueError as e:
+        return False
 
 def get_headers(url, filter_data=None):
     start_time = time.time()
@@ -13,7 +21,7 @@ def get_headers(url, filter_data=None):
     headers_dict = response.headers
 
     if filter_data:
-        headers_dict = {k: v for k, v in headers_dict.items() if find(k, filter_data)}
+        headers_dict = {k: v for k, v in headers_dict.items() if k.find(filter_data)}
     
     Table.header([
         ("Name", "cyan", True),

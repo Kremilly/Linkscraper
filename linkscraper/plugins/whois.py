@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 
 import whois, time
-from utils.utils_http import *
 
+from utils.http import HTTP
 from layout.table import Table
 
 def plugin_whois(url):
     start_time = time.time()
-    domain_name = get_hostname(url)
-
+    domain_name = HTTP.get_hostname(url)
     whois_info = whois.whois(domain_name)
 
     Table.header([

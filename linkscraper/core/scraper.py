@@ -2,15 +2,10 @@
 
 import re, requests, time
 
-from utils.utils import *
-from utils.utils_http import *
-from utils.utils_files import *
-
 from bs4 import BeautifulSoup as bs
 
-from rich.table import Table
-from rich.console import Console
-
+from utils.url import URL
+from utils.http import HTTP
 from layout.table import Table
 
 def get_links(url, external_links, status_code, filter_data):
@@ -38,23 +33,23 @@ def get_links(url, external_links, status_code, filter_data):
     for link in soup.find_all('a'):
         if link.get('href') != None:
             if filter_data:
-                if is_url(link.get('href')) and find(link.get('href'), filter_data):
+                if URL.is_url(link.get('href')) and link.get('href').find(filter_data) != -1:
                     links.append(link.get('href'))
             else:
                 if not external_links:
-                    if is_url(link.get('href')):
+                    if URL.is_url(link.get('href')):
                         links.append(link.get('href'))
                 else:
-                    if is_url(link.get('href')) and find(get_hostname(link.get('href')), get_hostname(url)) != True:
+                    if URL.is_url(link.get('href')) and HTTP.get_hostname(link.get('href')).find(HTTP.get_hostname(url)) == -1:
                         links.append(link.get('href'))
     
     links_list = list(set(links))
     
     for link in list(set(links)):
         if status_code:
-            Table.row(get_hostname(link), link, str(http_code(link)))
+            Table.row(HTTP.get_hostname(link), link, HTTP.code(link))
         else:
-            Table.row(get_hostname(link), link)
+            Table.row(HTTP.get_hostname(link), link)
 
     end_time = "{:.2f}".format(time.time() - start_time)
     
@@ -79,7 +74,7 @@ def get_emails(url, filter_data):
     
     for email in list_emails:
         if filter_data:
-            if find(email, filter_data):
+            if email.find(filter_data):
                 Table.row(email.split('@')[1], email)
         else:
             Table.row(email.split('@')[1], email)

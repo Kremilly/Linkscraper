@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
-import argparse
+import sys, argparse
 
 from core.write_env import *
 from core.functions import *
 
 from layout.layout import Layout
-
+from utils.locale import Locale
 from classes.configs import Configs
 
 parser = argparse.ArgumentParser(description="Example of use: python linkscraper -u http://example.com")
@@ -19,6 +19,7 @@ parser.add_argument("-b", "--browser", help="Set browser to take screenshot", re
 parser.add_argument("-t", "--title", help="Set title the screenshot on Imgur", required=False)
 parser.add_argument("-d", "--download", help="Download static files", action="store_true", required=False)
 parser.add_argument("-up", "--upload", help="Upload the screenshot to Imgur", action="store_true", required=False)
+parser.add_argument("-gf", "--google-fonts", help="Download fonts from Google Fonts", action="store_true", required=False)
 parser.add_argument("-version", "--version", help="Show current version", action="version", version=Configs.VERSION.value)
 parser.add_argument("-write-env", "--write-env", help="Write environments file (.env)", action="store_true", required=False)
 parser.add_argument("-ssc", "--show-status-code", help="Show status code", action="store_true", required=False, default="false")
@@ -55,6 +56,6 @@ if __name__ == "__main__":
         elif args.action == "get-images-files" or args.action == "images-files":
             run_get_images_files(BASE_URL, args.filter, args.download)
         elif args.action == "get-plugins" or args.action == "plugins":
-            run_plugin(args.plugin, BASE_URL, args.browser, args.upload, args.title)
+            run_plugin(args.plugin, BASE_URL, args.browser, args.upload, args.title, args.google_fonts, args.download)
         else:
             Layout.error("Action invalid", True, True)
