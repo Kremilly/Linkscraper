@@ -31,7 +31,7 @@ def run_core(url):
     elif HTTP.check_http_url(url):
         Layout.print("HTTPS Status", "Not secure", "bold red")
     
-    Layout.time_taken(start_time)
+    Layout.time_taken(start_time, True)
 
 def run_headers(url, filter_data):
     Layout.header_section("Headers")

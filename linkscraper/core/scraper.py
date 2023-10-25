@@ -17,7 +17,7 @@ def get_links(url, external_links, status_code, filter_data):
     if status_code:
         headers = [
             ("Domain", "cyan", True),
-            ("URL", "bold blue", False)
+            ("URL", "bold blue", False),
             ("Status", "bold", False)
         ]
     else:

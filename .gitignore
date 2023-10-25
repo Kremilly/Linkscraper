@@ -138,19 +138,11 @@ dmypy.json
 *.db
 *.sql
 
-# Ignore HTML files
-*.htm
-*.html
-
 # Ignore .env file
 .env
 
 # Ignore the download path
 download/**
 
-# Ignore all images
-*.png
-*.jpg
-*.gif
-*.webp
-*.jpeg
+# Ignore the screenshots path
+screenshots/**
