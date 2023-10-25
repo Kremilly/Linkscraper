@@ -6,19 +6,19 @@
 
 **Table of Contents:**
 
-* [🌐 Introduction](https://github.com/kremilly/linkscraper/#-introduction)
-* [📌 Requirements](https://github.com/kremilly/linkscraper/#-requirements)
-* [🚀 Getting started](https://github.com/kremilly/linkscraper/#-getting-started)
-* [📖 Parameters](https://github.com/kremilly/linkscraper/#-parameters)
-* [🛠 Usage](https://github.com/kremilly/linkscraper/#-usage)
-* [🧩 Plugins](https://github.com/kremilly/linkscraper/#-plugins)
-* 🔗 [Additional links](https://github.com/kremilly/linkscraper/#-additional-links)
-* 📜 [Changelog](https://github.com/kremilly/linkscraper/#-changelog)
-* 📡 [External apis use](https://github.com/kremilly/linkscraper/#-external-apis-use)
-* 📦 [Dependencies](https://github.com/kremilly/linkscraper/#-dependencies)
-* 🗺 [Roadmap](https://github.com/kremilly/linkscraper/#-roadmap)
-* 📝 [License](https://github.com/kremilly/linkscraper/#-license)
-* 💡 [Sponsor](https://github.com/kremilly/linkscraper/#-sponsor)
+* [🌐 Introduction](#-introduction)
+* [📌 Requirements](#-requirements)
+* [🚀 Getting started](#-getting-started)
+* [📖 Parameters](#-parameters)
+* [🛠 Usage](#-usage)
+* [🧩 Plugins](#-plugins)
+* 🔗 [Additional links](#-additional-links)
+* 📜 [Changelog](#-changelog)
+* 📡 [External apis use](#-external-apis-use)
+* 📦 [Dependencies](#-dependencies)
+* 🗺 [Roadmap](#-roadmap)
+* 📝 [License](#-license)
+* 💡 [Sponsor](#-sponsor)
 
 ## 🌐 Introduction
 
@@ -349,7 +349,7 @@ Plugins added
 
 ## 📝 License
 
-Code licensed under [MIT License](https://github.com/kremilly/linkscraper/blob/main/LICENSE)
+Code licensed under [MIT License](blob/main/LICENSE)
 
 ## 💡 Sponsor
 
