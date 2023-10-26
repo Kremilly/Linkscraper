@@ -193,7 +193,7 @@ python linkscraper -u https://example.com -a get-emails
 * *Get emails and filter email:*
 
   ```shell
-  python linkscraper -u https://example.com -a get-css-files -filter example@domain.com
+  python linkscraper -u https://example.com -a get-emails -filter example@domain.com
   ```
 
 ## 🧩 Plugins
