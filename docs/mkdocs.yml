@@ -1,0 +1,52 @@
+site_name: Linkscraper
+theme:
+  name: null
+  custom_dir: 'cinder'
+  highlightjs: true
+
+  hljs_languages:
+    - shell
+    - python
+    - environments
+
+nav:
+  - Home: index.md # Done
+  - Parameters: parameters.md # Done
+  
+  - Basics:
+      Core data: basics/core.md # Done
+      Get headers: basics/headers.md # Done
+      Get cookies: basics/cookies.md # Done
+      Get links: basics/get-links.md # Done
+      Get emails: basics/get-emails.md # Done
+
+      Static files:
+        CSS: basics/static/css.md # Done
+        Images: basics/static/images.md # Done
+        JavaScript: basics/static/js.md # Done
+
+  - Plugins:
+      whois: plugins/whois.md # Done
+      page-details: plugins/page-details.md # Done
+      robots: plugins/robots.md # Done
+      screenshot: plugins/screenshot.md # Done
+      virustotal: plugins/virustotal.md # Done
+      ip-location: plugins/ip-location.md # Done
+      detect-fonts: plugins/detect-fonts.md # Done
+      extract-colors: plugins/extract-colors.md # Done
+
+      How to get keys:
+        Imgur: plugins/apis/imgur.md # Done
+        Google Fonts: plugins/apis/google-fonts.md # Done
+        VirusTotal: plugins/apis/virustotal.md # Done
+
+  - Environments: env.md # Done
+
+  - Contribute:
+      GitHub: https://github.com/kremilly/linkscraper
+      Sponsor: https://github.com/sponsors/kremilly
+      Report a bug: https://github.com/kremilly/linkscraper/issues
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
