@@ -149,4 +149,3 @@ screenshots/**
 
 # Ignore the path docs/site/ and docs/cinder/
 docs/site/**
-docs/cinder/**
