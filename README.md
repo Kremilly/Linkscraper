@@ -1,7 +1,11 @@
 <div align="center">
     <img src="https://i.imgur.com/m12BVHm.png" align="center" />
     <br><br>
-    A powerful tool to scrape and manage links from web pages.
+    A powerful tool to scrape and manage links from web pages.<br><br>
+    <a href="https://kremilly.github.io/linkscraper/">
+        <img src="https://img.shields.io/static/v1?label=Linkscraper&message=Documentation&color=2ea44f" />
+    </a>
+    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.0-2ea44f" />
 </div><br>
 
 **Table of Contents:**
