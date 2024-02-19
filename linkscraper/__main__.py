@@ -1,13 +1,25 @@
 #!/usr/bin/python3
 
-import sys, argparse
+import argparse
 
-from core.write_env import *
+from utils.url import URL
+
 from core.functions import *
+from core.write_env import WriteEnv
 
 from layout.layout import Layout
-from utils.locale import Locale
 from classes.configs import Configs
+
+from core.headers import Headers
+from core.cookies import Cookies
+from core.scraper import Scraper
+
+from core.static.js import JS
+from core.static.css import CSS
+from core.static.images import Images
+
+from core.core import Core
+from core.plugins import Plugins
 
 parser = argparse.ArgumentParser(description="Example of use: python linkscraper -u http://example.com")
 
@@ -32,30 +44,30 @@ if __name__ == "__main__":
     Layout.header()
 
     if args.write_env:
-        write_env()
+        WriteEnv.run()
     else: 
         BASE_URL = args.url
-        check_url_and_connection(BASE_URL)
+        URL.check_url_and_connection(BASE_URL)
 
-        run_home(BASE_URL)
+        Core.home(BASE_URL)
 
         if not args.action or args.action == "get-core" or args.action == "core":
-            run_core(BASE_URL)
+            Core.basic(BASE_URL)
         elif args.action == "get-headers" or args.action == "headers":
-            run_headers(BASE_URL, args.filter)
+            Headers.section(BASE_URL, args.filter)
         elif args.action == "get-cookies" or args.action == "cookies":
-            run_cookies(BASE_URL, args.filter)
+            Cookies.section(BASE_URL, args.filter)
         elif args.action == "get-js-files" or args.action == "js-files":
-            run_get_js_files(BASE_URL, args.show_minify_files, args.filter, args.download)
+            JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
         elif args.action == "get-css-files" or args.action == "css-files":
-            run_get_css_files(BASE_URL, args.show_minify_files, args.filter, args.download)
+            CSS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
         elif args.action == "get-links" or args.action == "links":
-            run_get_links(BASE_URL, args.only_external_links, args.show_status_code, args.filter)
+            Scraper.section_links(BASE_URL, args.only_external_links, args.show_status_code, args.filter)
         elif args.action == "get-emails" or args.action == "emails":
-            run_get_emails(BASE_URL, args.filter)
+            Scraper.section_emails(BASE_URL, args.filter)
         elif args.action == "get-images-files" or args.action == "images-files":
-            run_get_images_files(BASE_URL, args.filter, args.download)
+            Images.section(BASE_URL, args.filter, args.download)
         elif args.action == "get-plugins" or args.action == "plugins":
-            run_plugin(args.plugin, BASE_URL, args.browser, args.upload, args.title, args.google_fonts, args.download)
+            Plugins.run(args.plugin, BASE_URL, args.browser, args.upload, args.title, args.google_fonts, args.download)
         else:
             Layout.error("Action invalid", True, True)

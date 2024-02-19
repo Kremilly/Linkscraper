@@ -1,4 +1,4 @@
-import time, requests
+import time, requests, sys
 
 from apis.apis import Apis
 from classes.env import Env
@@ -70,22 +70,25 @@ class GoogleFonts:
         
         Layout.header_section(f"Google Fonts: [bold blue]{font_name}[/bold blue]")
         
-        if download is not False:
-            path = cls.create_path(f"{HTTP.get_hostname(url)}/fonts/{font_name}/")
-        
-        Table.header([
-            ("Style", "white", True),
-            ("URL", "bold blue", True),
-            ("Size", "green", False)
-        ])
-        
-        for style, file_url in list.items():
-            Table.row(style, file_url, FileSize.remote_file(file_url))
-            
+        if list is not None:
             if download is not False:
-                cls.download_font(file_url, path)
-
-        end_time = "{:.2f}".format(time.time() - start_time)
+                path = cls.create_path(f"{HTTP.get_hostname(url)}/fonts/{font_name}/")
             
-        Table.caption(f"Total of variants: {len(list)} - Time taken: {end_time} seconds")
-        Table.display()
+            Table.header([
+                ("Style", "white", True),
+                ("URL", "bold blue", True),
+                ("Size", "green", False)
+            ])
+            
+            for style, file_url in list.items():
+                Table.row(style, file_url, FileSize.remote_file(file_url))
+                
+                if download is not False:
+                    cls.download_font(file_url, path)
+
+            end_time = "{:.2f}".format(time.time() - start_time)
+                
+            Table.caption(f"Total of variants: {len(list)} - Time taken: {end_time} seconds")
+            Table.display()
+        else:
+            Layout.error("This font is not found on Google Fonts", False, True)

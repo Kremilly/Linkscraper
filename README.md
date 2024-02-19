@@ -5,7 +5,7 @@
     <a href="https://kremilly.github.io/linkscraper/">
         <img src="https://img.shields.io/static/v1?label=Linkscraper&message=Documentation&color=2ea44f" />
     </a>
-    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.0-2ea44f" />
+    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.1-2ea44f" />
 </div><br>
 
 **Table of Contents:**
@@ -277,7 +277,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefo
 
 ## 📜 Changelog
 
-> Current version: ``2.5.0``
+> Current version: ``2.5.1``
 
 Minors
 
@@ -288,6 +288,7 @@ Fixes
 
 * Fixed the GitHub Gist URLs
 * Fix name of plugin `extract_colors`
+* Fix errors on `Google Fonts` integrations
 
 Added
 
@@ -302,8 +303,13 @@ Improvements
 * Improvement in plugin ``detect_fonts``
 * Improvements code base
 * Improvements all plugins
+
+Rewrite
+
 * Rewrite code base for improvements
 * Rewrite `Imgur` plugin
+* Rewrite all plugins
+* Rewrite all core functions
 
 Plugins removed
 

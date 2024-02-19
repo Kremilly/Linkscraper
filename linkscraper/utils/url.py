@@ -4,6 +4,10 @@ import re
 from classes.regex import Regex
 from urllib.parse import urlparse, parse_qs
 
+from utils.http import HTTP
+
+from layout.layout import Layout
+
 class URL:
     
     @classmethod
@@ -31,3 +35,11 @@ class URL:
                     return True
                 else:
                     return False
+    
+    @classmethod
+    def check_url_and_connection(cls, url):
+        if not cls.is_url(url):
+            Layout.error("URL is missing", False, True)
+            
+        if not HTTP.check_connection(url):
+            Layout.error("connection is not established", False, True)
