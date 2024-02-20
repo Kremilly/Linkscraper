@@ -10,7 +10,7 @@ from layout.layout import Layout
 class Core:
     
     @classmethod
-    def today_datetime():
+    def today_datetime(cls):
         today = datetime.today()
         return today.strftime("%a, %b %d %Y - %I:%M:%S %p")
 

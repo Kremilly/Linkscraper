@@ -277,7 +277,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefo
 
 ## 📜 Changelog
 
-> Current version: ``2.5.1``
+> Current version: ``2.5.2``
 
 Minors
 
@@ -289,6 +289,7 @@ Fixes
 * Fixed the GitHub Gist URLs
 * Fix name of plugin `extract_colors`
 * Fix errors on `Google Fonts` integrations
+* Fix error on `Core.today_timetime()`
 
 Added
 
