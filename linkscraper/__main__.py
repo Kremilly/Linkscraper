@@ -4,7 +4,6 @@ import argparse
 
 from utils.url import URL
 
-from core.functions import *
 from core.write_env import WriteEnv
 
 from layout.layout import Layout
