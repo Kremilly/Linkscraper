@@ -5,7 +5,7 @@
     <a href="https://kremilly.github.io/linkscraper/">
         <img src="https://img.shields.io/static/v1?label=Linkscraper&message=Documentation&color=2ea44f" />
     </a>
-    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.4-2ea44f" />
+    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.5-2ea44f" />
 </div><br>
 
 **Table of Contents:**
@@ -277,7 +277,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefo
 
 ## 📜 Changelog
 
-> Current version: ``2.5.4``
+> Current version: ``2.5.5``
 
 Minors
 
@@ -292,6 +292,7 @@ Fixes
 * Fix errors on `Google Fonts` integrations
 * Fix error on `Core.today_datetime()`
 * Fix error on `__main__`
+* Fix error on `Cookies`
 
 Added
 

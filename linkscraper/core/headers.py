@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests, time,json
+import requests, time, json
 
 from rich.json import JSON
 

@@ -8,7 +8,7 @@ from layout.layout import Layout
 class Cookies:
 
     @classmethod
-    def get_cookies(url, filter_data=None):
+    def get_cookies(cls, url, filter_data = None):
         start_time = time.time()
         response = requests.get(url)
         

@@ -14,7 +14,7 @@ from plugins.extract_colors import ExtractColors
 class Plugins:
 
     @classmethod
-    def run(cls, plugin, url, browser=None, upload=None, title=None, google_fonts=None, download=None):
+    def run(cls, plugin, url, browser = None, upload = None, title = None, google_fonts = None, download = None):
         Layout.header_plugin(plugin)
 
         if plugin == "whois":

@@ -5,7 +5,6 @@ import time
 from urllib.error import HTTPError
 from urllib.request import urlopen
 
-from utils.http import HTTP
 from layout.layout import Layout
 
 class Robots:
