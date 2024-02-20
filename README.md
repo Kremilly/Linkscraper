@@ -289,7 +289,7 @@ Fixes
 * Fixed the GitHub Gist URLs
 * Fix name of plugin `extract_colors`
 * Fix errors on `Google Fonts` integrations
-* Fix error on `Core.today_timetime()`
+* Fix error on `Core.today_datetime()`
 
 Added
 
