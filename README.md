@@ -5,7 +5,7 @@
     <a href="https://kremilly.github.io/linkscraper/">
         <img src="https://img.shields.io/static/v1?label=Linkscraper&message=Documentation&color=2ea44f" />
     </a>
-    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.2-2ea44f" />
+    <img src="https://img.shields.io/badge/Linkscraper-v.2.5.3-2ea44f" />
 </div><br>
 
 **Table of Contents:**
@@ -277,7 +277,7 @@ python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefo
 
 ## 📜 Changelog
 
-> Current version: ``2.5.2``
+> Current version: ``2.5.3``
 
 Minors
 
@@ -290,6 +290,7 @@ Fixes
 * Fix name of plugin `extract_colors`
 * Fix errors on `Google Fonts` integrations
 * Fix error on `Core.today_datetime()`
+* Remove all duplicate functions
 
 Added
 
