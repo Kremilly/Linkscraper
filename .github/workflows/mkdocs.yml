@@ -31,6 +31,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
           # Upload entire repository
+          github_token: ${{ secrets.REPO_TOKEN }}
           publish_dir: './docs/site'
     - name: Deploy to GitHub Pages
       id: deployment
