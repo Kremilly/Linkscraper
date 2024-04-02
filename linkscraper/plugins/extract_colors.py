@@ -5,6 +5,8 @@ from layout.table import Table
 
 from classes.regex import Regex
 
+from utils.date_time import DateTime
+
 class ExtractColors:
     
     @classmethod
@@ -41,7 +43,5 @@ class ExtractColors:
                 Table.row(f"Color #{color_id}", color)
                 color_id += 1
 
-        end_time = "{:.2f}".format(time.time() - start_time)
-            
-        Table.caption(f"Total of colors: {len(colors)} - Time taken: {end_time} seconds")
+        Table.caption(f"Total of colors: {len(colors)} - Time taken: {DateTime.calculate_interval(start_time)} seconds")
         Table.display()

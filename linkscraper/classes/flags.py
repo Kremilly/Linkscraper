@@ -9,11 +9,8 @@ class Flags:
         parser = argparse.ArgumentParser(description=desc)
 
         for arg in arguments:
-            short_ = '-' + arg.pop('short', None)
-            long_ = '--' + arg.pop('long', None)
-            
-            parser.add_argument(short_, long_, **arg)
+            parser.add_argument(
+                f'-{arg.pop('short', None)}', f'--{arg.pop('long', None)}', **arg
+            )
 
-        args = parser.parse_args()
-
-        return args
+        return parser.parse_args()

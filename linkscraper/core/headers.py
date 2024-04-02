@@ -7,6 +7,8 @@ from rich.json import JSON
 from layout.table import Table
 from layout.layout import Layout
 
+from utils.date_time import DateTime
+
 class Headers:
 
     @classmethod
@@ -38,8 +40,9 @@ class Headers:
             formatted_value = JSON(header_value) if cls.is_json(header_value) else header_value
             Table.row(header_name, formatted_value)
 
-        end_time = "{:.2f}".format(time.time() - start_time)
-        Table.caption(f"Total of headers: {len(headers_dict)} - Time taken: {end_time} seconds")
+        Table.caption(f"Total of headers: {len(headers_dict)} - "
+                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        
         Table.display()
 
     @classmethod

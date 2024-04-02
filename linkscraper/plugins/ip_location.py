@@ -2,10 +2,12 @@
 
 import requests, time
 
-from utils.http import HTTP
 from layout.table import Table
 
 from apis.apis import Apis
+
+from utils.http import HTTP
+from utils.date_time import DateTime
 
 class IPLocation:
     
@@ -31,8 +33,6 @@ class IPLocation:
         for data in resp_json:
             if resp_json[data] != '':
                 Table.row(data, str(resp_json[data]))
-                
-        end_time = "{:.2f}".format(time.time() - start_time)
         
-        Table.caption(f"Time taken: {end_time} seconds")
+        Table.caption(f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
         Table.display()

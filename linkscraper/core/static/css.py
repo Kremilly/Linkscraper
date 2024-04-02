@@ -2,6 +2,8 @@
 
 from core.static.autoload import *
 
+from utils.date_time import DateTime
+
 class CSS:
 
     @classmethod
@@ -43,9 +45,9 @@ class CSS:
             for css_url in list_css:
                 Table.row(File.get_remote_file_name(css_url), css_url, FileSize.remote_file(css_url))
             
-            end_time = "{:.2f}".format(time.time() - start_time)
+            Table.caption(f"Total CSS files on page: {len(list_css)} - "
+                          f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
             
-            Table.caption(f"Total CSS files on page: {len(list_css)} - Time taken: {end_time} seconds")
             Table.display()
 
     @classmethod

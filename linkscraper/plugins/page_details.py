@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 from utils.locale import Locale
+
 from classes.configs import Configs
 
 from layout.table import Table

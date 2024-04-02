@@ -16,7 +16,7 @@ class Screenshot:
     @classmethod
     def generate_id(cls, size):
         random_string = ''
-        random_str_seq = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        random_str_seq = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
         
         for _ in range(0, size):
             random_string += str(
@@ -33,7 +33,7 @@ class Screenshot:
     def browser_chrome(cls, url, file):
         options = webdriver.ChromeOptions()
         
-        options.add_argument("--headless")
+        options.add_argument('--headless')
         driver = webdriver.Chrome(options=options)
 
         driver.get(url)
@@ -43,7 +43,7 @@ class Screenshot:
     @classmethod
     def browser_firefox(cls, url, file):
         options = FirefoxOptions()
-        options.add_argument("--headless")
+        options.add_argument('--headless')
 
         driver = webdriver.Firefox(options=options)
         driver.get(url)
@@ -54,21 +54,21 @@ class Screenshot:
     def run(cls, url, browser, upload, title):
         start_time = time.time()
         
-        path = f"screenshots\\{HTTP.get_hostname(url)}\\"
+        path = f'screenshots\\{HTTP.get_hostname(url)}\\'
         
         File.create_path(path)
 
-        file = path + f"{cls.generate_id(12)}.png"
+        file = path + f'{cls.generate_id(12)}.png'
         
         if not browser or browser == 'chrome':
             cls.browser_chrome(url, file)
         elif browser == 'firefox':
             cls.browser_firefox(url, file)
         else:
-            Layout.error("Browser is invalid", False, True)
+            Layout.error('Browser is invalid', False, True)
 
         if os.path.exists(file):
-            Layout.success("screenshot saved with successfully.")
+            Layout.success('screenshot saved with successfully.')
 
             if not upload:
                 File.open(file)

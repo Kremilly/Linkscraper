@@ -2,6 +2,8 @@
 
 from core.static.autoload import *
 
+from utils.date_time import DateTime
+
 class Images:
 
     @classmethod
@@ -35,9 +37,9 @@ class Images:
             for img_url in list_images:
                 Table.row(File.get_remote_file_name(img_url), img_url, FileSize.remote_file(img_url))
             
-            end_time = "{:.2f}".format(time.time() - start_time)
+            Table.caption(f"Total images files on page: {len(list_images)} - "
+                          f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
             
-            Table.caption(f"Total images files on page: {len(list_images)} - Time taken: {end_time} seconds")
             Table.display()
 
     @classmethod

@@ -21,5 +21,5 @@ class FileExt:
         
         if ext != "" or ext != ".":
             return ext
-        else:
-            return None
+        
+        return None

@@ -24,17 +24,17 @@ class URL:
     def is_url(cls, url, check_protocol = True):
         if url == None:
             return False
-        else:
-            if check_protocol == True:
-                if re.match(Regex.URL_PATTERN_CHECK_PROTOCOL.value, url) != None:
-                    return True
-                else:
-                    return False
-            elif check_protocol == False:
-                if re.match(Regex.URL_PATTERN_PROTOCOL.value, url) != None:
-                    return True
-                else:
-                    return False
+            
+        if check_protocol == True:
+            if re.match(Regex.URL_PATTERN_CHECK_PROTOCOL.value, url) != None:
+                return True
+                
+            return False
+            
+        if re.match(Regex.URL_PATTERN_PROTOCOL.value, url) != None:
+            return True
+            
+        return False
     
     @classmethod
     def check_url_and_connection(cls, url):

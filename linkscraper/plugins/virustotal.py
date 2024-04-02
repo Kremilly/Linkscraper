@@ -9,6 +9,8 @@ from apis.virustotal import VirusTotal
 from layout.table import Table
 from layout.layout import Layout
 
+from utils.date_time import DateTime
+
 class VT:
 
     @classmethod
@@ -43,15 +45,14 @@ class VT:
             for engine in resp_json["data"]["attributes"]["results"]:
                 result = resp_json["data"]["attributes"]["results"][engine]["result"]
                 category = resp_json["data"]["attributes"]["results"][engine]["category"]
+                
+                match (result):
+                    case 'clean':
+                        Table.row(engine, f"[bold green]{result}[/bold green]")
+                    case 'unrated':
+                        Table.row(engine, f"[bold cyan]{result}[/bold cyan]")
+                    case _:
+                        Table.row(engine, f"[bold red]{result}[/bold red]", f"[bold red]{category}[/bold red]")
 
-                if result == "clean":
-                    Table.row(engine, f"[bold green]{result}[/bold green]")
-                elif result == "unrated":
-                    Table.row(engine, f"[bold cyan]{result}[/bold cyan]")
-                else:
-                    Table.row(engine, f"[bold red]{result}[/bold red]", f"[bold red]{category}[/bold red]")
-                    
-            end_time = "{:.2f}".format(time.time() - start_time)
-            
-            Table.caption(f"Time taken: {end_time} seconds")
+            Table.caption(f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
             Table.display()

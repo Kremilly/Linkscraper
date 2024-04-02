@@ -3,6 +3,8 @@
 import whois, time
 
 from utils.http import HTTP
+from utils.date_time import DateTime
+
 from layout.table import Table
 
 class Whois:
@@ -24,6 +26,5 @@ class Whois:
         Table.row("Domain creation date", f"{str(whois_info.creation_date)}")
         Table.row("Expiration date", f"{str(whois_info.expiration_date)}")
         
-        end_time = "{:.2f}".format(time.time() - start_time)
-        Table.caption(f"Time taken: {end_time} seconds")
+        Table.caption(f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
         Table.display()

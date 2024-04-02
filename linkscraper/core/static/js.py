@@ -2,6 +2,8 @@
 
 from core.static.autoload import *
 
+from utils.date_time import DateTime
+
 class JS:
 
     @classmethod
@@ -41,9 +43,9 @@ class JS:
             for script_url in list_scripts:
                 Table.row(File.get_remote_file_name(script_url), script_url, FileSize.remote_file(script_url))
             
-            end_time = "{:.2f}".format(time.time() - start_time)
+            Table.caption(f"Total script files on page: {len(list_scripts)} - "
+                          f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
             
-            Table.caption(f"Total script files on page: {len(list_scripts)} - Time taken: {end_time} seconds")
             Table.display()
 
     @classmethod

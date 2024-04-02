@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os, requests, time
+
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
 
@@ -13,6 +14,7 @@ from utils.http import HTTP
 from utils.file import File
 from utils.file_ext import FileExt
 from utils.file_size import FileSize
+from utils.date_time import DateTime
 
 class DownloadResources:
 
@@ -64,31 +66,33 @@ class DownloadResources:
         
         File.open(path)
         
-        end_time = "{:.2f}".format(time.time() - start_time)
-        Table.caption(f"Total of downloaded files: {len(links)} - Time taken: {end_time} seconds")
+        Table.caption(f"Total of downloaded files: {len(links)} - "
+                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        
         Table.display()
 
     @classmethod
     def extract_links(cls, url, soup, resource_type, minify_files, filter_data):
         links = []
         
-        if resource_type == 'js':
-            tags = soup.find_all("script")
-            attr_name = "src"
-            filter_str = ".min" if minify_files == "true" else None
-        
-        elif resource_type == 'css':
-            tags = soup.find_all("link")
-            attr_name = "href"
-            filter_str = ".min.css" if minify_files == "true" else ".css"
-            
-        elif resource_type == 'images':
-            tags = soup.find_all("img")
-            attr_name = "src"
-            filter_str = None
-            
-        else:
-            raise ValueError(f"Unsupported resource type: {resource_type}")
+        match (resource_type):
+            case 'js':
+               tags = soup.find_all("script")
+               attr_name = "src"
+               filter_str = ".min" if minify_files == "true" else None 
+               
+            case 'css':
+                tags = soup.find_all("link")
+                attr_name = "href"
+                filter_str = ".min.css" if minify_files == "true" else ".css"
+                
+            case 'images':
+                tags = soup.find_all("img")
+                attr_name = "src"
+                filter_str = None
+                
+            case _:
+                raise ValueError(f"Unsupported resource type: {resource_type}")
         
         for tag in tags:
             if tag.attrs.get(attr_name):

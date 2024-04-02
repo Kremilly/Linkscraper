@@ -5,6 +5,8 @@ import requests, time
 from layout.table import Table
 from layout.layout import Layout
 
+from utils.date_time import DateTime
+
 class Cookies:
 
     @classmethod
@@ -27,8 +29,9 @@ class Cookies:
         for name, value in cookie_dict.items():
             Table.row(name, value)
 
-        end_time = "{:.2f}".format(time.time() - start_time)
-        Table.caption(f"Total of cookies on page: {len(cookie_dict)} - Time taken: {end_time} seconds")
+        Table.caption(f"Total of cookies on page: {len(cookie_dict)} - "
+                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        
         Table.display()
 
     @classmethod

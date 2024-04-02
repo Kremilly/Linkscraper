@@ -4,8 +4,12 @@ import requests, time, re
 from bs4 import BeautifulSoup
 
 from rich.prompt import Prompt
+
 from layout.table import Table
+
 from apis.google_fonts import GoogleFonts
+
+from utils.date_time import DateTime
 
 class DetectFonts:
     
@@ -103,8 +107,6 @@ class DetectFonts:
         
         for font_name in font_families:
             Table.row('font-family', font_name.strip())
-
-        end_time = '{:.2f}'.format(time.time() - start_time)
         
-        Table.caption(f'Total of fonts: {len(font_families)} - Time taken: {end_time} seconds')
+        Table.caption(f'Total of fonts: {len(font_families)} - Time taken: {DateTime.calculate_interval(start_time)} seconds')
         return Table.display()

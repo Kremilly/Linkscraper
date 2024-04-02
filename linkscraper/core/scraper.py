@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 
 from utils.url import URL
 from utils.http import HTTP
+from utils.date_time import DateTime
 
 from layout.table import Table
 from layout.layout import Layout
@@ -56,9 +57,9 @@ class Scraper:
             else:
                 Table.row(HTTP.get_hostname(link), link)
 
-        end_time = "{:.2f}".format(time.time() - start_time)
+        Table.caption(f"Total of links in page: {len(links_list)} - "
+                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
         
-        Table.caption(f"Total of links in page: {len(links_list)} - Time taken: {end_time} seconds")
         Table.display()
 
     @classmethod
@@ -84,10 +85,10 @@ class Scraper:
                     Table.row(email.split('@')[1], email)
             else:
                 Table.row(email.split('@')[1], email)
+
+        Table.caption(f"Total of emails on page: {len(list_emails)} - "
+                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
         
-        end_time = "{:.2f}".format(time.time() - start_time)
-        
-        Table.caption(f"Total of emails on page: {len(list_emails)} - Time taken: {end_time} seconds")
         Table.display()
 
     @classmethod
