@@ -61,7 +61,7 @@ if __name__ == "__main__":
             case 'get-js-files' | 'js-files':
                 JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
             case 'get-css-files' | 'css-files':
-                JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
+                CSS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
             case 'get-images-files' | 'images-files':
                 Images.section(BASE_URL, args.filter, args.download)
             case 'get-links' | 'links':
