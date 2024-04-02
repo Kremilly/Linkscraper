@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+
 from classes.configs import Configs
 
 class FileExt:

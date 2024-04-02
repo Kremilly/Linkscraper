@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 
-import time
-
-from urllib.error import HTTPError
-from urllib.request import urlopen
+import time, requests
 
 from layout.layout import Layout
 
@@ -12,24 +9,26 @@ class Robots:
     @classmethod
     def run(cls, url):
         start_time = time.time()
-        robots_url = url + "/robots.txt"
+        robots_url = url + '/robots.txt'
         
         try:
-            with urlopen(robots_url) as stream:
-                robots = stream.read().decode("utf-8")
+            response = requests.get(robots_url)
+            response.raise_for_status()
+            robots = response.text
 
-                for line in robots.split("\n"):
-                    if line.find("Allow") != -1:
-                        Layout.print(None, line, "green")
-                    elif line.find("Disallow") != -1:
-                        Layout.print(None, line, "red")
-                    elif line.find("Sitemap") != -1:
-                        Layout.print(None, line, "italic cyan")
-                    elif line.find("User-agent") != -1:
-                        Layout.print(None, line, "italic yellow")
-                    else:
-                        Layout.print(None, line, "white")
+            for line in robots.split('\n'):
+                match (line):
+                    case _ if 'Allow' in line:
+                        Layout.print(None, line, 'green')
+                    case _ if 'Disallow' in line:
+                        Layout.print(None, line, 'red')
+                    case _ if 'Sitemap' in line:
+                        Layout.print(None, line, 'italic cyan')
+                    case _ if 'User-agent' in line:
+                        Layout.print(None, line, 'italic yellow')
+                    case _:
+                        Layout.print(None, line, 'white')
         
             Layout.time_taken(start_time, True)
-        except HTTPError as e:
+        except requests.RequestException as e:
             Layout.error(e, False, True)

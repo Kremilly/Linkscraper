@@ -6,10 +6,15 @@ from urllib.parse import urlparse
 from utils.url import URL
 
 class File:
+    
+    @classmethod
+    def open_read(cls, file, mode):
+        f = open(file, 'r')
+        return f.read()
 
     @classmethod
     def to_base64(cls, file):
-        with open(file, "rb") as f:
+        with open(file, 'rb') as f:
             output = base64.b64encode(f.read())
         
         return output
@@ -18,22 +23,22 @@ class File:
     def get_file_name(cls, string):
         name = os.path.split(string)[1]
 
-        if string.find("?"):
+        if string.find('?'):
             return URL.remove_query(name)
-        else:
-            return name
+        
+        return name
 
     @classmethod
     def get_remote_file_name(cls, url):
         a = urlparse(url)
         basename = os.path.basename(a.path)
         
-        if basename.find("."):
+        if basename.find('.'):
             return basename
-        else:
-            for file in a.path.split("/"):
-                if basename.find(".") and len(file) > 1:
-                    return file
+        
+        for file in a.path.split('/'):
+            if basename.find('.') and len(file) > 1:
+                return file
 
     @classmethod
     def create_path(cls, folder):
@@ -44,7 +49,7 @@ class File:
     def open(cls, file):
         if os.path.exists(file):
             os.startfile(
-                os.getcwd() + "\\" + file
+                os.getcwd() + '\\' + file
             )
             
     @classmethod

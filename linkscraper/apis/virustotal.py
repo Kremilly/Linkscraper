@@ -21,13 +21,13 @@ class VirusTotal:
     @classmethod
     def error(cls, message, additional_print = True):
         if additional_print:
-            Layout.error(message, False, True, {
+            return Layout.error(message, False, True, {
                 "style": "bold blue",
                 "text": "Get your VirusTotal key here:",
                 "value": Apis.VIRUSTOTAL_API_KEY_URL.value,
             })
-        else:
-            Layout.error(message, False, True)
+            
+        return Layout.error(message, False, True)
         
     @classmethod
     def request(cls, url, key):

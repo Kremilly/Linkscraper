@@ -10,6 +10,15 @@ from apis.google_fonts import GoogleFonts
 class DetectFonts:
     
     @classmethod
+    def process_font_string(cls, font_str):
+        replacements = [''', ''', ')', 'var(', '!important']
+        
+        for replacement in replacements:
+            font_str = font_str.replace(replacement, '')
+            
+        return font_str.strip()
+    
+    @classmethod
     def get_css_links(cls, url):
         response = requests.get(url)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -40,23 +49,11 @@ class DetectFonts:
             )
             
             for match in matches:
-                fonts = [
-                    f.strip().replace(
-                        '"', ''
-                    ).replace(
-                        "'", ""
-                    ).replace(
-                        ")", ""
-                    ).replace(
-                        "var(", ""
-                    ).replace(
-                        "!important", ""
-                    ) for f in match.split(',')
-                ]
+                fonts = [cls.process_font_string(f) for f in match.split(',')]
                 
                 fonts = [
                     f for f in fonts if f not in [
-                        "important", "inherit", "var"
+                        'important', 'inherit', 'var'
                     ]
                 ]
                 
@@ -75,11 +72,11 @@ class DetectFonts:
 
         body_style = soup.find('body').attrs.get('style', '')
         if 'font-family' in body_style:
-            fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
+            fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace(''', '')
             
         for style_tag in soup.find_all('style'):
             if 'font-family' in style_tag.string:
-                fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
+                fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace(''', '')
                 
         list_fonts = fonts.split(',')
         
@@ -88,7 +85,7 @@ class DetectFonts:
         )
         
     @classmethod
-    def run(cls, url, google_fonts = None, download = None):
+    def run(cls, url, google_fonts = None, download = None) -> GoogleFonts|Table:
         start_time = time.time()
         font_families = cls.get_fonts_from_css_files(url)
         
@@ -96,18 +93,18 @@ class DetectFonts:
             font_families = cls.get_fonts_from_html(url)
             
         if google_fonts is None:
-            font_name = Prompt.ask(f"Enter the font name", choices=font_families)
-            GoogleFonts.list(url, font_name, download)
-        else:
-            Table.header([
-                ("Name", "cyan", True),
-                ("Value", "white", False)
-            ])
-            
-            for font_name in font_families:
-                Table.row("font-family", font_name.strip())
+            font_name = Prompt.ask(f'Enter the font name', choices=font_families)
+            return GoogleFonts.list(url, font_name, download)
+        
+        Table.header([
+            ('Name', 'cyan', True),
+            ('Value', 'white', False)
+        ])
+        
+        for font_name in font_families:
+            Table.row('font-family', font_name.strip())
 
-            end_time = "{:.2f}".format(time.time() - start_time)
-            
-            Table.caption(f"Total of fonts: {len(font_families)} - Time taken: {end_time} seconds")
-            Table.display()
+        end_time = '{:.2f}'.format(time.time() - start_time)
+        
+        Table.caption(f'Total of fonts: {len(font_families)} - Time taken: {end_time} seconds')
+        return Table.display()

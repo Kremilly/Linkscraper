@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 
-import time, sys, pyfiglet
+import sys, pyfiglet
 
 from rich.prompt import Prompt
 from rich.console import Console
 
 from classes.configs import Configs
+
+from utils.date_time import DateTime
 
 class Layout:
     
@@ -14,7 +16,7 @@ class Layout:
     
     @classmethod
     def separator(cls):
-        cls.console.print("-" * 60)
+        return cls.console.print("-" * 60)
     
     @classmethod
     def header(cls):
@@ -29,23 +31,27 @@ class Layout:
     
     @classmethod  
     def success(cls, text, separator = False):
-        if separator: cls.separator()
-        cls.console.print(f"[bold green]Success[/bold green]: {text}")
+        if separator: 
+            cls.separator()
+
+        return cls.console.print(f"[bold green]Success[/bold green]: {text}")
     
     @classmethod 
     def error(cls, error, separator = False, exit = False, additional_print = None):
-        if separator: cls.separator()
+        if separator: 
+            cls.separator()
         
         cls.console.print(f"[bold red]Error[/bold red]: {error}")
         
         if additional_print:
-            cls.print(
+            return cls.print(
                 additional_print["text"],
                 additional_print["value"],
                 additional_print["style"],
             )
         
-        if exit: sys.exit()
+        if exit:
+            return sys.exit()
     
     @classmethod  
     def header_section(cls, text):
@@ -54,24 +60,25 @@ class Layout:
         cls.separator()
     
     @classmethod
-    def print(cls, text, value, style=None, separator = False):
-        if separator: cls.separator()
+    def print(cls, text, value, style = None, separator = False):
+        if separator: 
+            cls.separator()
         
         if not text == None:
             if style:
-                cls.console.print(text, f"[{style}]{value}[/{style}]")
-            else:
-                cls.console.print(text, value)
-        else:
-            cls.console.print(f"[{style}]{value}[/{style}]")
+                return cls.console.print(text, f"[{style}]{value}[/{style}]")
+            
+            return cls.console.print(text, value)
+        
+        return cls.console.print(f"[{style}]{value}[/{style}]")
     
     @classmethod      
     def time_taken(cls, start_time, separator = False):
-        if separator: cls.separator()
+        if separator: 
+            cls.separator()
         
-        end_time = "{:.2f}".format(time.time() - start_time)
-        cls.print("Time taken:", f"{end_time} seconds")
+        return cls.print("Time taken:", f"{DateTime.calculate_interval(start_time)} seconds")
     
     @classmethod
     def header_plugin(cls, plugin):
-        cls.header_section(f"Plugin: [bold cyan]{plugin}[/bold cyan]")
+        return cls.header_section(f"Plugin: [bold cyan]{plugin}[/bold cyan]")

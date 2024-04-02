@@ -1,20 +1,19 @@
 #!/usr/bin/python3
-
-from classes.configs import Configs
-
 import socket, requests, urllib
+
 from urllib.parse import urlparse
 from http.client import HTTPConnection, HTTPSConnection
+
+from classes.configs import Configs
 
 class HTTP:
     
     @classmethod  
     def strip_scheme(cls, url):
         parsed = urlparse(url)
-        scheme = "%s://" % parsed.scheme
         
         return parsed.geturl().replace(
-            scheme, '', 1
+            "%s://" % parsed.scheme, '', 1
         )
  
     @classmethod    
@@ -29,8 +28,10 @@ class HTTP:
     @classmethod  
     def code(cls, url):
         try:
-            r = requests.head(url)
-            return str(r.status_code)
+            return str(
+                requests.head(url).status_code
+            )
+        
         except requests.ConnectionError:
             return False
 
@@ -39,49 +40,37 @@ class HTTP:
         url = cls.strip_scheme(url)
         return socket.gethostbyname(url)
 
-    @classmethod  
+    @classmethod
     def get_hostname(cls, url):
-        parsed = urlparse(url)
-        return parsed.netloc
-
-    @classmethod  
-    def check_https_url(cls, url):
-        url = cls.strip_scheme(url)
-        https_url = f'https://{url}'
-
+        return urlparse(url).netloc
+    
+    @classmethod
+    def check_protocol_url(cls, url, https = False):
+        link = f'http://{url}'
+        
+        protocol_url = urlparse(link)
+        connection = HTTPConnection(protocol_url.netloc)
+        
+        if https:
+            link = link.replace('http', 'https')
+            connection = HTTPSConnection(protocol_url.netloc)
+        
         try:
-            https_url = urlparse(https_url)
-            connection = HTTPSConnection(https_url.netloc, timeout=2)
-            connection.request('HEAD', https_url.path)
+            connection.request('HEAD', protocol_url.path)
             
             if connection.getresponse():
                 return True
-            else:
-                return False
-        except:
-            return False
-
-    @classmethod  
-    def check_http_url(cls, url):
-        url = cls.strip_scheme(url)
-        http_url = f'http://{url}'
-
-        try:
-            http_url = urlparse(http_url)
-            connection = HTTPConnection(http_url.netloc)
-            connection.request('HEAD', http_url.path)
             
-            if connection.getresponse():
-                return True
-            else:
-                return False
-        except:
             return False
         
+        except:
+            return False
+   
     @classmethod 
     def check_connection(cls, host):
         try:
             urllib.request.urlopen(host)
             return True
+        
         except:
             return False

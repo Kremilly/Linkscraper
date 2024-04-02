@@ -8,11 +8,17 @@ from layout.table import Table
 from apis.apis import Apis
 
 class IPLocation:
+    
+    @classmethod
+    def ip_data(cls, data):
+        response = requests.get(f"{Apis.IP_API_REQUEST.value}")
+        resp_json = response.json()
+        return resp_json[data]
 
     @classmethod
     def run(cls, url):
-        ip = HTTP.get_ip(url)
         start_time = time.time()
+        ip = HTTP.get_ip(url)
         
         response = requests.get(f"{Apis.IP_API_REQUEST.value}{ip}")
         resp_json = response.json()

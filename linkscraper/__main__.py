@@ -30,6 +30,7 @@ parser.add_argument("-b", "--browser", help="Set browser to take screenshot", re
 parser.add_argument("-t", "--title", help="Set title the screenshot on Imgur", required=False)
 parser.add_argument("-d", "--download", help="Download static files", action="store_true", required=False)
 parser.add_argument("-up", "--upload", help="Upload the screenshot to Imgur", action="store_true", required=False)
+parser.add_argument("-dvc", "--device", help="Set device type for Google Lighthouse", required=False, default="desktop")
 parser.add_argument("-gf", "--google-fonts", help="Download fonts from Google Fonts", action="store_true", required=False)
 parser.add_argument("-version", "--version", help="Show current version", action="version", version=Configs.VERSION.value)
 parser.add_argument("-write-env", "--write-env", help="Write environments file (.env)", action="store_true", required=False)
@@ -49,24 +50,25 @@ if __name__ == "__main__":
         URL.check_url_and_connection(BASE_URL)
 
         Core.home(BASE_URL)
-
-        if not args.action or args.action == "get-core" or args.action == "core":
-            Core.basic(BASE_URL)
-        elif args.action == "get-headers" or args.action == "headers":
-            Headers.section(BASE_URL, args.filter)
-        elif args.action == "get-cookies" or args.action == "cookies":
-            Cookies.section(BASE_URL, args.filter)
-        elif args.action == "get-js-files" or args.action == "js-files":
-            JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
-        elif args.action == "get-css-files" or args.action == "css-files":
-            CSS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
-        elif args.action == "get-links" or args.action == "links":
-            Scraper.section_links(BASE_URL, args.only_external_links, args.show_status_code, args.filter)
-        elif args.action == "get-emails" or args.action == "emails":
-            Scraper.section_emails(BASE_URL, args.filter)
-        elif args.action == "get-images-files" or args.action == "images-files":
-            Images.section(BASE_URL, args.filter, args.download)
-        elif args.action == "get-plugins" or args.action == "plugins":
-            Plugins.run(args.plugin, BASE_URL, args.browser, args.upload, args.title, args.google_fonts, args.download)
-        else:
-            Layout.error("Action invalid", True, True)
+        
+        match (args.action):
+            case '' | 'get-core' | 'core':
+                Core.basic(BASE_URL)
+            case 'get-headers' | 'headers':
+                Headers.section(BASE_URL, args.filter)
+            case 'get-cookies' | 'cookies':
+                Cookies.section(BASE_URL, args.filter)
+            case 'get-js-files' | 'js-files':
+                JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
+            case 'get-css-files' | 'css-files':
+                JS.section(BASE_URL, args.show_minify_files, args.filter, args.download)
+            case 'get-images-files' | 'images-files':
+                Images.section(BASE_URL, args.filter, args.download)
+            case 'get-links' | 'links':
+                Scraper.section_links(BASE_URL, args.only_external_links, args.show_status_code, args.filter)
+            case 'get-emails' | 'emails':
+                Scraper.section_emails(BASE_URL, args.filter)
+            case 'get-plugins' | 'plugins':
+                Plugins.run(args.plugin, BASE_URL, args.browser, args.upload, args.title, args.google_fonts, args.download)
+            case _:
+                Layout.error("Action invalid", True, True)
