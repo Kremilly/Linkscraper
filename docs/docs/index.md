@@ -19,3 +19,7 @@ To install dependencies.
 ```python
 pip install -r requirements.txt
 ```
+
+### License
+
+Code licensed under [MIT License](blob/main/LICENSE)

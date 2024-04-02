@@ -14,4 +14,4 @@ To integrate with Imgur's API, follow this guide:
 
 ***Reminder**: The free-tier has rate limits. For extensive API usage, consider premium plans or optimize your app to stay within free limits. Always refer to Imgur's official documentation for current details.*
 
-> *Visit the [Environments](../../env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*
+> *Visit the [Environments](../../plugins/settings/env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*

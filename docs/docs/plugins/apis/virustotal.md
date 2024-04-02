@@ -30,4 +30,4 @@
 
  ***Remember** : The above steps provide a general guide, and the exact steps might slightly vary based on changes made to the VirusTotal website or its services. Always refer to official documentation or user guides provided by the platform for the most accurate and up-to-date information.*
 
-> *Visit the [Environments](../../env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*
+> *Visit the [Environments](../../plugins/settings/env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*
