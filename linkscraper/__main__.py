@@ -22,7 +22,7 @@ from core.plugins import Plugins
 from classes.flags import Flags
 from classes.configs import Configs
 
-args = Flags.parser([
+args = Flags.parser('Example of use: python linkscraper -u http://example.com', [
     {'short': 'u', 'long': 'url', 'help': 'URL to scan', 'required': False},
     {'short': 'a', 'long': 'action', 'help': 'Run an action', 'required': False},
     {'short': 'p', 'long': 'plugin', 'help': 'Load a plugin', 'required': False},

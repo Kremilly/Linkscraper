@@ -2,13 +2,11 @@
 
 import argparse
 
-from classes.configs import Configs
-
 class Flags:
     
     @classmethod
-    def parser(cls, arguments):
-        parser = argparse.ArgumentParser(description="Example of use: python linkscraper -u http://example.com")
+    def parser(cls, desc, arguments):
+        parser = argparse.ArgumentParser(description=desc)
 
         for arg in arguments:
             short_ = '-' + arg.pop('short', None)
