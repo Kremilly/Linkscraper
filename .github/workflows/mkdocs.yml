@@ -30,7 +30,8 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ secrets.REPO_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: ./site
-        allow_empty_commit: true
+          # Upload entire repository
+          path: './docs/site'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
