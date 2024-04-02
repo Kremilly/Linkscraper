@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-      - gh-pages
+    branches:
+      - main  # Substitua "main" pelo nome do seu branch principal
 
 jobs:
   deploy:
