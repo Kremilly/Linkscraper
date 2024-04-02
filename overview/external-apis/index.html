@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     
-    <title>Get links - Linkscraper</title>
+    <title>External API's use - Linkscraper</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -69,7 +69,7 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Overview <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -81,19 +81,19 @@
                         
                             
 <li >
-    <a href="../../overview/parameters/">Parameters</a>
+    <a href="../parameters/">Parameters</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../overview/dependencies/">Dependencies</a>
+    <a href="../dependencies/">Dependencies</a>
 </li>
 
                         
                             
-<li >
-    <a href="../../overview/external-apis/">External API's use</a>
+<li class="active">
+    <a href="./">External API's use</a>
 </li>
 
                         
@@ -102,37 +102,37 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basics <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../core/">Core data</a>
+    <a href="../../basics/core/">Core data</a>
 </li>
 
                         
                             
 <li >
-    <a href="../headers/">Get headers</a>
+    <a href="../../basics/headers/">Get headers</a>
 </li>
 
                         
                             
 <li >
-    <a href="../cookies/">Get cookies</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Get links</a>
+    <a href="../../basics/cookies/">Get cookies</a>
 </li>
 
                         
                             
 <li >
-    <a href="../get-emails/">Get emails</a>
+    <a href="../../basics/get-links/">Get links</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../basics/get-emails/">Get emails</a>
 </li>
 
                         
@@ -143,19 +143,19 @@
         
             
 <li >
-    <a href="../static/css/">CSS</a>
+    <a href="../../basics/static/css/">CSS</a>
 </li>
 
         
             
 <li >
-    <a href="../static/images/">Images</a>
+    <a href="../../basics/static/images/">Images</a>
 </li>
 
         
             
 <li >
-    <a href="../static/js/">JavaScript</a>
+    <a href="../../basics/static/js/">JavaScript</a>
 </li>
 
         
@@ -302,12 +302,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../cookies/">
+                        <a rel="prev" href="../dependencies/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../get-emails/">
+                        <a rel="next" href="../../basics/core/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -321,34 +321,20 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#get-links">Get Links</a></li>
-            <li class="second-level"><a href="#filter">Filter</a></li>
-                
-            <li class="second-level"><a href="#only-external-links">Only external links</a></li>
-                
-            <li class="second-level"><a href="#show-status-code">Show status code</a></li>
-                
+        <li class="first-level active"><a href="#external-apis-use">External API's use</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h2 id="get-links">Get Links</h2>
-<p>The <code>-get-links</code> command is designed to extract all links from a user-specified URL. Along with its primary function, it supports three additional sub-commands that we will detail below.</p>
-<p>The command allows for tailored actions through different parameters. A common use case is to harvest links from web pages, as demonstrated:</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-links
-</code></pre>
-<h3 id="filter">Filter</h3>
-<p>The <code>-filter</code> option allows users to refine their results by including only those entries that match the filter keyword.</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-links -filter domain.com
-</code></pre>
-<h3 id="only-external-links">Only external links</h3>
-<p>The <code>-oel</code> option allows users to refine their results by including only those entries that match the links outside from <code>-u</code>.</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-emails -oel
-</code></pre>
-<h3 id="show-status-code">Show status code</h3>
-<p>The <code>-ssc</code> option show the status code of all links listed</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-emails -ssc
-</code></pre></div>
+<h1 id="external-apis-use">External API's use</h1>
+<p>The Linkscraper utilizes the following APIs to provide additional features through the tool's plugins:</p>
+<ul>
+<li><a href="https://imgur.com">Imgur</a></li>
+<li><a href="https://virustotal.com">VirusTotal</a></li>
+<li><a href="https://ip-api.com/">IP-API</a></li>
+<li><a href="https://who.is/">who.is</a></li>
+<li><a href="https://fonts.google.com/">Google Fonts</a></li>
+</ul></div>
         
         
     </div>

@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     
-    <title>Get links - Linkscraper</title>
+    <title>Parameters - Linkscraper</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -69,7 +69,7 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Overview <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
@@ -80,20 +80,20 @@
 
                         
                             
-<li >
-    <a href="../../overview/parameters/">Parameters</a>
+<li class="active">
+    <a href="./">Parameters</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../overview/dependencies/">Dependencies</a>
+    <a href="../dependencies/">Dependencies</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../overview/external-apis/">External API's use</a>
+    <a href="../external-apis/">External API's use</a>
 </li>
 
                         
@@ -102,37 +102,37 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basics <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../core/">Core data</a>
+    <a href="../../basics/core/">Core data</a>
 </li>
 
                         
                             
 <li >
-    <a href="../headers/">Get headers</a>
+    <a href="../../basics/headers/">Get headers</a>
 </li>
 
                         
                             
 <li >
-    <a href="../cookies/">Get cookies</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Get links</a>
+    <a href="../../basics/cookies/">Get cookies</a>
 </li>
 
                         
                             
 <li >
-    <a href="../get-emails/">Get emails</a>
+    <a href="../../basics/get-links/">Get links</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../basics/get-emails/">Get emails</a>
 </li>
 
                         
@@ -143,19 +143,19 @@
         
             
 <li >
-    <a href="../static/css/">CSS</a>
+    <a href="../../basics/static/css/">CSS</a>
 </li>
 
         
             
 <li >
-    <a href="../static/images/">Images</a>
+    <a href="../../basics/static/images/">Images</a>
 </li>
 
         
             
 <li >
-    <a href="../static/js/">JavaScript</a>
+    <a href="../../basics/static/js/">JavaScript</a>
 </li>
 
         
@@ -302,12 +302,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../cookies/">
+                        <a rel="prev" href="../..">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../get-emails/">
+                        <a rel="next" href="../dependencies/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -321,34 +321,139 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#get-links">Get Links</a></li>
-            <li class="second-level"><a href="#filter">Filter</a></li>
+        <li class="first-level active"><a href="#parameters">Parameters</a></li>
+            <li class="second-level"><a href="#core">Core</a></li>
                 
-            <li class="second-level"><a href="#only-external-links">Only external links</a></li>
-                
-            <li class="second-level"><a href="#show-status-code">Show status code</a></li>
+            <li class="second-level"><a href="#plugins">Plugins</a></li>
                 
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h2 id="get-links">Get Links</h2>
-<p>The <code>-get-links</code> command is designed to extract all links from a user-specified URL. Along with its primary function, it supports three additional sub-commands that we will detail below.</p>
-<p>The command allows for tailored actions through different parameters. A common use case is to harvest links from web pages, as demonstrated:</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-links
-</code></pre>
-<h3 id="filter">Filter</h3>
-<p>The <code>-filter</code> option allows users to refine their results by including only those entries that match the filter keyword.</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-links -filter domain.com
-</code></pre>
-<h3 id="only-external-links">Only external links</h3>
-<p>The <code>-oel</code> option allows users to refine their results by including only those entries that match the links outside from <code>-u</code>.</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-emails -oel
-</code></pre>
-<h3 id="show-status-code">Show status code</h3>
-<p>The <code>-ssc</code> option show the status code of all links listed</p>
-<pre><code class="language-shell">python linkscraper -u https://example.com -a get-emails -ssc
-</code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<h3 id="core">Core</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-u, --url</td>
+<td>URL to scan</td>
+<td>✅ in live mode</td>
+<td></td>
+</tr>
+<tr>
+<td>-a, --action</td>
+<td>Run an action</td>
+<td>No</td>
+<td><code>get-core</code></td>
+</tr>
+<tr>
+<td>-p, --plugin</td>
+<td>Load a plugin</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>-oel, --only-external-links</td>
+<td>Show only external links</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-ssc, --show-status-code</td>
+<td>Show status code</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-smf, --show-minify-files</td>
+<td>Show only minify files</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-filter, --filter</td>
+<td>Filter data</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>-d, --download</td>
+<td>Download static files</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-write-env, --write-env</td>
+<td>Write environments file (.env)</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-version, --version</td>
+<td>Show current version</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>The parameters <code>-oel</code>, <code>-ssc</code>, <code>-smf</code>, <code>-write-env</code>, and <code>-d</code> cannot take values.</em></p>
+</blockquote>
+<h3 id="plugins">Plugins</h3>
+<p>These parameters are only useful when used with some plugin.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b, --browser</td>
+<td>Set the browser to take screenshot</td>
+<td>No</td>
+<td><code>firefox</code></td>
+</tr>
+<tr>
+<td>-t, --title</td>
+<td>Set title the screenshot on Imgur</td>
+<td>No</td>
+<td><code>Screenshot made by Linkscraper</code></td>
+</tr>
+<tr>
+<td>-gf, --google-fonts</td>
+<td>Download fonts from Google Fonts</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-up, --upload</td>
+<td>Upload the screenshot to Imgur</td>
+<td>No</td>
+<td><code>Null</code></td>
+</tr>
+<tr>
+<td>-dvc, --device</td>
+<td>Set device type for Google Lighthous</td>
+<td>No</td>
+<td><code>desktop</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>The parameters <code>-up</code> and <code>-gf</code> cannot take values.</em></p>
+</blockquote></div>
         
         
     </div>

@@ -69,14 +69,35 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li >
-                        <a href="../..">Home</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../../parameters/">Parameters</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Overview <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Getting Started</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../overview/parameters/">Parameters</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../overview/dependencies/">Dependencies</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../overview/external-apis/">External API's use</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -152,51 +173,60 @@
                         <ul class="dropdown-menu">
                         
                             
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Plugins</a>
+    <ul class="dropdown-menu">
+        
+            
 <li >
     <a href="../whois/">whois</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../page-details/">page-details</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../robots/">robots</a>
 </li>
 
-                        
-                            
+        
+            
 <li class="active">
     <a href="./">screenshot</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../virustotal/">virustotal</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../ip-location/">ip-location</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../detect-fonts/">detect-fonts</a>
 </li>
 
-                        
-                            
+        
+            
 <li >
     <a href="../extract-colors/">extract-colors</a>
 </li>
+
+        
+    </ul>
+  </li>
 
                         
                             
@@ -226,13 +256,13 @@
   </li>
 
                         
+                            
+<li >
+    <a href="../settings/env/">Environments</a>
+</li>
+
+                        
                         </ul>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../../env/">Environments</a>
                     </li>
                 
                 
@@ -302,7 +332,8 @@
 <p>With the <code>screenshot</code> plugin, you can capture screenshots of a URL using the Selenium library. To utilize this plugin, enter the following command in your terminal:</p>
 <pre><code class="language-shell">python linkscraper -u https://example.com -a get-plugins -p screenshot -b firefox
 </code></pre>
-<p><em>The <code>-b</code> flag specifies which browser you'll use for the screenshot capture (ensure the software is installed on your machine). You have two browser options: Google Chrome and Mozilla Firefox. However, there's a crucial caveat when using Google Chrome with this feature, as noted below.</em></p>
+<p><em>The <code>-b</code> flag specifies which browser you'll use for the screenshot capture (ensure the software is installed on your machine). You have two browser options: Google Chrome and Mozilla Firefox. However, th</em></p>
+<p><em># Ignore the path site/ere's a crucial caveat when using Google Chrome with this feature, as noted below.</em></p>
 <blockquote>
 <p><em>Versions starting from 114 of the Google Chrome browser are incompatible with this feature; we suggest using the Mozilla Firefox browser.</em></p>
 </blockquote>
