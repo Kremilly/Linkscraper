@@ -23,7 +23,7 @@ jobs:
         pip install mkdocs
 
     - name: Build site
-      run: mkdocs build
+      run: ls
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
