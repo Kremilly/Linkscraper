@@ -10,7 +10,7 @@ class Flags:
 
         for arg in arguments:
             parser.add_argument(
-                f'-{arg.pop('short', None)}', f'--{arg.pop('long', None)}', **arg
+                f"-{arg.pop('short', None)}", f"--{arg.pop('long', None)}", **arg
             )
 
         return parser.parse_args()

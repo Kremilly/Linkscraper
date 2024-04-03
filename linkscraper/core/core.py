@@ -4,17 +4,13 @@ import time
 from datetime import datetime
 
 from utils.http import HTTP
+from utils.date_time import DateTime
 
 from layout.layout import Layout
 
 from plugins.ip_location import IPLocation
 
 class Core:
-    
-    @classmethod
-    def today_datetime(cls):
-        today = datetime.today()
-        return today.strftime("%a, %b %d %Y - %I:%M:%S %p")
 
     @classmethod
     def basic(cls, url):
@@ -43,4 +39,4 @@ class Core:
         
         Layout.print("Target:", url, "bold green")
         Layout.print("Hostname:", HTTP.get_hostname(url), "bold blue")
-        Layout.print("Scan:", cls.today_datetime(), "italic cyan")
+        Layout.print("Scan:", DateTime.today_datetime(), "italic cyan")

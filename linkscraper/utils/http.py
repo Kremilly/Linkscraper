@@ -23,7 +23,7 @@ class HTTP:
 
         for code in r:
             if code == str(c):
-                return "[italic yellow]" + r[code]["message"] + " [/italic yellow]-> [bold green]" + r[code]["spec_href"] + "[/bold green]"
+                return "[italic yellow][link=" + r[code]["spec_href"] + "]" + r[code]["message"] + "[/link][/italic yellow]"
 
     @classmethod  
     def code(cls, url):
