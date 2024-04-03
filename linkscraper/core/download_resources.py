@@ -55,6 +55,7 @@ class DownloadResources:
                 try:
                     mode = 'wb' if resource_type == 'images' else 'w'
                     File.write(file_name, content, mode, 'utf-8')
+                    
                 except PermissionError:
                     Layout.error(f"Permission denied when trying to write to: {file_name}", False, True)
                 

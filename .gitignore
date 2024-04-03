@@ -149,3 +149,6 @@ screenshots/**
 
 # Ignore the path docs/site/ and docs/cinder/
 docs/site/**
+
+# Ignore the venv path
+lsc/

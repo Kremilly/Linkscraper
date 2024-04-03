@@ -3,6 +3,8 @@
 import requests, time
 import pyperclip as Pyperclip
 
+from http import HTTPStatus
+
 from utils.file import File
 from utils.file_ext import FileExt
 
@@ -18,8 +20,8 @@ class Imgur:
     def get_title(cls, title):
         if not title:
             return f'Screenshot made by {Configs.APP_NAME.value}'
-        else:
-            return title
+            
+        return title
 
     @classmethod
     def embed_code(cls, params):
@@ -36,41 +38,41 @@ class Imgur:
         key = Env.get("IMGUR_CLIENT_API")
 
         if not key:
-            Layout.error("Key is required", False, True, {
+            return Layout.error("Key is required", False, True, {
                 "style": "bold blue",
                 "text": "Get your client id here:",
                 "value": Apis.IMGUR_API_KEY_URL.value,
             })
-        else:
-            start_time = time.time()
             
-            response = requests.request("POST", Apis.IMGUR_API_REQUEST.value, headers = {
-                'Authorization': f"Client-ID {key}"
-            }, data = {
-                'title': cls.get_title(title),
-                'image': File.to_base64(file),
+        start_time = time.time()
+        
+        response = requests.request("POST", Apis.IMGUR_API_REQUEST.value, headers = {
+            'Authorization': f"Client-ID {key}"
+        }, data = {
+            'title': cls.get_title(title),
+            'image': File.to_base64(file),
+        })
+
+        callback = response.json()
+        if callback["success"] == True:
+            direct_link = callback['data']['link']
+            imgur_page = direct_link.replace("i.", "")
+            imgur_code_img = FileExt.remove(imgur_page).replace("https://imgur.com/", "")
+
+            Layout.print("Imgur page:", FileExt.remove(imgur_page), "bold blue")
+            Layout.print("Link Direct:", imgur_page, "bold blue")
+
+            cls.embed_code({
+                'title': title,
+                'imgur_page': imgur_page,
+                'direct_link': direct_link,
+                'imgur_code_url': imgur_code_img,
             })
 
-            callback = response.json()
-            if callback["success"] == True:
-                direct_link = callback['data']['link']
-                imgur_page = direct_link.replace("i.", "")
-                imgur_code_img = FileExt.remove(imgur_page).replace("https://imgur.com/", "")
-
-                Layout.print("Imgur page:", FileExt.remove(imgur_page), "bold blue")
-                Layout.print("Link Direct:", imgur_page, "bold blue")
-
-                cls.embed_code({
-                    'title': title,
-                    'imgur_page': imgur_page,
-                    'direct_link': direct_link,
-                    'imgur_code_url': imgur_code_img,
-                })
-
-                Layout.separator()
-                Pyperclip.copy(direct_link)
-                
-                Layout.print(None, f"Link copied to clipboard", "cyan")
-                Layout.time_taken(start_time, True)
-            else:
-                Layout.error(f"{callback['status']} - {callback['data']['error']}", False, True)
+            Layout.separator()
+            Pyperclip.copy(direct_link)
+            
+            Layout.print(None, f"Link copied to clipboard", "cyan")
+            Layout.time_taken(start_time, True)
+            
+        Layout.error(f"{callback['status']} - {callback['data']['error']}", False, True)

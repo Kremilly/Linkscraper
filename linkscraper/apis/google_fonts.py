@@ -66,14 +66,14 @@ class GoogleFonts:
             return None
     
     @classmethod
-    def list(cls, url, font_name, download = None):
+    def list(cls, url, font_name, *args):
         start_time = time.time()
         list = cls.get_list(font_name)
         
         Layout.header_section(f"Google Fonts: [bold blue]{font_name}[/bold blue]")
         
         if list is not None:
-            if download is not False:
+            if args.download is not False:
                 path = cls.create_path(f"{HTTP.get_hostname(url)}/fonts/{font_name}/")
             
             Table.header([
@@ -85,7 +85,7 @@ class GoogleFonts:
             for style, file_url in list.items():
                 Table.row(style, file_url, FileSize.remote_file(file_url))
                 
-                if download is not False:
+                if args.download is not False:
                     cls.download_font(file_url, path)
 
             Table.caption(f"Total of variants: {len(list)} - "

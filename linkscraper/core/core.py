@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import time
-from datetime import datetime
 
 from utils.http import HTTP
 from utils.date_time import DateTime

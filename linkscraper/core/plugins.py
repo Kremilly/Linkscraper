@@ -14,7 +14,7 @@ from plugins.extract_colors import ExtractColors
 class Plugins:
 
     @classmethod
-    def run(cls, plugin, url, browser = None, upload = None, title = None, google_fonts = None, download = None):
+    def run(cls, plugin, url,args):
         Layout.header_plugin(plugin)
 
         match (plugin):
@@ -29,9 +29,9 @@ class Plugins:
             case 'ip-location':
                 IPLocation.run(url)
             case 'screenshot':
-                Screenshot.run(url, browser, upload, title)
+                Screenshot.run(url, args)
             case 'detect-fonts':
-                DetectFonts.run(url, google_fonts, download)
+                DetectFonts.run(url, args)
             case 'extract-colors':
                 ExtractColors.run(url)
             case _:

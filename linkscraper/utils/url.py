@@ -12,8 +12,8 @@ class URL:
     
     @classmethod
     def remove_query(cls, url):
-        split = url.split("?")[1]
-        return url.replace("?" + split, "")
+        split = url.split('?')[1]
+        return url.replace('?' + split, '')
     
     @classmethod
     def extract_query_params(cls, url):
@@ -39,7 +39,7 @@ class URL:
     @classmethod
     def check_url_and_connection(cls, url):
         if not cls.is_url(url):
-            Layout.error("URL is missing", False, True)
+            Layout.error('URL is missing', False, True)
             
         if not HTTP.check_connection(url):
-            Layout.error("connection is not established", False, True)
+            Layout.error('connection is not established', False, True)

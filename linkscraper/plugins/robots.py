@@ -30,5 +30,6 @@ class Robots:
                         Layout.print(None, line, 'white')
         
             Layout.time_taken(start_time, True)
+            
         except requests.RequestException as e:
             Layout.error(e, False, True)

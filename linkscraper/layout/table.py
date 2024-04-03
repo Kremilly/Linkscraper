@@ -17,8 +17,8 @@ class Table:
             
             if style:
                 cls.table.add_column(text, style=f"{style}", no_wrap=no_wrap)
-            else:
-                cls.table.add_column(text, no_wrap=no_wrap)
+                
+            cls.table.add_column(text, no_wrap=no_wrap)
                 
     @classmethod  
     def row(cls, *args):

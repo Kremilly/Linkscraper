@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-import sys
-
 from utils.url import URL
 
 from layout.layout import Layout
@@ -30,8 +28,7 @@ class Startup:
         Layout.header()
 
         if cls.args.write_env:
-            WriteEnv.run()
-            sys.exit()
+            return WriteEnv.run()
             
         base_url = cls.args.url
         URL.check_url_and_connection(base_url)
@@ -46,7 +43,7 @@ class Startup:
             case 'get-cookies' | 'cookies':
                 Cookies.section(base_url, cls.args.filter)
             case 'get-js-files' | 'js-files':
-                JS.section(base_url, cls.args.show_minify_files, cls.args.filter, cls.args.download)
+                JS.section(base_url, *cls.args)
             case 'get-css-files' | 'css-files':
                 CSS.section(base_url, cls.args.show_minify_files, cls.args.filter, cls.args.download)
             case 'get-images-files' | 'images-files':
@@ -56,6 +53,6 @@ class Startup:
             case 'get-emails' | 'emails':
                 Scraper.section_emails(base_url, cls.args.filter)
             case 'get-plugins' | 'plugins':
-                Plugins.run(cls.args.plugin, base_url, cls.args.browser, cls.args.upload, cls.args.title, cls.args.google_fonts, cls.args.download)
+                Plugins.run(cls.args.plugin, base_url, cls.args)
             case _:
                 Layout.error('Action invalid', True, True)

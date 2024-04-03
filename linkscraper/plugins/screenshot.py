@@ -51,7 +51,7 @@ class Screenshot:
         driver.quit()
 
     @classmethod
-    def run(cls, url, browser, upload, title):
+    def run(cls, url, *args):
         start_time = time.time()
         
         path = f'screenshots\\{HTTP.get_hostname(url)}\\'
@@ -60,18 +60,19 @@ class Screenshot:
 
         file = path + f'{cls.generate_id(12)}.png'
         
-        if not browser or browser == 'chrome':
-            cls.browser_chrome(url, file)
-        elif browser == 'firefox':
-            cls.browser_firefox(url, file)
-        else:
-            Layout.error('Browser is invalid', False, True)
+        match (args.browser):
+            case '' | 'chrome':
+                cls.browser_chrome(url, file)
+            case 'firefox':
+                cls.browser_firefox(url, file)
+            case _:
+                Layout.error('Browser is invalid', False, True)
 
         if os.path.exists(file):
             Layout.success('screenshot saved with successfully.')
 
-            if not upload:
+            if not args.upload:
                 File.open(file)
-                Layout.time_taken(start_time)
-            else:
-                Imgur.upload(file, title)
+                return Layout.time_taken(start_time)
+                
+            return Imgur.upload(file, args.title)

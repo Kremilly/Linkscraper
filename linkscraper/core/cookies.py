@@ -38,4 +38,3 @@ class Cookies:
     def section(cls, url, filter_data):
         Layout.header_section("Cookies")
         cls.get_cookies(url, filter_data)
-    

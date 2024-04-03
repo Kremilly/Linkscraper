@@ -2,8 +2,12 @@
 
 import requests
 
+from http import HTTPStatus
+
 from helper.apis import Apis
+
 from utils.http import HTTP
+
 from layout.layout import Layout
 
 class VirusTotal:
@@ -37,11 +41,11 @@ class VirusTotal:
             "content-type": "application/x-www-form-urlencoded"
         })
         
-        if response.status_code != 200:
+        if not response.status_code is HTTPStatus.OK:
             if response.json()["error"]["code"] == "WrongCredentialsError":
                 cls.error("Key is invalid")
-            else:
-                cls.error(response.json()['error']['message'], False)
+                
+            cls.error(response.json()['error']['message'], False)
 
         response = requests.get(response.json()["data"]["links"]["self"], headers={
             "x-apikey": key,

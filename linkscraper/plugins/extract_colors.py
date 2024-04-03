@@ -27,8 +27,8 @@ class ExtractColors:
         ]
         
         Table.header([
-            ("#", "cyan", True),
-            ("Value", "white", False)
+            ('#', 'cyan', True),
+            ('Value', 'white', False)
         ])
 
         for pattern in patterns:
@@ -40,8 +40,10 @@ class ExtractColors:
         
         if len(colors) > 0:
             for color in colors:
-                Table.row(f"Color #{color_id}", color)
+                Table.row(f'Color #{color_id}', color)
                 color_id += 1
 
-        Table.caption(f"Total of colors: {len(colors)} - Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        Table.caption(f'Total of colors: {len(colors)} - '
+                      f'Time taken: {DateTime.calculate_interval(start_time)} seconds')
+        
         Table.display()

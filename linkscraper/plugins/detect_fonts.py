@@ -89,16 +89,16 @@ class DetectFonts:
         )
         
     @classmethod
-    def run(cls, url, google_fonts = None, download = None) -> GoogleFonts|Table:
+    def run(cls, url, *args) -> GoogleFonts|Table:
         start_time = time.time()
         font_families = cls.get_fonts_from_css_files(url)
         
         if len(font_families) == 0:
             font_families = cls.get_fonts_from_html(url)
             
-        if google_fonts is None:
+        if any('google_fonts' in arg for arg in args):
             font_name = Prompt.ask(f'Enter the font name', choices=font_families)
-            return GoogleFonts.list(url, font_name, download)
+            return GoogleFonts.list(url, font_name, args.download)
         
         Table.header([
             ('Name', 'cyan', True),
@@ -108,5 +108,7 @@ class DetectFonts:
         for font_name in font_families:
             Table.row('font-family', font_name.strip())
         
-        Table.caption(f'Total of fonts: {len(font_families)} - Time taken: {DateTime.calculate_interval(start_time)} seconds')
+        Table.caption(f'Total of fonts: {len(font_families)} - '
+                      f'Time taken: {DateTime.calculate_interval(start_time)} seconds')
+        
         return Table.display()
