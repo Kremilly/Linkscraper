@@ -2,7 +2,7 @@
 
 import requests
 
-from apis.apis import Apis
+from helper.apis import Apis
 from utils.http import HTTP
 from layout.layout import Layout
 

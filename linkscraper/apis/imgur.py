@@ -9,7 +9,7 @@ from utils.file_ext import FileExt
 from classes.env import Env
 from layout.layout import Layout
 
-from apis.apis import Apis
+from helper.apis import Apis
 from helper.configs import Configs
 
 class Imgur:

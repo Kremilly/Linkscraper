@@ -2,7 +2,7 @@
 
 from decouple import config
 
-from apis.apis import Apis
+from helper.apis import Apis
 from helper.configs import Configs
 
 from utils.date_time import DateTime

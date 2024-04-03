@@ -1,10 +1,12 @@
-import time, requests, sys
+import time, requests
 
-from apis.apis import Apis
+from helper.apis import Apis
+
 from classes.env import Env
 
 from utils.http import HTTP
 from utils.file import File
+from utils.date_time import DateTime
 from utils.file_size import FileSize
 
 from layout.table import Table
@@ -86,9 +88,9 @@ class GoogleFonts:
                 if download is not False:
                     cls.download_font(file_url, path)
 
-            end_time = "{:.2f}".format(time.time() - start_time)
-                
-            Table.caption(f"Total of variants: {len(list)} - Time taken: {end_time} seconds")
+            Table.caption(f"Total of variants: {len(list)} - "
+                          f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+            
             Table.display()
         else:
             Layout.error("This font is not found on Google Fonts", False, True)

@@ -4,7 +4,7 @@ import requests, time
 
 from layout.table import Table
 
-from apis.apis import Apis
+from helper.apis import Apis
 
 from utils.http import HTTP
 from utils.date_time import DateTime
@@ -14,8 +14,7 @@ class IPLocation:
     @classmethod
     def ip_data(cls, data):
         response = requests.get(f"{Apis.IP_API_REQUEST.value}")
-        resp_json = response.json()
-        return resp_json[data]
+        return response.json()[data]
 
     @classmethod
     def run(cls, url):
