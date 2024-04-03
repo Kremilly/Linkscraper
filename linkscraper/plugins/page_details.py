@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 
 from utils.locale import Locale
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 from layout.table import Table
 from layout.layout import Layout

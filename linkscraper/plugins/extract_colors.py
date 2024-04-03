@@ -3,7 +3,7 @@
 import requests, time, re
 from layout.table import Table
 
-from classes.regex import Regex
+from helper.regex import Regex
 
 from utils.date_time import DateTime
 

@@ -2,7 +2,7 @@
 
 import requests, time
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 from utils.file import File
 from utils.file_ext import FileExt

@@ -2,7 +2,7 @@
 
 import requests
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 class Locale:
 

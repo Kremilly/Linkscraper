@@ -10,7 +10,7 @@ from classes.env import Env
 from layout.layout import Layout
 
 from apis.apis import Apis
-from classes.configs import Configs
+from helper.configs import Configs
 
 class Imgur:
 

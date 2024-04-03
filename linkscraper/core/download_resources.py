@@ -5,7 +5,7 @@ import os, requests, time
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 from layout.table import Table
 from layout.layout import Layout

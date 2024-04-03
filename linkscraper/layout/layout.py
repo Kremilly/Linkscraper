@@ -5,7 +5,7 @@ import sys, pyfiglet
 from rich.prompt import Prompt
 from rich.console import Console
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 from utils.date_time import DateTime
 

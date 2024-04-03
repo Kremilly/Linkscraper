@@ -4,7 +4,7 @@ import socket, requests, urllib
 from urllib.parse import urlparse
 from http.client import HTTPConnection, HTTPSConnection
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 class HTTP:
     

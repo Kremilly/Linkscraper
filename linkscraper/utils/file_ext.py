@@ -2,7 +2,7 @@
 
 import os
 
-from classes.configs import Configs
+from helper.configs import Configs
 
 class FileExt:
     
