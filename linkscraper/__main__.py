@@ -5,7 +5,7 @@ from helper.configs import Configs
 from classes.flags import Flags
 from classes.startup import Startup
 
-flags = Flags.parser('Example of use: python linkscraper -u http://example.com', [
+flags = Flags.parser('E.g.: python linkscraper -u http://example.com', [
     {'short': 'u', 'long': 'url', 'help': 'URL to scan', 'required': False},
     {'short': 'a', 'long': 'action', 'help': 'Run an action', 'required': False},
     {'short': 'p', 'long': 'plugin', 'help': 'Load a plugin', 'required': False},
@@ -17,7 +17,8 @@ flags = Flags.parser('Example of use: python linkscraper -u http://example.com',
     {'short': 'v', 'long': 'version', 'help': 'Show current version', 'action': 'version', 'version': f'{Configs.VERSION.value}'},
     {'short': 'we', 'long': 'write-env', 'help': 'Write environments file (.env)', 'action': 'store_true', 'required': False},
     {'short': 'ssc', 'long': 'show-status-code', 'help': 'Show status code', 'required': False, 'action': 'store_true', 'default': 'false'},
-    {'short': 'smf', 'long': 'show-minify-files', 'help': 'Show only minify files', 'required': False, 'action': 'store_true', 'default': 'false'},{'short': 'oel', 'long': 'only-external-links', 'help': 'Show only external links', 'required': False, 'action': 'store_true', 'default': 'false'},
+    {'short': 'smf', 'long': 'show-minify-files', 'help': 'Show only minify files', 'required': False, 'action': 'store_true', 'default': 'false'},
+    {'short': 'oel', 'long': 'only-external-links', 'help': 'Show only external links', 'required': False, 'action': 'store_true', 'default': 'false'},
 ])
 
 if __name__ == '__main__':
