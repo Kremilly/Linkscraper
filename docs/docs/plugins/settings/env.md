@@ -7,7 +7,7 @@ In essence, the `.env` file serves as a convenient and secure method for managin
 To save your API keys, it's straightforward. Just enter the following command into your terminal:
 
 ```shell
-python linkscraper -write-env
+python linkscraper -we
 ```
 
 If you prefer not to use the automatic .env file-writing tool, you can manually create a .env file in the root directory of Linkscraper with the following content:

@@ -4,7 +4,8 @@ Dive deep into the web's intricate layers with Linkscraper! Whether you're a res
 
 ### Requirements
 
-* Python >= 3.6 ([Download](https://www.python.org/downloads/))
+* Python >= 3.10 ([Download](https://www.python.org/downloads/))
+* PIP
 
 ### Getting Started
 
@@ -19,7 +20,3 @@ To install dependencies.
 ```python
 pip install -r requirements.txt
 ```
-
-### License
-
-Code licensed under [MIT License](blob/main/LICENSE)
