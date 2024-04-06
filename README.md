@@ -30,6 +30,7 @@
   * [robots](https://kremilly.github.io/linkscraper/plugins/robots/)
   * [screenshot](https://kremilly.github.io/linkscraper/plugins/screenshot/)
   * [virustotal](https://kremilly.github.io/linkscraper/plugins/virustotal/)
+  * [subdomains](https://kremilly.github.io/linkscraper/plugins/subdomains/)
   * [ip-location](https://kremilly.github.io/linkscraper/plugins/ip-location/)
   * [detect-fonts](https://kremilly.github.io/linkscraper/plugins/detect-fonts/)
   * [extract-colors](https://kremilly.github.io/linkscraper/plugins/extract-colors/)

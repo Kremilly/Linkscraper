@@ -37,6 +37,7 @@ nav:
         robots: plugins/robots.md # Done
         screenshot: plugins/screenshot.md # Done
         virustotal: plugins/virustotal.md # Done
+        subdomains: plugins/subdomains.md # Done
         ip-location: plugins/ip-location.md # Done
         detect-fonts: plugins/detect-fonts.md # Done
         extract-colors: plugins/extract-colors.md # Done
