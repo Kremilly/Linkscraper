@@ -4,7 +4,7 @@ from enum import Enum
 
 class Configs(Enum):
     
-    VERSION = '2.5.5'
+    VERSION = '2.6.0'
     
     APP_NAME = 'Linkscraper'
     

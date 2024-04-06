@@ -6,6 +6,7 @@ from plugins.whois import Whois
 from plugins.robots import Robots
 from plugins.virustotal import VT
 from plugins.screenshot import Screenshot
+from plugins.subdomains import Subdomains
 from plugins.ip_location import IPLocation
 from plugins.page_details import PageDetails
 from plugins.detect_fonts import DetectFonts
@@ -14,7 +15,7 @@ from plugins.extract_colors import ExtractColors
 class Plugins:
 
     @classmethod
-    def run(cls, plugin, url,args):
+    def run(cls, plugin, url, args):
         Layout.header_plugin(plugin)
 
         match (plugin):
@@ -28,6 +29,8 @@ class Plugins:
                 VT.run(url)
             case 'ip-location':
                 IPLocation.run(url)
+            case 'subdomains':
+                Subdomains.run(url)
             case 'screenshot':
                 Screenshot.run(url, args)
             case 'detect-fonts':

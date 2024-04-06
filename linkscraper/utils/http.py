@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import socket, requests, urllib
+import socket, requests
 
 from urllib.parse import urlparse
 from http.client import HTTPConnection, HTTPSConnection
@@ -9,6 +9,11 @@ from helper.configs import Configs
 class HTTP:
     
     @classmethod  
+    def get_scheme(cls, url):
+        parsed = urlparse(url)
+        return parsed.scheme
+        
+    @classmethod
     def strip_scheme(cls, url):
         parsed = urlparse(url)
         
@@ -69,8 +74,11 @@ class HTTP:
     @classmethod 
     def check_connection(cls, host):
         try:
-            urllib.request.urlopen(host)
-            return True
+            response = requests.get(host)
+            if response.status_code == requests.codes.ok:
+                return True
+            else:
+                return False
         
         except:
             return False

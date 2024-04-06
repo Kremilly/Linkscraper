@@ -76,11 +76,11 @@ class DetectFonts:
 
         body_style = soup.find('body').attrs.get('style', '')
         if 'font-family' in body_style:
-            fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace(''', '')
+            fonts = body_style.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
             
         for style_tag in soup.find_all('style'):
             if 'font-family' in style_tag.string:
-                fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace(''', '')
+                fonts = style_tag.string.split('font-family:')[1].split(';')[0].strip().split('}')[0].replace('"', '')
                 
         list_fonts = fonts.split(',')
         
