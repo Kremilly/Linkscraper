@@ -35,8 +35,8 @@ class Startup:
 
         Core.home(base_url)
         
-        match (cls.args.action):
-            case '' | 'get-core' | 'core':
+        match cls.args.action:
+            case 'get-core' | 'core':
                 Core.basic(base_url)
             case 'get-headers' | 'headers':
                 Headers.section(base_url, cls.args.filter)

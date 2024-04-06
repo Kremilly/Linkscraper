@@ -46,7 +46,7 @@ class VT:
             result = resp_json['data']['attributes']['results'][engine]['result']
             category = resp_json['data']['attributes']['results'][engine]['category']
             
-            match (result):
+            match result:
                 case 'clean':
                     Table.row(engine, f'[bold green]{result}[/bold green]')
                 case 'unrated':

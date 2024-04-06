@@ -8,7 +8,7 @@ class FileExt:
     
     @classmethod
     def remove(cls, file):
-        return file.rsplit(".", 1)[0]
+        return file.rsplit('.', 1)[0]
     
     @classmethod
     def is_valid(cls, file):
@@ -19,7 +19,7 @@ class FileExt:
     def get(cls, file):
         ext = os.path.splitext(file)
         
-        if ext != "" or ext != ".":
+        if ext != '' or ext != '.':
             return ext
         
         return None

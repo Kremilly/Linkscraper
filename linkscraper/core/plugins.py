@@ -18,7 +18,7 @@ class Plugins:
     def run(cls, plugin, url, args):
         Layout.header_plugin(plugin)
 
-        match (plugin):
+        match plugin:
             case 'whois':
                 Whois.run(url)
             case 'robots':

@@ -128,8 +128,8 @@ dmypy.json
 # Remove all test files
 *test*
 
-# Ignore the path .vscode
-.vscode/
+# Ignore the IDE's path
+.*
 
 # Ignore DB files
 *.db

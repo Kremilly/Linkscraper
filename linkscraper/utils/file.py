@@ -8,7 +8,7 @@ from utils.url import URL
 class File:
     
     @classmethod
-    def open_read(cls, file, mode):
+    def open_read(cls, file):
         f = open(file, 'r')
         return f.read()
 

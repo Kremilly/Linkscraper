@@ -60,8 +60,8 @@ class Screenshot:
 
         file = path + f'{cls.generate_id(12)}.png'
         
-        match (args.browser):
-            case '' | 'chrome':
+        match args.browser:
+            case 'chrome':
                 cls.browser_chrome(url, file)
             case 'firefox':
                 cls.browser_firefox(url, file)

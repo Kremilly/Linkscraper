@@ -17,7 +17,7 @@ class Robots:
             robots = response.text
 
             for line in robots.split('\n'):
-                match (line):
+                match line:
                     case _ if 'Allow' in line:
                         Layout.print(None, line, 'green')
                     case _ if 'Disallow' in line:

@@ -76,7 +76,7 @@ class DownloadResources:
     def extract_links(cls, url, soup, resource_type, minify_files, filter_data):
         links = []
         
-        match (resource_type):
+        match resource_type:
             case 'js':
                tags = soup.find_all("script")
                attr_name = "src"
