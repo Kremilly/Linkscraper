@@ -20,10 +20,10 @@ class ExtractColors:
         color_id = 0
         
         patterns = [
-            re.compile(Regex.COLORS_CODE.value[0]),  # e.g., #FFFFFF
-            re.compile(Regex.COLORS_CODE.value[1]),  # e.g., #FFF
-            re.compile(Regex.COLORS_CODE.value[2]),  # e.g., rgb(255, 255, 255)
-            re.compile(Regex.COLORS_CODE.value[3])  # e.g., rgba(255, 255, 255, 0.5)
+            re.compile(Regex.COLORS_CODE[0]),  # e.g., #FFFFFF
+            re.compile(Regex.COLORS_CODE[1]),  # e.g., #FFF
+            re.compile(Regex.COLORS_CODE[2]),  # e.g., rgb(255, 255, 255)
+            re.compile(Regex.COLORS_CODE[3])  # e.g., rgba(255, 255, 255, 0.5)
         ]
         
         Table.header([

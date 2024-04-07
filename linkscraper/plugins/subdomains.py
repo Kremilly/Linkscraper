@@ -30,7 +30,7 @@ class Subdomains:
         domain = HTTP.strip_scheme(url)
         protocol = HTTP.get_scheme(url) + '://'
         
-        resp_json = requests.get(Apis.THREATCROWD_API_REQUEST.value, params={
+        resp_json = requests.get(Apis.THREATCROWD_API_REQUEST, params={
             'domain': domain
         }).json()
         

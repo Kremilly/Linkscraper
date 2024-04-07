@@ -27,12 +27,12 @@ class URL:
             return False
             
         if check_protocol == True:
-            if re.match(Regex.URL_PATTERN_CHECK_PROTOCOL.value, url) != None:
+            if re.match(Regex.URL_PATTERN_CHECK_PROTOCOL, url) != None:
                 return True
                 
             return False
             
-        if re.match(Regex.URL_PATTERN_PROTOCOL.value, url) != None:
+        if re.match(Regex.URL_PATTERN_PROTOCOL, url) != None:
             return True
             
         return False

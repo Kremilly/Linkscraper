@@ -19,7 +19,7 @@ class Imgur:
     @classmethod
     def get_title(cls, title):
         if not title:
-            return f'Screenshot made by {Configs.APP_NAME.value}'
+            return f'Screenshot made by {Configs.APP_NAME}'
             
         return title
 
@@ -41,12 +41,12 @@ class Imgur:
             return Layout.error("Key is required", False, True, {
                 "style": "bold blue",
                 "text": "Get your client id here:",
-                "value": Apis.IMGUR_API_KEY_URL.value,
+                "value": Apis.IMGUR_API_KEY_URL,
             })
             
         start_time = time.time()
         
-        response = requests.request("POST", Apis.IMGUR_API_REQUEST.value, headers = {
+        response = requests.request("POST", Apis.IMGUR_API_REQUEST, headers = {
             'Authorization': f"Client-ID {key}"
         }, data = {
             'title': cls.get_title(title),

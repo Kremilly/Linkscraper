@@ -24,7 +24,7 @@ class PageDetails:
     @classmethod
     def wp_detect(cls, url):
         session = requests.Session()
-        session.headers['User-Agent'] = Configs.DEFAULT_USER_AGENT.value
+        session.headers['User-Agent'] = Configs.DEFAULT_USER_AGENT
         
         soup = BeautifulSoup(session.get(url).content, 'html.parser')
         metas = soup.find_all('meta')

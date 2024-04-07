@@ -19,7 +19,7 @@ from utils.date_time import DateTime
 class DownloadResources:
 
     session = requests.Session()
-    session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
+    session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT
 
     @classmethod
     def download(cls, url, resource_type, minify_files=None, filter_data=None):

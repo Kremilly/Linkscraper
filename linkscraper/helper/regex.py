@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-from enum import Enum
-
-class Regex(Enum):
+class Regex:
     
     COLORS_CODE = [
         r'#[0-9a-fA-F]{6}', # e.g., #FFFFFF

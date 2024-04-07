@@ -14,7 +14,7 @@ flags = Flags.parser('E.g.: python linkscraper -u http://example.com', [
     {'short': 't', 'long': 'title', 'help': 'Set title the screenshot on Imgur', 'required': False},
     {'short': 'd', 'long': 'download', 'help': 'Download static files', 'action': 'store_true', 'required': False},
     {'short': 'up', 'long': 'upload', 'help': 'Upload the screenshot to Imgur', 'action': 'store_true', 'required': False},
-    {'short': 'v', 'long': 'version', 'help': 'Show current version', 'action': 'version', 'version': f'{Configs.VERSION.value}'},
+    {'short': 'v', 'long': 'version', 'help': 'Show current version', 'action': 'version', 'version': f'{Configs.VERSION}'},
     {'short': 'we', 'long': 'write-env', 'help': 'Write environments file (.env)', 'action': 'store_true', 'required': False},
     {'short': 'ssc', 'long': 'show-status-code', 'help': 'Show status code', 'required': False, 'action': 'store_true', 'default': 'false'},
     {'short': 'smf', 'long': 'show-minify-files', 'help': 'Show only minify files', 'required': False, 'action': 'store_true', 'default': 'false'},

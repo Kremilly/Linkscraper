@@ -20,13 +20,13 @@ class Layout:
     
     @classmethod
     def header(cls):
-        cls.console.print("[bold blue]" + pyfiglet.figlet_format(Configs.APP_NAME.value) + "[/bold blue]")
+        cls.console.print("[bold blue]" + pyfiglet.figlet_format(Configs.APP_NAME) + "[/bold blue]")
     
         cls.separator()
-        cls.console.print(f"Homepage: [bold green]{Configs.HOMEPAGE.value}[/bold green]")
+        cls.console.print(f"Homepage: [bold green]{Configs.HOMEPAGE}[/bold green]")
         cls.separator()
 
-        cls.console.print(f"\t\tv.[bold green]{Configs.VERSION.value}[/bold green]")
+        cls.console.print(f"\t\tv.[bold green]{Configs.VERSION}[/bold green]")
         cls.separator()
     
     @classmethod  

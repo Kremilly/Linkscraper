@@ -13,7 +13,7 @@ class FileExt:
     @classmethod
     def is_valid(cls, file):
         _, extension = os.path.splitext(file)
-        return extension.lower() in Configs.ALLOWED_EXT.value
+        return extension.lower() in Configs.ALLOWED_EXT
 
     @classmethod
     def get(cls, file):

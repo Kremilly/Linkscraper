@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import sys
+
 from utils.url import URL
 
 from layout.layout import Layout
@@ -28,7 +30,8 @@ class Startup:
         Layout.header()
 
         if cls.args.write_env:
-            return WriteEnv.run()
+            WriteEnv.run()
+            sys.exit()
             
         base_url = cls.args.url
         URL.check_url_and_connection(base_url)

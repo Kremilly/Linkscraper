@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
-from enum import Enum
-
-class Apis(Enum):
+class Apis:
 
     IP_API_REQUEST = 'http://ip-api.com/json/'
     IMGUR_API_REQUEST = 'https://api.imgur.com/3/image'

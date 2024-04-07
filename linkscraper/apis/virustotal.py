@@ -28,14 +28,14 @@ class VirusTotal:
             return Layout.error(message, False, True, {
                 "style": "bold blue",
                 "text": "Get your VirusTotal key here:",
-                "value": Apis.VIRUSTOTAL_API_KEY_URL.value,
+                "value": Apis.VIRUSTOTAL_API_KEY_URL,
             })
             
         return Layout.error(message, False, True)
         
     @classmethod
     def request(cls, url, key):
-        response = requests.post(Apis.VIRUSTOTAL_API_REQUEST.value, data="url=" + HTTP.strip_scheme(url), headers={
+        response = requests.post(Apis.VIRUSTOTAL_API_REQUEST, data="url=" + HTTP.strip_scheme(url), headers={
             "x-apikey": key,
             "accept": "application/json",
             "content-type": "application/x-www-form-urlencoded"

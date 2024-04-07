@@ -34,10 +34,10 @@ class GoogleFonts:
             Layout.error("Key is required", False, True, {
                 "style": "bold blue",
                 "text": "Get your key here:",
-                "value": Apis.GOOGLE_FONTS_API_KEY_URL.value,
+                "value": Apis.GOOGLE_FONTS_API_KEY_URL,
             })
         else:
-            response = requests.get(Apis.GOOGLE_FONTS_API_REQUEST.value, params={
+            response = requests.get(Apis.GOOGLE_FONTS_API_REQUEST, params={
                 "key": key, 
                 "sort": "alpha"
             })
@@ -46,7 +46,7 @@ class GoogleFonts:
                 Layout.error(f"{response.status_code}: {response.reason}", False, True, {
                     "style": "bold blue",
                     "text": "Get your key here:",
-                    "value": Apis.GOOGLE_FONTS_API_KEY_URL.value,
+                    "value": Apis.GOOGLE_FONTS_API_KEY_URL,
                 })
 
             fonts = response.json().get('items', [])

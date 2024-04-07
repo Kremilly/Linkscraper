@@ -16,4 +16,4 @@ from layout.table import Table
 from layout.layout import Layout
 
 session = requests.Session()
-session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT.value
+session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT

@@ -17,7 +17,7 @@ class Locale:
     def country(cls, country):
         country = cls.get_param(country, 1)
 
-        r = requests.get(Configs.LIST_COUNTRIES.value)
+        r = requests.get(Configs.LIST_COUNTRIES)
         r = r.json()
 
         for code in r:
@@ -28,7 +28,7 @@ class Locale:
     def language(cls, lang):
         lang = cls.get_param(lang, 0)
 
-        r = requests.get(Configs.LIST_LANGUAGES.value)
+        r = requests.get(Configs.LIST_LANGUAGES)
         r = r.json()
 
         for code in r:

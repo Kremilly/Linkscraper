@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
-from enum import Enum
-
-class Configs(Enum):
+class Configs:
     
     VERSION = '2.6.0'
     
     APP_NAME = 'Linkscraper'
+    
+    CONFIGS_FILE = './linkscraper.yml'
     
     HOMEPAGE = 'https://github.com/Kremilly/linkscraper'
     

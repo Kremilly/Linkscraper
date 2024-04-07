@@ -23,7 +23,7 @@ class HTTP:
  
     @classmethod    
     def code_list(cls, c):
-        r = requests.get(Configs.LIST_HTTP_STATUS.value)
+        r = requests.get(Configs.LIST_HTTP_STATUS)
         r = r.json()
 
         for code in r:
