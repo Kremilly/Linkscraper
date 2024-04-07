@@ -1,4 +1,4 @@
-import sys, requests, time
+import requests, time
 from concurrent.futures import ThreadPoolExecutor
 
 from rich.progress import Progress
@@ -9,6 +9,8 @@ from utils.date_time import DateTime
 from helper.apis import Apis
 
 from layout.table import Table
+
+from classes.settings import Settings
 
 class Subdomains:
     
@@ -26,6 +28,7 @@ class Subdomains:
     @classmethod
     def run(cls, url):
         start_time = time.time()
+        max_workers = Settings.get('advanced.max_workers', 'int')
         
         domain = HTTP.strip_scheme(url)
         protocol = HTTP.get_scheme(url) + '://'
@@ -46,7 +49,7 @@ class Subdomains:
         with Progress() as progress:
             task = progress.add_task("[cyan]Fetching subdomains...", total=total_subdomains)
 
-            with ThreadPoolExecutor(max_workers=5) as executor:
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 for _ in executor.map(lambda item: cls.get_status(item, protocol), resp_json['subdomains']):
                     progress.advance(task)
 
