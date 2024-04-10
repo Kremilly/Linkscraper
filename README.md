@@ -38,7 +38,8 @@
     * [Imgur](https://kremilly.github.io/linkscraper/plugins/apis/imgur/)
     * [Google Fonts](https://kremilly.github.io/linkscraper/plugins/apis/google-fonts/)
     * [VirusTotal](https://kremilly.github.io/linkscraper/plugins/apis/virustotal/)
-  * [Environments](https://kremilly.github.io/linkscraper/plugins/settings/env/)
+* ⚙️ Settings
+  * [Environments](https://kremilly.github.io/linkscraper/settings/env/)
 * 🤝 Contribute
   * [Sponsor](https://github.com/sponsors/kremilly)
   * [Report a bug](https://github.com/kremilly/linkscraper/issues)
