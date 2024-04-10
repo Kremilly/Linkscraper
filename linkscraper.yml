@@ -1,12 +1,12 @@
 general:
-  enable_logs: true
-  enable_plugins: true
-  default_user_agent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36'
+  enable_logs: true # Boolean
+  enable_plugins: true # Boolean
+  default_user_agent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36' # String
 
 storage:
-  logs: './logs'
-  downloads: './downloads'
-  screenshots: './screenshots'
+  logs: './logs' # String
+  downloads: './downloads' # String
+  screenshots: './screenshots' # String
 
 advanced:
-  max_workers: 5
+  max_workers: 5 # Integer

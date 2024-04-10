@@ -10,7 +10,6 @@
   * [Introduction](https://kremilly.github.io/linkscraper/#introduction)
     * [Requirements](https://kremilly.github.io/linkscraper/#requirements)
     * [Getting started](https://kremilly.github.io/linkscraper/#getting-started)
-    * [License](https://kremilly.github.io/linkscraper/#license)
   * [Parameters](https://kremilly.github.io/linkscraper/overview/parameters/)
   * [Dependencies](https://kremilly.github.io/linkscraper/overview/dependencies/)
   * [External apis use](https://kremilly.github.io/linkscraper/overview/external-apis/)
