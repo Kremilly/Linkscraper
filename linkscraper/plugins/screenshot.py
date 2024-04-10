@@ -8,6 +8,8 @@ from utils.file import File
 from apis.imgur import Imgur
 from layout.layout import Layout
 
+from classes.settings import Settings
+
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
@@ -51,10 +53,9 @@ class Screenshot:
         driver.quit()
 
     @classmethod
-    def run(cls, url, *args):
+    def run(cls, url, args):
         start_time = time.time()
-        
-        path = f'screenshots\\{HTTP.get_hostname(url)}\\'
+        path = f"{Settings.get('storage.screenshots', 'STRING')}/{HTTP.get_hostname(url)}/"
         
         File.create_path(path)
 
@@ -63,8 +64,10 @@ class Screenshot:
         match args.browser:
             case 'chrome':
                 cls.browser_chrome(url, file)
+                
             case 'firefox':
                 cls.browser_firefox(url, file)
+                
             case _:
                 Layout.error('Browser is invalid', False, True)
 

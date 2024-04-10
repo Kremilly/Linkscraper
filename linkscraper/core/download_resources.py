@@ -5,6 +5,8 @@ import os, requests, time
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup as bs
 
+from classes.settings import Settings
+
 from helper.configs import Configs
 
 from layout.table import Table
@@ -25,7 +27,7 @@ class DownloadResources:
     def download(cls, url, resource_type, minify_files=None, filter_data=None):
         start_time = time.time()
         domain = HTTP.get_hostname(url)
-        path = f"download/{domain}/{resource_type}/"
+        path = f"{Settings.get('storage.downloads')}/{domain}/{resource_type}/"
         
         File.create_path(path)
         

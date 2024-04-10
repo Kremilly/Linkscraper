@@ -3,8 +3,6 @@
 import requests, time
 import pyperclip as Pyperclip
 
-from http import HTTPStatus
-
 from utils.file import File
 from utils.file_ext import FileExt
 
@@ -75,4 +73,7 @@ class Imgur:
             Layout.print(None, f"Link copied to clipboard", "cyan")
             Layout.time_taken(start_time, True)
             
+            return True
+        
         Layout.error(f"{callback['status']} - {callback['data']['error']}", False, True)
+        return False
