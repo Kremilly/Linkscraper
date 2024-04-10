@@ -28,4 +28,4 @@
 
    - With the API key in hand, you can use it to make calls to the Google Fonts Developer API following the official documentation.
 
-> *Visit the [Environments](../../plugins/settings/env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*
+> *Visit the [Environments](../../settings/env.md) page to learn how to save the key in your .env file so that Linkscraper starts using your key.*

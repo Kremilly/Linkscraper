@@ -46,8 +46,9 @@ nav:
         Imgur: plugins/apis/imgur.md # Done
         Google Fonts: plugins/apis/google-fonts.md # Done
         VirusTotal: plugins/apis/virustotal.md # Done
-      
-      Environments: plugins/settings/env.md # Done
+
+  - Settings:
+      Environments: settings/env.md # Done
 
   - Contribute:
       GitHub: https://github.com/kremilly/linkscraper
