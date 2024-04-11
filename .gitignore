@@ -149,3 +149,6 @@ docs/site/**
 
 # Ignore the venv path
 lsc/
+
+# Ignore data path
+data/

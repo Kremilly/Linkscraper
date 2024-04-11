@@ -5,8 +5,8 @@ general:
 
 storage:
   logs: './logs' # String
-  downloads: './downloads' # String
-  screenshots: './screenshots' # String
+  downloads: './data/downloads' # String
+  screenshots: './data/screenshots' # String
 
 advanced:
   max_workers: 5 # Integer
