@@ -1,8 +1,12 @@
 import time, requests
 
+from http import HTTPStatus
+
 from helper.apis import Apis
 
 from classes.env import Env
+
+from classes.settings import Settings
 
 from utils.http import HTTP
 from utils.file import File
@@ -16,7 +20,7 @@ class GoogleFonts:
     
     @classmethod
     def create_path(cls, path):
-        path = f"download/{path}"
+        path = f"{Settings.get('storage.downloads')}/{path}"
         File.create_path(path)
         return path
     
@@ -42,7 +46,7 @@ class GoogleFonts:
                 "sort": "alpha"
             })
             
-            if response.status_code != 200:
+            if response.status_code != HTTPStatus.OK:
                 Layout.error(f"{response.status_code}: {response.reason}", False, True, {
                     "style": "bold blue",
                     "text": "Get your key here:",

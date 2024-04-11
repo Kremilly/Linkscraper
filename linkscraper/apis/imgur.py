@@ -49,6 +49,7 @@ class Imgur:
         response = requests.request("POST", Apis.IMGUR_API_REQUEST, headers = {
             'Authorization': f"Client-ID {key}"
         }, data = {
+            'title': title,
             'image': File.to_base64(file),
         })
         
