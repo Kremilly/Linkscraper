@@ -2,7 +2,7 @@
 
 import requests
 
-from helper.configs import Configs
+from classes.settings import Settings
 
 class Locale:
 
@@ -17,7 +17,7 @@ class Locale:
     def country(cls, country):
         country = cls.get_param(country, 1)
 
-        r = requests.get(Configs.LIST_COUNTRIES)
+        r = requests.get(Settings.get('dataset.list_countries', 'STRING'))
         r = r.json()
 
         for code in r:
@@ -28,7 +28,7 @@ class Locale:
     def language(cls, lang):
         lang = cls.get_param(lang, 0)
 
-        r = requests.get(Configs.LIST_LANGUAGES)
+        r = requests.get(Settings.get('dataset.list_languages', 'STRING'))
         r = r.json()
 
         for code in r:

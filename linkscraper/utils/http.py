@@ -6,6 +6,8 @@ from http.client import HTTPConnection, HTTPSConnection
 
 from helper.configs import Configs
 
+from classes.settings import Settings
+
 class HTTP:
     
     @classmethod  
@@ -23,7 +25,7 @@ class HTTP:
  
     @classmethod    
     def code_list(cls, c):
-        r = requests.get(Configs.LIST_HTTP_STATUS)
+        r = requests.get(Settings.get('dataset.list_http_status', 'STRING'))
         r = r.json()
 
         for code in r:

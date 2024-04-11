@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 
 from utils.locale import Locale
 
-from helper.configs import Configs
+from classes.settings import Settings
 
 from layout.table import Table
 from layout.layout import Layout
@@ -24,7 +24,7 @@ class PageDetails:
     @classmethod
     def wp_detect(cls, url):
         session = requests.Session()
-        session.headers['User-Agent'] = Configs.DEFAULT_USER_AGENT
+        session.headers['User-Agent'] = Settings.get('general.default_user_agent', 'STRING')
         
         soup = BeautifulSoup(session.get(url).content, 'html.parser')
         metas = soup.find_all('meta')

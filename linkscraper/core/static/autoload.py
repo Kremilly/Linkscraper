@@ -2,7 +2,7 @@
 
 import requests, time
 
-from helper.configs import Configs
+from classes.settings import Settings
 
 from utils.file import File
 from utils.file_ext import FileExt
@@ -16,4 +16,4 @@ from layout.table import Table
 from layout.layout import Layout
 
 session = requests.Session()
-session.headers["User-Agent"] = Configs.DEFAULT_USER_AGENT
+session.headers["User-Agent"] = Settings.get('general.default_user_agent', 'STRING')
