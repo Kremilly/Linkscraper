@@ -3,6 +3,8 @@
 import requests, time
 import pyperclip as Pyperclip
 
+from http import HTTPStatus
+
 from utils.file import File
 from utils.file_ext import FileExt
 
@@ -47,9 +49,11 @@ class Imgur:
         response = requests.request("POST", Apis.IMGUR_API_REQUEST, headers = {
             'Authorization': f"Client-ID {key}"
         }, data = {
-            'title': cls.get_title(title),
             'image': File.to_base64(file),
         })
+        
+        if response.status_code != HTTPStatus.OK:
+            return Layout.error(f"{response.status_code} - Failed to upload image to Imgur.", False, True)
 
         callback = response.json()
         if callback["success"] == True:
