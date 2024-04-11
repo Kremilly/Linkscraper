@@ -38,6 +38,8 @@ class Settings:
             value_type = 'FLOAT'
         elif type(value) == bool:
             value_type = 'BOOLEAN'
+        elif type(value) == list:
+            value_type = 'LIST'
 
         data_type = data_type.upper()
         property_position = cls.get_wrong_property_position(prop)

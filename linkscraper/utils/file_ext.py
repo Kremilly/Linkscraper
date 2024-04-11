@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-import os
+import os, requests
 
-from helper.configs import Configs
+from classes.settings import Settings
 
 class FileExt:
     
@@ -13,7 +13,12 @@ class FileExt:
     @classmethod
     def is_valid(cls, file):
         _, extension = os.path.splitext(file)
-        return extension.lower() in Configs.ALLOWED_EXT
+        dataset_allowed_ext = Settings.get('dataset.list_allowed_extensions', 'STRING')
+        
+        ext = requests.get(dataset_allowed_ext).json()        
+        all_ext = ext['scripts'] + ext['styles'] + ext['images']
+        
+        return extension.lower() in all_ext
 
     @classmethod
     def get(cls, file):
