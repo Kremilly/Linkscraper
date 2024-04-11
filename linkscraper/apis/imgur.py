@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests, time, sys
+import requests, time
 import pyperclip as Pyperclip
 
 from http import HTTPStatus
@@ -30,7 +30,6 @@ class Imgur:
         
         Layout.print("[italic yellow]HTML[/italic yellow]:", f"<img src='{params['direct_link']}' alt='{params['title']}'/>")
         Layout.print("[italic yellow]Markdown[/italic yellow]:", f"![{params['title']}]({params['direct_link']})")
-        Layout.print("[italic yellow]BBCode[/italic yellow]:", f"[img]{params['direct_link']}[/img]")
 
     @classmethod
     def upload(cls, file, title):
@@ -47,11 +46,12 @@ class Imgur:
             })
             
         start_time = time.time()
-        
+
         response = requests.request('POST', Apis.IMGUR_API_REQUEST, headers={
             'Authorization': f'Client-ID {key}'
         }, data={
             'title': title,
+            'type': 'base64',
             'image': File.to_base64(file),
         })
         
@@ -61,11 +61,11 @@ class Imgur:
         callback = response.json()
         if callback['success'] == True:
             direct_link = callback['data']['link']
-            imgur_page = direct_link.replace('i', '')
+            imgur_page = direct_link.replace('i.', '')
             imgur_code_img = FileExt.remove(imgur_page).replace('https://imgur.com/', '')
 
             Layout.print('Imgur page:', FileExt.remove(imgur_page), 'bold blue')
-            Layout.print('Link Direct:', imgur_page, 'bold blue')
+            Layout.print('Link Direct:', direct_link, 'bold blue')
 
             cls.embed_code({
                 'title': title,
