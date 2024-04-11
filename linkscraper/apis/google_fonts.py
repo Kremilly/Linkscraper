@@ -20,7 +20,7 @@ class GoogleFonts:
     
     @classmethod
     def create_path(cls, path):
-        path = f"{Settings.get('storage.downloads')}/{path}"
+        path = f"{Settings.get('storage.downloads', 'string')}/{path}"
         File.create_path(path)
         return path
     
