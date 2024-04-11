@@ -24,7 +24,7 @@ class Settings:
 
         if open_file:
             line_position = line_position.split(' -> ')[0]
-            return f"{configs_file}:{line_position}"
+            return f'{configs_file}:{line_position}'
 
         return f"Please fix it in: {configs_file.replace('./', '')}:{line_position}"
 
@@ -66,4 +66,4 @@ class Settings:
             raise SettingsException(f"File '{Configs.CONFIGS_FILE.replace('./', '')}' not found.")
 
         except yaml.YAMLError as e:
-            raise SettingsException(f"Error while parsing the YAML file.: {e}")
+            raise SettingsException(f'Error while parsing the YAML file.: {e}')

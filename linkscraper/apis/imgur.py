@@ -35,35 +35,35 @@ class Imgur:
     @classmethod
     def upload(cls, file, title):
         Layout.separator()
-        key = Env.get("IMGUR_CLIENT_API")
+        key = Env.get('IMGUR_CLIENT_API')
 
         if not key:
-            return Layout.error("Key is required", False, True, {
-                "style": "bold blue",
-                "text": "Get your client id here:",
+            return Layout.error('Key is required', False, True, {
+                "style": 'bold blue',
+                "text": 'Get your client id here:',
                 "value": Apis.IMGUR_API_KEY_URL,
             })
             
         start_time = time.time()
         
-        response = requests.request("POST", Apis.IMGUR_API_REQUEST, headers = {
-            'Authorization': f"Client-ID {key}"
+        response = requests.request('POST', Apis.IMGUR_API_REQUEST, headers = {
+            'Authorization': f'Client-ID {key}'
         }, data = {
             'title': title,
             'image': File.to_base64(file),
         })
         
         if response.status_code != HTTPStatus.OK:
-            return Layout.error(f"{response.status_code} - Failed to upload image to Imgur.", False, True)
+            return Layout.error(f'{response.status_code} - Failed to upload image to Imgur.', False, True)
 
         callback = response.json()
-        if callback["success"] == True:
+        if callback['success'] == True:
             direct_link = callback['data']['link']
-            imgur_page = direct_link.replace("i.", "")
-            imgur_code_img = FileExt.remove(imgur_page).replace("https://imgur.com/", "")
+            imgur_page = direct_link.replace('i', '')
+            imgur_code_img = FileExt.remove(imgur_page).replace('https://imgur.com/', '')
 
-            Layout.print("Imgur page:", FileExt.remove(imgur_page), "bold blue")
-            Layout.print("Link Direct:", imgur_page, "bold blue")
+            Layout.print('Imgur page:', FileExt.remove(imgur_page), 'bold blue')
+            Layout.print('Link Direct:', imgur_page, 'bold blue')
 
             cls.embed_code({
                 'title': title,
@@ -75,7 +75,7 @@ class Imgur:
             Layout.separator()
             Pyperclip.copy(direct_link)
             
-            Layout.print(None, f"Link copied to clipboard", "cyan")
+            Layout.print(None, f'Link copied to clipboard', 'cyan')
             Layout.time_taken(start_time, True)
             
             return True
