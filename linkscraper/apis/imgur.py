@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests, time
+import requests, time, sys
 import pyperclip as Pyperclip
 
 from http import HTTPStatus
@@ -26,15 +26,17 @@ class Imgur:
     @classmethod
     def embed_code(cls, params):
         Layout.header_section("Embed codes")
-        Layout.print("[italic yellow]Imgur Post[/italic yellow]:", f'<blockquote class="imgur-embed-pub" lang="en" data-id="{params["imgur_code_url"]}"><a href="{FileExt.remove(params["imgur_page"])}">{cls.get_title(params["title"])}</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>')
+        Layout.print("[italic yellow]Imgur Post[/italic yellow]:", f'<blockquote class="imgur-embed-pub" lang="en" data-id="{params["imgur_code_url"]}"><a href="{FileExt.remove(params["imgur_page"])}">{params["title"]}</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>')
         
-        Layout.print("[italic yellow]HTML[/italic yellow]:", f"<img src='{params['direct_link']}' alt='{cls.get_title(params['title'])}'/>")
-        Layout.print("[italic yellow]Markdown[/italic yellow]:", f"![{cls.get_title(params['title'])}]({params['direct_link']})")
+        Layout.print("[italic yellow]HTML[/italic yellow]:", f"<img src='{params['direct_link']}' alt='{params['title']}'/>")
+        Layout.print("[italic yellow]Markdown[/italic yellow]:", f"![{params['title']}]({params['direct_link']})")
         Layout.print("[italic yellow]BBCode[/italic yellow]:", f"[img]{params['direct_link']}[/img]")
 
     @classmethod
     def upload(cls, file, title):
         Layout.separator()
+        
+        title = cls.get_title(title)
         key = Env.get('IMGUR_CLIENT_API')
 
         if not key:
@@ -46,9 +48,9 @@ class Imgur:
             
         start_time = time.time()
         
-        response = requests.request('POST', Apis.IMGUR_API_REQUEST, headers = {
+        response = requests.request('POST', Apis.IMGUR_API_REQUEST, headers={
             'Authorization': f'Client-ID {key}'
-        }, data = {
+        }, data={
             'title': title,
             'image': File.to_base64(file),
         })
