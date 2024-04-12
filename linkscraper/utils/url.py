@@ -22,7 +22,7 @@ class URL:
         return parse_qs(parsed_url.query)
         
     @classmethod
-    def is_url(cls, url, check_protocol = True):
+    def is_url(cls, url, check_protocol=True):
         if url == None:
             return False
             

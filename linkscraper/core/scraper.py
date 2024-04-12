@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import re, requests, time
-
 from bs4 import BeautifulSoup as bs
 
 from utils.url import URL

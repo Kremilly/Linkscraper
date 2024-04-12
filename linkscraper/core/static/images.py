@@ -13,18 +13,18 @@ class Images:
             
         start_time = time.time()
         html = session.get(url).content
-        soup = bs(html, "html.parser")
+        soup = bs(html, 'html.parser')
     
         Table.header([
-            ("Filename", "cyan", True),
-            ("URL", "bold blue", False),
-            ("Size", "green", False)
+            ('Filename', 'cyan', True),
+            ('URL', 'bold blue', False),
+            ('Size', 'green', False)
         ])
 
         links = []
         
-        for img in soup.find_all("img"):
-            img_url = urljoin(url, img.attrs.get("src"))
+        for img in soup.find_all('img'):
+            img_url = urljoin(url, img.attrs.get('src'))
             
             if args.filter_data:
                 if img_url.find(args.filter_data):
@@ -37,12 +37,12 @@ class Images:
         for img_url in list_images:
             Table.row(File.get_remote_file_name(img_url), img_url, FileSize.remote_file(img_url))
         
-        Table.caption(f"Total images files on page: {len(list_images)} - "
-                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        Table.caption(f'Total images files on page: {len(list_images)} - '
+                      f'Time taken: {DateTime.calculate_interval(start_time)} seconds')
         
         Table.display()
 
     @classmethod
     def section(cls, url, filter_data, download):
-        Layout.header_section("Images")
+        Layout.header_section('Images')
         cls.images_files(url, filter_data, download)

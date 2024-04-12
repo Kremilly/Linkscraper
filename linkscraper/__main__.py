@@ -7,9 +7,9 @@ from classes.startup import Startup
 
 flags = Flags.parser('E.g.: python linkscraper -u http://example.com', [
     {'short': 'u', 'long': 'url', 'help': 'URL to scan', 'required': False},
+    {'short': 'f', 'long': 'filter', 'help': 'Filter data', 'required': False},
     {'short': 'a', 'long': 'action', 'help': 'Run an action', 'required': False},
     {'short': 'p', 'long': 'plugin', 'help': 'Load a plugin', 'required': False},
-    {'short': 'f', 'long': 'filter', 'help': 'Filter data', 'required': False},
     {'short': 'b', 'long': 'browser', 'help': 'Set browser to take screenshot', 'required': False},
     {'short': 't', 'long': 'title', 'help': 'Set title the screenshot on Imgur', 'required': False},
     {'short': 'd', 'long': 'download', 'help': 'Download static files', 'action': 'store_true', 'required': False},

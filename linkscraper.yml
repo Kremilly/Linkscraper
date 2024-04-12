@@ -8,6 +8,10 @@ storage:
   downloads: './data/downloads' # String
   screenshots: './data/screenshots' # String
 
+format_dates:
+  datetime: '%Y-%m-%d %H:%M:%S' # String
+  today_datetime: '%a, %b %d %Y - %I:%M:%S %p' # String
+
 dataset:
   list_http_status: 'https://gist.githubusercontent.com/kremilly/31aed3c28577f78bcaace2a377f8aa17/raw/4e765d040b739f0d7bc60ef8c2c8f37c17eae81c/http-status-code.json' # String
   list_countries: 'https://gist.githubusercontent.com/kremilly/c468fb230d6fcf97de827e37f91f2f6c/raw/3e037cefa50d0381956e862de478c5e5cce758ab/countries.json' # String

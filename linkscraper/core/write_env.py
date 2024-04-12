@@ -12,19 +12,19 @@ class WriteEnv:
 
     @classmethod
     def run(cls):
-        imgur_key = Prompt.ask(f"Enter your Imgur Client ID (get "
-                               f"[blue bold][link={Apis.IMGUR_API_KEY_URL}]here[/link][/blue bold])")
+        imgur_key = Prompt.ask(f'Enter your Imgur Client ID (get '
+                               f'[blue bold][link={Apis.IMGUR_API_KEY_URL}]here[/link][/blue bold])')
         
-        virustotal_key = Prompt.ask(f"Enter your VirusTotal API key (get "
-                                    f"[blue bold][link={Apis.VIRUSTOTAL_API_KEY_URL}]here[/link][/blue bold])")
+        virustotal_key = Prompt.ask(f'Enter your VirusTotal API key (get '
+                                    f'[blue bold][link={Apis.VIRUSTOTAL_API_KEY_URL}]here[/link][/blue bold])')
         
-        google_fonts_key = Prompt.ask(f"Enter your Google Fonts API Key (get "
-                                      f"[blue bold][link={Apis.GOOGLE_FONTS_API_KEY_URL}]here[/link][/blue bold])")
+        google_fonts_key = Prompt.ask(f'Enter your Google Fonts API Key (get '
+                                      f'[blue bold][link={Apis.GOOGLE_FONTS_API_KEY_URL}]here[/link][/blue bold])')
         
         Env.write({
-            "imgur": imgur_key,
-            "virustotal": virustotal_key,
-            "google_fonts": google_fonts_key,
+            'imgur': imgur_key,
+            'virustotal': virustotal_key,
+            'google_fonts': google_fonts_key,
         })
         
-        Layout.success("Env file written successfully.", True)
+        Layout.success('Env file written successfully.', True)

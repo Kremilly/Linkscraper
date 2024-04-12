@@ -3,15 +3,17 @@
 import time
 from datetime import datetime
 
+from classes.settings import Settings
+
 class DateTime:
     
     @classmethod
     def get_datetime(cls):
-        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.now().strftime(Settings.get('format_dates.datetime', 'STRING'))
     
     @classmethod
     def today_datetime(cls):
-        return datetime.today().strftime("%a, %b %d %Y - %I:%M:%S %p")
+        return datetime.today().strftime(Settings.get('format_dates.today_datetime', 'STRING'))
     
     @classmethod
     def calculate_interval(cls, start_time):

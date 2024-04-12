@@ -15,8 +15,8 @@ class Cookies:
         response = requests.get(url)
         
         Table.header([
-            ("Name", "cyan", True),
-            ("Value", "white", False)
+            ('Name', 'cyan', True),
+            ('Value', 'white', False)
         ])
         
         cookie_dict = response.cookies.get_dict()
@@ -29,12 +29,12 @@ class Cookies:
         for name, value in cookie_dict.items():
             Table.row(name, value)
 
-        Table.caption(f"Total of cookies on page: {len(cookie_dict)} - "
-                      f"Time taken: {DateTime.calculate_interval(start_time)} seconds")
+        Table.caption(f'Total of cookies on page: {len(cookie_dict)} - '
+                      f'Time taken: {DateTime.calculate_interval(start_time)} seconds')
         
         Table.display()
 
     @classmethod
     def section(cls, url, filter_data):
-        Layout.header_section("Cookies")
+        Layout.header_section('Cookies')
         cls.get_cookies(url, filter_data)
