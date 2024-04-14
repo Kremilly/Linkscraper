@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys
+import argparse, sys
 
 from utils.url import URL
 
@@ -22,9 +22,20 @@ from core.write_env import WriteEnv
 class Startup:
     
     @classmethod
-    def __init__(cls, args):
-        cls.args = args
+    def __init__(cls, desc, flags):
+        cls.args = cls.parser(desc, flags)
     
+    @classmethod
+    def parser(cls, desc, args):
+        parser = argparse.ArgumentParser(description=desc)
+
+        for arg in args:
+            parser.add_argument(
+                f"-{arg.pop('short', None)}", f"--{arg.pop('long', None)}", **arg
+            )
+
+        return parser.parse_args()
+
     @classmethod
     def run(cls):
         Layout.header()
