@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import yaml, sys
+import yaml
 
 from helper.configs import Configs
 

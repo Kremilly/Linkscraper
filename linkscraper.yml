@@ -1,6 +1,6 @@
 general:
-  enable_logs: true # Boolean
-  enable_plugins: true # Boolean
+  enable_logs: true # Boolean (true/false)
+  enable_plugins: true # Boolean (true/false)
   default_user_agent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36' # String
 
 storage:
@@ -19,4 +19,4 @@ dataset:
   list_allowed_extensions: 'https://gist.githubusercontent.com/kremilly/5ce0a3c85bc7f6c5b2c49a52aa8ecd36/raw/551cc92e5f3a62f2c7e631add0c5ccb19312a6df/allowed-extensions.json' # String
 
 advanced:
-  max_workers: 5 # Integer
+  max_workers: 5 # Integer (unsigned)
