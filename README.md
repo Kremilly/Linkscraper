@@ -59,12 +59,10 @@ Code licensed under [MIT License](blob/main/LICENSE)
 
 ## 💡 Sponsor
 
-Hello passionate Linkscraper user!
+Hello Linkscraper user!
 
-Building and maintaining a tool like Linkscraper demands time, dedication, and resources. If you've found value in using Linkscraper, please consider supporting its future development. Your financial contribution, no matter how small, will not only help keep Linkscraper up-to-date and robust, but also fuel the addition of new exciting features tailored for your needs.
+Creating and maintaining Linkscraper requires time and resources. If you find it valuable, please consider supporting its development. Your contribution, no matter the size, will help keep Linkscraper updated and improve with new features.
 
-By contributing, you're not just supporting a tool – you're championing a vision of making web data extraction accessible and efficient for everyone. Together, we can ensure that Linkscraper continues to grow and serve the digital community.
+By contributing, you’re helping make web data extraction accessible and efficient for everyone. [Click here](https://github.com/sponsors/kremilly) to support Linkscraper. Every bit counts, and we appreciate your generosity. 🚀❤️
 
-[Click here](https://github.com/sponsors/kremilly) to support Linkscraper. Every bit counts, and we truly appreciate your generosity. 🚀❤️
-
-Thank you for being an integral part of our journey!
+Thank you for being part of our journey!
