@@ -7,7 +7,7 @@
 <p></p>
 
 <div align="center">
-    <a href="https://linkscraper.kremily.com">📚 Documentation</a> • 
+    <a href="https://linkscraper.kremilly.com">📚 Documentation</a> • 
     <a href="#-license">📝 License</a> •  
     <a href="#-sponsor">💡 Sponsor</a>
 </div>
