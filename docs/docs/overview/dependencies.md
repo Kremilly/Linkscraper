@@ -10,4 +10,4 @@ The Linkscraper requires the following libraries to function:
 * selenium
 * whois
 * rich
-* python-decouple
+* python-dotenv
