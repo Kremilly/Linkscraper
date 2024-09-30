@@ -4,7 +4,7 @@
     A powerful tool to scrape and manage links from web pages.
 </div>
 
-<p></p>
+<hr>
 
 <div align="center">
     <a href="https://kremilly.github.io/Linkscraper">📚 Documentation</a> • 
