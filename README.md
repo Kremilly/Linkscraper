@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://i.imgur.com/lYz825j.png" align="center" />
+    <img src="https://i.imgur.com/PT9rwEw.png" align="center" />
     <br><br>
     A powerful tool to scrape and manage links from web pages.
 </div>
