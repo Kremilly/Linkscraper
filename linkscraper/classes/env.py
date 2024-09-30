@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from decouple import config
+import os
+from dotenv import load_dotenv
 
 from helper.apis import Apis
 from helper.configs import Configs
@@ -22,9 +23,5 @@ class Env:
     
     @classmethod    
     def get(cls, var_env):
-        var = config(var_env)
-        
-        if var:
-            return var
-        
-        return None
+        load_dotenv()
+        return os.getenv(var_env)
