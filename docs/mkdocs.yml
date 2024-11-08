@@ -1,10 +1,29 @@
 site_name: Linkscraper
+repo_url: https://github.com/kremilly/Linkscraper
 site_author: Kremilly
 copyright: "Linkscraper is licensed under the <a href='https://github.com/kremilly/linkscraper/blob/main/LICENSE'>MIT license</a>"
 theme:
-  name: null
-  custom_dir: 'cinder'
-  highlightjs: true
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.sections
+    - navigation.footer
+    - content.tabs.link
+    - content.footnote.tooltips
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
   hljs_languages:
     - shell
@@ -54,7 +73,33 @@ nav:
       GitHub: https://github.com/kremilly/linkscraper
       Sponsor: https://github.com/sponsors/kremilly
       Report a bug: https://github.com/kremilly/linkscraper/issues
-
 markdown_extensions:
+  - tables
   - attr_list
   - md_in_html
+  - pymdownx.superfences
+  - footnotes
+  - pymdownx.superfences
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+
+extra:
+    social:
+      - icon: fontawesome/solid/blog
+        link: https://kremilly.com
+        name: Blog
+        
+      - icon: fontawesome/brands/x-twitter
+        link: https://x.com/import_kremilly
+        name: Twitter
+    
+    generator: false
